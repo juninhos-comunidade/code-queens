@@ -1,15 +1,33 @@
+import { ButtonHTMLAttributes, ReactNode } from 'react';
+
+import { LoaderCircle } from 'lucide-react';
+
 import styles from './button.module.scss';
 
 type Variants = "primary" | 'secondary' | 'outline' | 'tertiary';
 
-type ButtonProps = {
+interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
     text?: string,
+    icon?: ReactNode,
+    children?: ReactNode
     disabled?: boolean,
     variant?: Variants,
-    onClick?: () => void
+    isLoading?: boolean
+
 }
-export const Button = ({ text, disabled, onClick, variant, ...props} : ButtonProps) => {
- return(
-    <button className={`${styles.button} ${styles[variant ?? 'primary']}`} disabled={disabled}>{text ?? 'Click me' }</button>
- )
+export const Button = ({ text, disabled, variant, icon, children, isLoading = false, ...props }: ButtonProps) => {
+
+    return (
+        <button {...props} className={`${styles.button} ${styles[variant ?? 'primary']} ${styles[children ? 'rounded' : '']}`}
+            disabled={disabled || isLoading}>
+            {isLoading && <span className={styles.loading}><LoaderCircle /></span>}
+            
+            {!isLoading && (!children ?
+                (
+                    <>{icon && icon} {text}</>
+                ) :
+                children)
+            }
+        </button>
+    )
 }
