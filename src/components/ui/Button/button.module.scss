@@ -16,11 +16,15 @@
             border: 1px solid $borderColor;
             outline: 2px solid $outlineColor;
         }
+
+        &:hover{
+            filter: brightness(1.2);
+        }
     }
 }
 
 .button {
-    // margin: 25px; // TODO : remover
+    margin: 25px; // TODO : remover
     border: 0;
     height: 36px;
     min-width: 132px;
