@@ -1,0 +1,92 @@
+@use '../../../styles/colors.module' as *;
+
+@mixin buttonStyled($bg, $color) {
+    background: $bg;
+    color: $color;
+}
+
+@mixin buttonStates($bg, $borderColor, $outlineColor) {
+    &:not(:disabled) {
+        &:active {
+            background: $bg;
+        }
+
+        &:focus {
+            background: $bg;
+            border: 1px solid $borderColor;
+            outline: 2px solid $outlineColor;
+        }
+
+        &:hover{
+            filter: brightness(1.2);
+        }
+    }
+}
+
+.button {
+    margin: 25px; // TODO : remover
+    border: 0;
+    height: 36px;
+    min-width: 132px;
+    padding-inline: 16px;
+    border-radius: 8px;
+    text-transform: capitalize;
+    display: inline-flex;
+    place-items: center;
+    gap: 8px;
+
+    svg {
+        width: 20px;
+        height: 20px;
+    
+    }
+
+    &.rounded {
+        border-radius: 100%;
+        min-width: 36px;
+        width: 36px;
+        place-content: center;
+        padding: 0;
+    }
+
+    &.primary {
+        @include buttonStyled($primary, $bg-secondary);
+        @include buttonStates($primary, $white, $primary)
+    }
+
+
+    &.secondary {
+        @include buttonStyled($primary-light, $primary);
+        @include buttonStates($primary-light, $white, $primary)
+    }
+
+    &.outline {
+        @include buttonStyled(transparent, $primary);
+        @include buttonStates(transparent, $primary, $primary-dark);
+        border: 1px solid $primary;
+    }
+
+    &.tertiary {
+        @include buttonStyled(transparent, $primary);
+        @include buttonStates(transparent, $primary, $primary-dark)
+    }
+
+    &:disabled {
+        filter: grayscale(.9) opacity(.8);
+
+    }
+
+    .loading{
+        display: inline-flex;
+        width: 100%;
+        place-items: center;
+        justify-content: center;
+        animation: infinite spinner 1s linear;
+
+        @keyframes spinner {
+            to{
+                rotate: 360deg;
+            }
+        }
+    }
+}
