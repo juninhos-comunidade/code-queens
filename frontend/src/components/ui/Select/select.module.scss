@@ -1,0 +1,27 @@
+@use '../../../styles/colors.module' as *;
+
+.selectContainer {
+    display: flex;
+    width: 220px;
+    flex-direction: column;
+    padding : 10px;
+
+    .select {
+        border-radius: 8px;
+        height: 44px;
+        margin-top: 5px;
+        padding: 12px 8px;
+        border: 1px solid $text-tertiary;
+
+        option {
+            height: 44px;
+
+        }
+
+    }
+    .helperText {
+        font-size: 12px;
+        color: $feedback-error;
+        margin-top: 8px;
+    }
+}
