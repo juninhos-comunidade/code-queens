@@ -8,6 +8,7 @@
     .optionContainer {
         display: inline-flex;
         align-items: center;
+        gap: 5px;
         
         .radio {
             accent-color: $primary;
