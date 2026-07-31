@@ -9,7 +9,7 @@
 @media (prefers-color-scheme: dark) {
   :root {
     --background: $text-primary;
-    --foreground:  $bg-primary;
+    --foreground: $bg-primary;
   }
 }
 
@@ -96,6 +96,12 @@ button {
     cursor: default;
   }
 
+}
+
+input {
+  &[type="checkbox"] {
+    accent-color: $primary;
+  }
 }
 
 @media (prefers-color-scheme: dark) {
