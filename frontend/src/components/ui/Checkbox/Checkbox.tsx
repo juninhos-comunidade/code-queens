@@ -4,7 +4,7 @@ import styles from './checkbox.module.scss';
 interface CheckboxProps {
     value: string,
     label: string,
-    onChange?: (value: any) => void
+    onChange?: (value: string | number) => void
 }
 
 export const Checkbox = ({ label, value, onChange }: CheckboxProps) => {
