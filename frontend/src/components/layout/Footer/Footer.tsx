@@ -1,7 +1,9 @@
-import styles from './footer.module.scss'
-import { GitBranch, Camera, Balloon } from 'lucide-react'
 
 import { getYear } from '@/utils'
+import { Limit } from '@/components/ui'
+import { ReactNode } from 'react'
+
+import styles from './footer.module.scss'
 
 type TLinks = {
     title: string,
@@ -14,42 +16,41 @@ type TLinksFooter = {
 }
 
 interface FooterProps {
-    linksFooter : TLinksFooter[]
+    linksFooter: TLinksFooter[],
+    icons?: ReactNode
 }
 
-export const Footer = ({linksFooter} : FooterProps) => {
+export const Footer = ({ linksFooter, icons }: FooterProps) => {
 
     return (
         <footer className={styles.footer}>
-            <div className={styles.footer_content}>
+            <Limit>
 
-                <div className={styles.nav_icons}>
-                    <GitBranch />
-                    <Camera />
-                    <Balloon />
+                <div className={styles.footer_content}>
+
+                    <div className={styles.nav_icons}>
+                    {icons}
+                    </div>
+                    {
+                        linksFooter &&
+                        linksFooter.map((link, index) =>
+                            <div className={styles.nav_footer} key={index}>
+                                <div className={styles.nav_items_container}>
+                                    <h6 className={styles.link_title}>{link.title}</h6>
+                                    {link.links.map((link) =>
+                                        <a key={link.url} href={link.url}>{link.title}</a>
+                                    )}
+
+                                </div>
+                            </div>
+                        )
+                    }
                 </div>
 
-                
-                {
-                    linksFooter &&
-                    linksFooter.map((link, index) =>
-                        <div className={styles.nav_footer} key={index}>
-                            <div className={styles.nav_items_container}>
-                                <h6 className={styles.link_title}>{link.title}</h6>
-                                {link.links.map((link) =>
-                                    <a key={link.url} href={link.url}>{link.title}</a>
-                                )}
-
-                            </div>
-                        </div>
-                    )
-                }
-            </div>
-
-
-            <span className={styles.copyrights}>
-                StackCheck &copy; {getYear} - Todos os direitos  reservados
-            </span>
+                <span className={styles.copyrights}>
+                    StackCheck &copy; {getYear} - Todos os direitos reservados.
+                </span>
+            </Limit>
         </footer>
     )
 }
