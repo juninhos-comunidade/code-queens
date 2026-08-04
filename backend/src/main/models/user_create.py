@@ -3,7 +3,7 @@ from pydantic import BaseModel, EmailStr, ValidationError
 
 class UserCreate(BaseModel):
     full_name: str
-    birh_date: date
+    birth_date: date
     email: EmailStr
     uf: str
     gender: str
