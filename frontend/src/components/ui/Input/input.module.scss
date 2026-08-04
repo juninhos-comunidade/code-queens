@@ -2,9 +2,7 @@
 
 .inputContainer {
     display: flex;
-    width: 220px;
     flex-direction: column;
-    padding : 10px;
 
     .input {
         border-radius: 8px;
@@ -13,9 +11,7 @@
         padding: 12px 8px;
         border: 1px solid $text-tertiary;
 
-        &:valid {
-            border: 1px solid $feedback-success;
-        }
+      
         &:invalid {
             border: 1px solid $feedback-error;
         }

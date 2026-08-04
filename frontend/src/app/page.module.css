@@ -1,0 +1,26 @@
+.passwordHelper {
+    display: flex;
+    justify-content: space-between;
+}
+
+.divisor {
+    display: flex;
+    align-items: center;
+
+    hr {
+        width: 100%;
+    }
+
+    p {
+        padding-inline: 2%;
+    }
+
+}
+
+.optinalContainer{
+    text-align: center;
+    font-size: .87rem;
+    :last-child{
+        margin-left: 5px;
+    }
+}

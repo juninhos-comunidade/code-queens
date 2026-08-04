@@ -1,18 +1,29 @@
-import Image from "next/image";
+'use client'
+import { CameraIcon } from "lucide-react";
 import styles from "./page.module.css";
-import { Select } from "@/components";
+import { Input, Checkbox, SignCard, Button } from "@/components";
 
 export default function Home() {
-  const stateOptions = [
-    { value: "sp", label: "São Paulo" },
-    { value: "rj", label: "Rio de Janeiro" },
-    { value: "bh", label: "Belo Horizonte" }
-  ];
   return (
     <main className={styles.page}>
-     <h1>Stack Check!</h1>
-     <Select label="Estado:" isInvalid errorMessage="Estado inválido" labelFor="estado" options={stateOptions} />
-     <Select label="Cidade:" labelFor="cidade" options={stateOptions} />
+      <h3>Stack Check!</h3>
+      <SignCard>
+
+        <Input label="E-mail" labelFor="email" placeholder="Digite seu email" type="email" />
+        <Input label="Senha" labelFor="password" placeholder="Digite sua senha" type="password" />
+        <div className={styles.passwordHelper}>
+          <Checkbox label="Lembrar de mim" value="lembrar_de_mim" />  <a href="/">Esqueci minha senha</a>
+        </div>
+        <Button text="Entrar" />
+
+        <div className={styles.divisor}>
+          <hr /><p>ou</p> <hr />
+        </div>
+        <span className={styles.optinalContainer}>
+          Ainda não tem uma conta?
+          <a href="">Crie sua conta</a>
+        </span>
+      </SignCard>
     </main>
   );
 }
