@@ -12,3 +12,5 @@ export const toggleSelection = <T extends Choose>(item: T,items: T[]): T[] => {
     ? items.filter(({ id }) => id !== item.id)
     : [...items, item];
 };
+
+export const getYear = new Date().getFullYear();
