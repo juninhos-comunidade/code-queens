@@ -37,8 +37,8 @@ export const Footer = ({ linksFooter, icons }: FooterProps) => {
                             <div className={styles.nav_footer} key={index}>
                                 <div className={styles.nav_items_container}>
                                     <h6 className={styles.link_title}>{link.title}</h6>
-                                    {link.links.map((link) =>
-                                        <a key={link.url} href={link.url}>{link.title}</a>
+                                    {link.links.map((link,index) =>
+                                        <a key={index} href={link.url}>{link.title}</a>
                                     )}
 
                                 </div>
