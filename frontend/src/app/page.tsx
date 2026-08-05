@@ -1,6 +1,6 @@
 'use client'
 import styles from "./page.module.css";
-import { Footer } from "@/components";
+import { Footer, Navbar } from "@/components";
 
 export default function Home() {
       const links = [
@@ -9,8 +9,10 @@ export default function Home() {
         { title: 'Mapa do site', links: [{ title: 'Inicio', url: '/' }, { title: 'Login', url: '/sign-in' }, { title: 'Cadastro', url: '/sign-up' }] }
     ]
   return (
+    <>
+    <Navbar/>
     <main className={styles.page}>
-
+    
 
     {/* <h3>Stack Check!</h3>
       <SignCard>
@@ -30,7 +32,8 @@ export default function Home() {
         </span>
       </SignCard> */}
       
-      <Footer linksFooter={links}/>
     </main>
+      <Footer linksFooter={links}/>
+    </>
   );
 }
