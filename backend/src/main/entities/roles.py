@@ -9,6 +9,11 @@ class Role(Base):
     __tablename__ = "roles"
     __table_args__ = {"schema": "core"}
 
-    id_roles: Mapped[int] = mapped_column(primary_key=True)
+    id_roles: Mapped[int] = mapped_column(
+        primary_key=True
+    )
 
-    user_role: Mapped[str] = mapped_column(String(10))
+    user_role: Mapped[str] = mapped_column(
+        String(10),
+        nullable=False
+    )
