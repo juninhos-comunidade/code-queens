@@ -1,3 +1,9 @@
+.page, .page_main{
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+}
+
 .passwordHelper {
     display: flex;
     justify-content: space-between;
@@ -17,10 +23,11 @@
 
 }
 
-.optinalContainer{
+.optinalContainer {
     text-align: center;
     font-size: .87rem;
-    :last-child{
+
+    :last-child {
         margin-left: 5px;
     }
 }
