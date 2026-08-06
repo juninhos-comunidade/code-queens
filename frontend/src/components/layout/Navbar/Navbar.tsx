@@ -5,7 +5,7 @@ import Image from 'next/image';
 import { MenuIcon, X } from 'lucide-react';
 import StackCheckLogo from '../../../../public/stackcheck_logo.svg';
 
-import { Button } from '@/components';
+import { Button, Limit } from '@/components';
 
 import styles from './navbar.module.scss'
 
@@ -23,24 +23,28 @@ export const Navbar = () => {
             const target = event?.target as Node;
             isOpen && !menu?.contains(target) && setIsOpen(false)
         })
-      
+
     });
     return (
         <nav className={styles.navbar}>
-            <Image src={StackCheckLogo} alt='Stack Check' />
+            <Limit>
+                <Image src={StackCheckLogo} alt='Stack Check' />
 
-            <ul
-                id='navbar_container'
-                onClick={() => setIsOpen(false)}
-                className={`${styles.navbar_container} ${isOpen && styles.navbar_open}`}>
-                <li><a href='/'>Home</a></li>
+                <ul
+                    id='navbar_container'
+                    onClick={() => setIsOpen(false)}
+                    className={`${styles.navbar_container} ${isOpen && styles.navbar_open}`}>
+                    <li><a href='/'>Inicio</a></li>
+                    <li><a href='/'>Login</a></li>
+                    <li><a href='/'>Cadastro</a></li>
 
-            </ul>
+                </ul>
 
-            <div className={styles.buttons_container}>
-                <button onClick={handleToggleNavbar}>{visibleIcon}</button>
-                <Button text='Login' variant='secondary' minSize={true} className={styles.loginButton} />
-            </div>
+                <div className={styles.buttons_container}>
+                    <button onClick={handleToggleNavbar}>{visibleIcon}</button>
+                    <Button text='Login' variant='secondary' minSize={true} className={styles.loginButton} />
+                </div>
+            </Limit>
         </nav>
     )
 }
