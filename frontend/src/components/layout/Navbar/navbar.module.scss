@@ -1,0 +1,50 @@
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    anchor-name: --my-anchor;
+    padding: 16px;
+
+
+
+    button {
+        background: none;
+        border: none;
+        height: 24px !important;
+    }
+
+    .buttons_container {
+        display: flex;
+        gap: 10px;
+
+    }
+
+    .navbar_container {
+        background: white;
+        position: absolute;
+        position-anchor: --my-anchor;
+        left: anchor(--my-anchor left);
+        top: anchor(--my-anchor bottom);
+        width: 100%;
+        display: none;
+
+        &.navbar_open{
+            display: block;
+        }
+
+        .loginButton{
+            width: 10px !important;
+        }
+        
+        li,a{
+            display: block;
+            
+        }
+        a{
+            border: 1px solid rebeccapurple;
+            text-align: center;
+            padding: 12px 8px;
+        }
+
+    }
+}
