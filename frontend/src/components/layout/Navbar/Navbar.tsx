@@ -35,8 +35,8 @@ export const Navbar = () => {
                     onClick={() => setIsOpen(false)}
                     className={`${styles.navbar_container} ${isOpen && styles.navbar_open}`}>
                     <li><a href='/'>Inicio</a></li>
-                    <li><a href='/'>Login</a></li>
-                    <li><a href='/'>Cadastro</a></li>
+                    <li><a href='/sign-in'>Login</a></li>
+                    <li><a href='/sign-up'>Cadastro</a></li>
 
                 </ul>
 
