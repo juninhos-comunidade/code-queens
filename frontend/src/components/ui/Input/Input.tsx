@@ -11,9 +11,10 @@ interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
     icon?: ReactNode,
     disabled?: boolean,
     required?: boolean,
+    msgError?: string,
 
 }
-export const Input = ({ label, labelFor, text, disabled, icon, required, ...props }: InputProps) => {
+export const Input = ({ label, labelFor, text, disabled, icon, required,msgError, ...props }: InputProps) => {
 
     return (
         <div className={styles.inputContainer}>
@@ -30,6 +31,7 @@ export const Input = ({ label, labelFor, text, disabled, icon, required, ...prop
                 aria-required={required}
                 {...props}
             />
+            <p>{msgError}</p>
         </div>
     )
 }

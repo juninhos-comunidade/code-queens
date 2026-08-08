@@ -14,7 +14,7 @@ export const Select = ({ label, labelFor, options, required = true, errorMessage
             <label htmlFor={labelFor} className={styles.label}>
                 {label}
             </label>
-            <select required={required} id={labelFor} name={labelFor} className={styles.select} onChange={(e) => {onChange?.(e)}}>
+            <select required={required} id={labelFor} name={labelFor} className={styles.select} onChange={(e) => {onChange?.(e)}} {...props}>
                 <option value="" >Selecione uma opção</option>
                 {options.map((option) => (
                     <option key={option.value} value={option.value}>
