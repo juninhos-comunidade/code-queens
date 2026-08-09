@@ -37,5 +37,11 @@ async def get_user_by_email(
     return {
         "id_users": str(user.id_users),
         "full_name": user.full_name,
-        "email": user.email
+        "email": user.email,
+        "birth_date": user.birth_date,
+        "uf":user.uf,
+        "gender":user.gender,
+        "id_security_questions":user.id_security_questions,
+        "id_roles":user.id_roles,
+        "timezone_origem":user.timezone_origem,
     }

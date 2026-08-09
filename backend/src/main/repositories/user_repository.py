@@ -32,10 +32,7 @@ class UsersRepository:
         self.db.refresh(user_obj)
 
         return user_obj.id_users
-
-    def get_user_by_email(self, email: str):
-        stmt = select(User).where(User.email == email)
-        return self.db.execute(stmt).scalar_one_or_none()
+    
     def get_user_by_email(self, email: str) -> User | None: 
         stmt = select(User).where(User.email == email) 
         return self.db.scalar(stmt)
