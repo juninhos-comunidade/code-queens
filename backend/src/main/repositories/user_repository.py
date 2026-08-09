@@ -36,6 +36,9 @@ class UsersRepository:
     def get_user_by_email(self, email: str):
         stmt = select(User).where(User.email == email)
         return self.db.execute(stmt).scalar_one_or_none()
+    def get_user_by_email(self, email: str) -> User | None: 
+        stmt = select(User).where(User.email == email) 
+        return self.db.scalar(stmt)
 
     def get_user_by_id(self, user_id: UUID) -> User | None:
         return (

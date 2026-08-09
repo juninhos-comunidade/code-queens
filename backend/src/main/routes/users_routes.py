@@ -1,4 +1,4 @@
-from fastapi import APIRouter, Depends
+from fastapi import APIRouter, Depends, HTTPException
 from sqlalchemy.orm import Session
 
 from src.main.models.user_create import UserCreate
@@ -19,4 +19,23 @@ async def create_user(
     return {
         "message": "Usuário criado com sucesso",
         "id": str(user_id)
+    }
+
+@user_router.get("/users/email/{email}")
+async def get_user_by_email(
+    email: str,
+    service: UserService = Depends(get_user_service)
+):
+    user = service.get_user_by_email(email)
+
+    if not user:
+        raise HTTPException(
+            status_code=404,
+            detail="Usuário não encontrado"
+        )
+
+    return {
+        "id_users": str(user.id_users),
+        "full_name": user.full_name,
+        "email": user.email
     }
