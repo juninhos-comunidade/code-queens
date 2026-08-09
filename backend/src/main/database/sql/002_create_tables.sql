@@ -1,35 +1,35 @@
 --Perguntas de segurança ex, Nome do primeiro cachorro
 CREATE TABLE IF NOT EXISTS core.security_questions (
-    id_security_questions serial primary key not null,
+    id serial primary key not null,
     security_question_description varchar(255) not null
 );
 
 --Definição de usuário se admin e ou se usuário 
 CREATE TABLE IF NOT EXISTS core.roles (
-    id_roles serial primary key not null,
+    id serial primary key not null,
     user_role varchar(10) not null
 );
 
 --stacks cadastradas python, html, css, react, sql, docker
 CREATE TABLE IF NOT EXISTS core.stacks (
-    id_stacks serial primary key not null,
+    id serial primary key not null,
     stacks_name varchar not null
 );
 
 -- níveis de seleção jr, pl, sr
 CREATE TABLE IF NOT EXISTS core.levels (
-    id_levels serial primary key not null,
+    id serial primary key not null,
     levels_name varchar not null
 );
 
 -- tabela de questões e descrição definido por level
 create table if not exists core.questions(
-	id_questions serial primary key not null,
+	id serial primary key not null,
 	id_levels int not null,
 	questions_description varchar not null,
 	questions_enabled boolean not null,
 	foreign key(id_levels)
-		references core.levels(id_levels)
+		references core.levels(id)
 );
 -- tabela questões e stack N:N
 CREATE TABLE IF NOT EXISTS core.questions_stack (
@@ -46,17 +46,17 @@ CREATE TABLE IF NOT EXISTS core.questions_stack (
 );
 --tabelas de respostas e opções
 create table if not exists core.questions_option(
-    id_alternative serial primary key not null,
+    id serial primary key not null,
     id_questions int not null,
     alternative_description varchar,
     answer_weight int,
 
     foreign key(id_questions)
-    	references core.questions(id_questions)
+    	references core.questions(id)
 );
 --tabela de usuários 
 CREATE TABLE IF NOT EXISTS core.users(
-    id_users UUID PRIMARY KEY default gen_random_uuid() not null,
+    id UUID PRIMARY KEY default gen_random_uuid() not null,
     full_name VARCHAR(255),
     birth_date DATE,
     email VARCHAR(255) UNIQUE, 
@@ -71,10 +71,10 @@ CREATE TABLE IF NOT EXISTS core.users(
     updated_at TIMESTAMPTZ default current_timestamp not null,
 
     FOREIGN KEY(id_security_questions)
-        REFERENCES core.security_questions(id_security_questions),
+        REFERENCES core.security_questions(id),
 
     FOREIGN KEY(id_roles)
-        REFERENCES core.roles(id_roles)
+        REFERENCES core.roles(id)
 );
 -- tabela de aplicação de provas
 create table if not exists core.assessments_history(
@@ -87,9 +87,9 @@ create table if not exists core.assessments_history(
     end_time TIMESTAMPTZ default current_timestamp not null,
 
     foreign key(id_users)
-    	references core.users(id_users),
+    	references core.users(id),
     foreign key(id_levels)
-    	references core.levels(id_levels)
+    	references core.levels(id)
 );
 -- tabelas n:n de provas e quantidade de stacks
 create table if not exists core.assessments_stacks(
@@ -99,9 +99,9 @@ create table if not exists core.assessments_stacks(
     primary key(id_assessments, id_stacks),
 
     foreign key(id_assessments)
-    	references core.assessments_history(id_assessments),
+    	references core.assessments_history(id),
     foreign key(id_stacks)
-    	references core.stacks(id_stacks)
+    	references core.stacks(id)
 );
 --recomendações de estudo
 
@@ -113,7 +113,7 @@ create table if not exists core.study_recommendations(
     recommendations_descriptions text,
 
     foreign key(id_stacks)
-    	references core.stacks(id_stacks)
+    	references core.stacks(id)
 );
 
 -- tabelas de resultado
@@ -127,7 +127,7 @@ create table if not exists core.result_test(
 	foreign key(id_assessments,id_stacks)
 		references core.assessments_stacks(id_assessments,id_stacks),
 	foreign key(id_recommendations)
-		references core.study_recommendations(id_recommendations)
+		references core.study_recommendations(id)
 );
 --tabela de termos
 create table if not exists core.terms_catalog(
@@ -136,11 +136,11 @@ create table if not exists core.terms_catalog(
     term_description text NOT null,
     terms_version varchar,
     created_at TIMESTAMPTZ default current_timestamp not null
-);
+    );
 
 -- tabela de aceitação de termos
 create table if not exists core.user_accepteds_terms(
-	id serial primary key not null, 
+	id_accepteds serial primary key not null, 
 	id_users uuid not null,
 	id_terms int not null,
 	accepted boolean not null,
@@ -148,8 +148,7 @@ create table if not exists core.user_accepteds_terms(
 	
 	
 	foreign key(id_users)
-		references core.users(id_users),
+		references core.users(id),
 	foreign key(id_terms)
-		references core.terms_catalog(id_terms)
+		references core.terms_catalog(id)
 );
-
