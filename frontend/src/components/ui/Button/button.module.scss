@@ -24,16 +24,22 @@
 }
 
 .button {
-    margin: 25px; // TODO : remover
     border: 0;
     height: 36px;
     min-width: 132px;
     padding-inline: 16px;
     border-radius: 8px;
     text-transform: capitalize;
-    display: inline-flex;
-    place-items: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
     gap: 8px;
+
+    &.min_width{
+         min-width: min-content;
+         padding: 6px 12px;
+    }
 
     svg {
         width: 20px;

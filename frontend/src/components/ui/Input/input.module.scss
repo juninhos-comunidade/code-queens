@@ -1,0 +1,21 @@
+@use '../../../styles/colors.module' as *;
+
+.inputContainer {
+    display: flex;
+    flex-direction: column;
+
+    .input {
+        border-radius: 8px;
+        height: 44px;
+        margin-top: 5px;
+        padding: 12px 8px;
+        border: 1px solid $text-tertiary;
+        background-color: $white;
+        color: $text-primary;
+
+      
+        &:invalid {
+            border: 1px solid $feedback-error;
+        }
+    }
+}

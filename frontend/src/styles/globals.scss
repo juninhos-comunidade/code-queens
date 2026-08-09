@@ -9,7 +9,7 @@
 @media (prefers-color-scheme: dark) {
   :root {
     --background: $text-primary;
-    --foreground:  $bg-primary;
+    --foreground: $bg-primary;
   }
 }
 
@@ -79,8 +79,14 @@ p {
   }
 }
 
+a{
+  color: $primary;
+  @include fontConfig(0.87, 600, 1.25);
+
+}
+
 label {
-  @include fontConfig(0.75, 400, 1.12);
+  @include fontConfig(0.87, 400, 1.12);
 
   &.strong {
     font-weight: 600
@@ -96,6 +102,12 @@ button {
     cursor: default;
   }
 
+}
+
+input {
+  &[type="checkbox"] {
+    accent-color: $primary;
+  }
 }
 
 @media (prefers-color-scheme: dark) {
