@@ -3,8 +3,8 @@ from uuid import UUID
 from sqlalchemy.orm import Session
 from sqlalchemy import select
 
-from backend.src.main.entities.user import User
-from backend.src.main.models.user_create import UserCreate
+from main.entities.user import User
+from main.models.user_create import UserCreate
 
 
 class UsersRepository:

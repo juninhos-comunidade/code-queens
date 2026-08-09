@@ -3,7 +3,7 @@ from sqlalchemy.orm import mapped_column,Mapped
 
 from uuid import UUID
 
-from backend.src.main.database.orm import Base
+from main.database.orm import Base
 
 class AssessmentsHistory(Base):
     __table_name__="assessments_history"

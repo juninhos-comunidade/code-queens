@@ -1,7 +1,7 @@
 from sqlalchemy import Boolean, ForeignKey, String, Index
 from sqlalchemy.orm import Mapped, mapped_column
 
-from backend.src.main.database.orm import Base
+from main.database.orm import Base
 
 
 class Question(Base):

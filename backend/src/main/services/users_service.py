@@ -1,6 +1,6 @@
-from backend.src.main.repositories.user_repository import UsersRepository
-from backend.src.main.models.user_create import UserCreate
-from backend.src.main.services.password import verify_password, hash_password
+from main.repositories.user_repository import UsersRepository
+from main.models.user_create import UserCreate
+from main.services.password import verify_password, hash_password
 
 
 class UserService:

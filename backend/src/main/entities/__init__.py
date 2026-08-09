@@ -1,3 +1,3 @@
-from backend.src.main.entities.user import User
-from backend.src.main.entities.roles import Role
-from backend.src.main.entities.security_question import SecurityQuestion
+from main.entities.user import User
+from main.entities.roles import Role
+from main.entities.security_question import SecurityQuestion

@@ -1,7 +1,7 @@
 from sqlalchemy import String,Integer
 from sqlalchemy.orm import Mapped, mapped_column
 
-from backend.src.main.database.orm import Base
+from main.database.orm import Base
 
 
 class SecurityQuestion(Base):

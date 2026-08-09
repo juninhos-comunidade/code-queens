@@ -1,6 +1,6 @@
 from sqlalchemy.orm import Session
 
-from backend.src.main.database.orm import SessionLocal
+from main.database.orm import SessionLocal
 
 
 def get_db() -> Session:
