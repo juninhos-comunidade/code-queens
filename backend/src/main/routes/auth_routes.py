@@ -1,8 +1,8 @@
 from fastapi import APIRouter, Depends, HTTPException, status
 
-from main.database.dependencies import get_user_service
-from main.models.login_request import LoginRequest
-from main.services.users_service import UserService
+from src.main.database.dependencies import get_user_service
+from src.main.models.login_request import LoginRequest
+from src.main.services.users_service import UserService
 
 login_router =APIRouter(
     prefix="/auth",

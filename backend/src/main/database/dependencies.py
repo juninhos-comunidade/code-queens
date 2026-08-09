@@ -1,6 +1,6 @@
-from main.database.session import SessionLocal
-from main.repositories.user_repository import UsersRepository
-from main.services.users_service import UserService
+from src.main.database.session import SessionLocal
+from src.main.repositories.user_repository import UsersRepository
+from src.main.services.users_service import UserService
 
 def get_user_service():
     db = SessionLocal()

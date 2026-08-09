@@ -1,7 +1,7 @@
 from sqlalchemy import ForeignKey, Integer
 from sqlalchemy.orm import Mapped,mapped_column
 
-from main.database.orm import Base
+from src.main.database.orm import Base
 
 class AssessmentsStacks(Base):
     __table_name__ = "assessments_stacks"

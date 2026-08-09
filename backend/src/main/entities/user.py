@@ -6,7 +6,7 @@ from sqlalchemy import Date, DateTime, ForeignKey, Index, String, func
 from sqlalchemy.dialects.postgresql import UUID as PG_UUID
 from sqlalchemy.orm import Mapped, mapped_column
 
-from main.database.orm import Base
+from src.main.database.orm import Base
 
 
 class User(Base):

@@ -3,7 +3,7 @@ from uuid import UUID
 from sqlalchemy import Index, Integer,String,ForeignKey,DateTime,func,Boolean
 from sqlalchemy.orm import Mapped,mapped_column
 
-from main.database.orm import Base
+from src.main.database.orm import Base
 
 class UserAcceptedTerms(Base):
     __table_name__="user_accepteds_terms"
