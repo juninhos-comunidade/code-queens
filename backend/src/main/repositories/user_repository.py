@@ -5,7 +5,8 @@ from sqlalchemy import select
 
 from src.main.entities.user import User
 from src.main.models.user_create import UserCreate
-
+from src.main.models.user_update import UserUpdate
+from src.main.models.security_question_update import SecurityQuestionUpdate
 
 class UsersRepository:
 
@@ -45,10 +46,20 @@ class UsersRepository:
         )
 
     def list_users(self) -> list[User]:
-        return self.db.query(User).all()
+        stmt = select(User)
+        return list(self.db.scalars(stmt).all())
 
-    def update_user(self):
-        pass
+    def update_user(self, user_id:UUID, user_data:UserUpdate)-> User|None:
+        user =self.get_user_by_id(user_id)
+        if not user:
+            return None
+        user.full_name = user_data.full_name
+        user.uf = user_data.uf
+        user.gender = user_data.gender
+
+        self.db.commit()
+        self.db.refresh(user)
+        return user
 
     def delete_user(self):
         pass
@@ -56,5 +67,31 @@ class UsersRepository:
     def update_last_login(self):
         pass
 
-    def change_password(self):
-        pass
+    def change_password(
+            self,
+            user_id:UUID,
+            password_hash: str
+        ):
+        user = self.get_user_by_id(user_id)
+        if not user:
+            return None
+        user.password_hash=password_hash
+        self.db.commit()
+        self.db.refresh(user)
+        return user
+
+    def update_security_question(
+        self,
+        user_id:UUID,
+        id_security_questions:int,
+        answer_security_question: str
+    ) -> User| None:
+        user = self.get_user_by_id(user_id)
+        if not user:
+            return None
+        user.id_security_questions=id_security_questions
+        user.answer_security_question=answer_security_question
+
+        self.db.commit()
+        self.db.refresh(user)
+        return user
