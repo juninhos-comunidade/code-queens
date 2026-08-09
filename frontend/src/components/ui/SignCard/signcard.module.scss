@@ -2,6 +2,7 @@
 
 .card {
     background: $white;
+    color: $text-primary;
     width: clamp(275px, 90dvw, 520px);
     border-radius: 12px;
     padding: 20px;

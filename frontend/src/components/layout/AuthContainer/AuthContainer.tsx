@@ -11,11 +11,22 @@ interface AuthContainerProps {
     helperChildren?: ReactNode,
     children?: ReactNode,
     isNotForm?: boolean,
-    submit?: () => void,
     disabled?: boolean,
-    isLoading?: boolean
+    isLoading?: boolean,
+    submit?: () => void,
 }
-export const AuthContainer = ({ title, subtitle, children, optionalChildren, submit, formChildren, helperChildren, isNotForm, disabled, isLoading }: AuthContainerProps) => {
+export const AuthContainer = ({
+    title,
+    subtitle,
+    children,
+    optionalChildren,
+    formChildren,
+    helperChildren,
+    isNotForm,
+    disabled,
+    isLoading,
+    submit
+}: AuthContainerProps) => {
 
     return (
         <div className={styles.page}>
@@ -28,9 +39,12 @@ export const AuthContainer = ({ title, subtitle, children, optionalChildren, sub
                 {isNotForm ?
                     <>
                         {children}
-                    </> 
+                    </>
                     :
-                    <form onSubmit={submit}>
+                    <form onSubmit={(event) => {
+                        event.preventDefault()
+                        submit?.()
+                    }}>
                         {formChildren}
                         <div className={styles.sectionHelper}>
                             {helperChildren}

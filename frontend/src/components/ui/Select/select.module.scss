@@ -3,6 +3,7 @@
 .selectContainer {
     display: flex;
     flex-direction: column;
+    
 
     .select {
         border-radius: 8px;
@@ -10,6 +11,8 @@
         margin-top: 5px;
         padding: 12px 8px;
         border: 1px solid $text-tertiary;
+        background-color: $white;
+        color: $text-primary;
 
         option {
             height: 44px;
