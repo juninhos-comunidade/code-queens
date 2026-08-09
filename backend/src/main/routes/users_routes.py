@@ -109,3 +109,19 @@ async def update_security_question(
     return{
         "message": "Pergunta de segurança atualizada com sucesso."
     }
+@user_router.delete("/users/{user_id}")
+async def delete_user(
+    user_id:UUID,
+    service: UserService = Depends(get_user_service)
+):
+    deleted = service.delete_user(user_id)
+
+    if not deleted:
+        raise HTTPException(
+            status_code=404,
+            detail="Usuário não encontrado"
+        )
+
+    return {
+        "message": "Usuário excluído com sucesso"
+    }

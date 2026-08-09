@@ -78,3 +78,8 @@ class UserService:
             data.id_security_questions,
             data.answer_security_question
         )
+    def delete_user(
+            self,
+            user_id: UUID,
+    )-> bool:
+        return self.repository.delete_user(user_id)
