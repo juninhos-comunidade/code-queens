@@ -4,6 +4,14 @@ from sqlalchemy.orm import declarative_base, sessionmaker
 from backend.src.main.database.connection import DATABASE_URL
 
 
-engine = create_engine(DATABASE_URL, future=True)
-SessionLocal = sessionmaker(bind=engine, autoflush=False, autocommit=False, future=True)
+engine = create_engine(
+    DATABASE_URL, 
+    future=True
+    )
+SessionLocal = sessionmaker(
+    bind=engine, 
+    autoflush=False, 
+    autocommit=False, 
+    future=True
+    )
 Base = declarative_base() 
