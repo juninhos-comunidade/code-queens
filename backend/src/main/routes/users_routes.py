@@ -1,17 +1,22 @@
-from fastapi import APIRouter
-from fastapi.responses import JSONResponse
+from fastapi import APIRouter, Depends
+from sqlalchemy.orm import Session
 
 from backend.src.main.models.user_create import UserCreate
+from backend.src.main.services.users_service import UserService
+from backend.src.main.database.dependencies import get_db , get_user_service
 
 user_router = APIRouter(tags=["Usuários"])
 
-@user_router.post("/users",status_code=201)
-async def create_user(body : UserCreate):
-    dict_body = dict(body)
-    return JSONResponse(
-        status_code=201,
-        content={
-            "message": "Usuário criado com sucesso",
-            "att" : dict_body
-            }
-    ) 
+
+@user_router.post("/users", status_code=201)
+async def create_user(
+    body: UserCreate,
+    service: UserService = Depends(get_user_service)
+):
+
+    user_id = service.create_user(body)
+
+    return {
+        "message": "Usuário criado com sucesso",
+        "id": str(user_id)
+    }

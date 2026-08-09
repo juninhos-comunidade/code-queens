@@ -62,8 +62,8 @@ CREATE TABLE IF NOT EXISTS core.users(
     id_security_questions INT NOT NULL,
     answer_security_question VARCHAR,
     id_roles INT NOT NULL,
-    created_at TIMESTAMP,
-    updated_at TIMESTAMP,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
 
     FOREIGN KEY(id_security_questions)
         REFERENCES core.security_questions(id_security_questions),
