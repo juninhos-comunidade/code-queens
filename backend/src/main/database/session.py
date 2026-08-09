@@ -1,7 +1,11 @@
+from sqlalchemy.orm import Session
+
 from backend.src.main.database.orm import SessionLocal
 
-def get_db():
+
+def get_db() -> Session:
     db = SessionLocal()
+
     try:
         yield db
     finally:
