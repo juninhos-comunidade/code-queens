@@ -1,10 +1,5 @@
-'use client'
-import { zodResolver } from "@hookform/resolvers/zod";
-import { loginSchema, LoginFormData } from "./useAuth";
-
-import { SignCard, Input, Checkbox, Button } from "@/components";
+import { SignCard, Button } from "@/components";
 import styles from './auth_container.module.scss'
-import { useForm } from "react-hook-form";
 import { ReactNode } from "react";
 
 
@@ -13,21 +8,17 @@ interface AuthContainerProps {
     subtitle: string,
     optionalChildren?: ReactNode,
     formChildren?: ReactNode,
+    helperChildren?: ReactNode,
     children?: ReactNode,
     isNotForm?: boolean,
-    submit?: () => void
+    submit?: () => void,
+    disabled?: boolean,
+    isLoading?: boolean
 }
-export const AuthContainer = ({ title, subtitle, children, optionalChildren,submit, formChildren, isNotForm }: AuthContainerProps) => {
-    const { register, handleSubmit, formState: { errors, isSubmitting }, } = useForm<LoginFormData>({
-        resolver: zodResolver(loginSchema),
-        defaultValues: { email: '', password: '' }
-    })
-    const onSubmit = (data: LoginFormData) => {
-        console.log("Valid form data payload:", data);
-    }
+export const AuthContainer = ({ title, subtitle, children, optionalChildren, submit, formChildren, helperChildren, isNotForm, disabled, isLoading }: AuthContainerProps) => {
+
     return (
         <div className={styles.page}>
-            {/* Dinamico  */}
             <div className={styles.introdution_section}>
                 <h4>{title}</h4>
                 <p>{subtitle}</p>
@@ -37,34 +28,18 @@ export const AuthContainer = ({ title, subtitle, children, optionalChildren,subm
                 {isNotForm ?
                     <>
                         {children}
-                    </> :
-
+                    </> 
+                    :
                     <form onSubmit={submit}>
-                        <Input
-                            label="E-mail"
-                            labelFor="email"
-                            placeholder="Digite seu email"
-                            type="email"
-                            {...register("email")}
-                        />
-                        <Input
-                            label="Senha"
-                            labelFor="password"
-                            placeholder="Digite sua senha"
-                            type="password"
-                            msgError={errors?.password?.message}
-                            {...register("password")}
-                        />
-                        <div className={styles.passwordHelper}>
-                            <Checkbox label="Lembrar de mim" value="lembrar_de_mim" />
-                            <a href="/">Esqueci minha senha</a>
+                        {formChildren}
+                        <div className={styles.sectionHelper}>
+                            {helperChildren}
                         </div>
-                        <Button type="submit" text="Entrar" disabled={isSubmitting} />
+                        <Button type="submit" text="Entrar" disabled={disabled} isLoading={isLoading} />
                     </form>
                 }
 
 
-                {/*Dinamico daqui pra baixo */}
                 {optionalChildren &&
                     <>
                         <div className={styles.divisor}>
