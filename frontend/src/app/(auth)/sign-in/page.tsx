@@ -1,6 +1,6 @@
 'use client'
 import { zodResolver } from "@hookform/resolvers/zod";
-import { loginSchema, LoginFormData } from "./useAuth";
+import { loginSchema, LoginFormData, useAuth} from "./useAuth";
 
 import { Input, Checkbox, AuthContainer } from "@/components";
 import { useForm } from "react-hook-form";
@@ -10,13 +10,12 @@ const SignIn = () => {
         resolver: zodResolver(loginSchema),
         defaultValues: { email: '', password: '' }
     })
-    const onSubmit = (data: LoginFormData) => {
-        console.log("Valid form data payload:", data);
-    }
+
+    const {isLoading, handleLogin } =  useAuth();
     return (
         <AuthContainer
-            submit={handleSubmit(onSubmit)}
-            isLoading={isSubmitting}
+            submit={handleSubmit(handleLogin)}
+            isLoading={isLoading}
             title="Acesse sua conta"
             subtitle="Acesse sua conta para continuar aprendendo e evoluindo."
             formChildren={
