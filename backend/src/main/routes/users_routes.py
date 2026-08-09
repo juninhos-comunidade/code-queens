@@ -1,12 +1,12 @@
 from fastapi import APIRouter
 from fastapi.responses import JSONResponse
 
-from backend.src.main.models.user_create import user_create
+from backend.src.main.models.user_create import UserCreate
 
 user_router = APIRouter(tags=["Usuários"])
 
-@user_router.get("/users")
-async def create_user(body : user_create):
+@user_router.post("/users",status_code=201)
+async def create_user(body : UserCreate):
     dict_body = dict(body)
     return JSONResponse(
         status_code=201,

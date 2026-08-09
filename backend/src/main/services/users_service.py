@@ -10,5 +10,7 @@ class UserService:
         password_hash = hash_password(
             user.password
         )
-        user.password_hash = password_hash
-        return self.repository.create_user(user)
+        return self.repository.create_user(
+            user, 
+            password_hash
+        )
