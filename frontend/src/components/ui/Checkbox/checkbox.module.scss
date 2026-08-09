@@ -1,7 +1,9 @@
+@use '../../../styles/colors.module.scss' as *;
 .checkbox {
     display: flex;
     flex-wrap: wrap;
     align-items: center;
     gap: 8px;
+    background-color: $white;
 
 }

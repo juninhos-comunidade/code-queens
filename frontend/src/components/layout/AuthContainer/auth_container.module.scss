@@ -1,18 +1,21 @@
-.page{
+@use '../../../styles/colors.module.scss' as *;
+
+.page {
     display: flex;
     flex-direction: column;
     align-items: center;
-    
-    .introdution_section{
+
+    .introdution_section {
         text-align: center;
         margin-bottom: 40px;
-        > h4{
+
+        >h4 {
             margin-bottom: 12px;
         }
     }
 }
 
-.passwordHelper {
+.sectionHelper {
     display: flex;
     justify-content: space-between;
 }
@@ -27,13 +30,15 @@
 
     p {
         padding-inline: 2%;
+        color: $text-primary;
     }
-
+    
 }
 
-.optinalContainer {
+.optionalContainer {
     text-align: center;
     font-size: .87rem;
+    color: $text-primary;
 
     :last-child {
         margin-left: 5px;

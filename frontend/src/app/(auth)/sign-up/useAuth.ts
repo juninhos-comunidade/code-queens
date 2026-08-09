@@ -9,9 +9,11 @@ export const subscribeSchema = z.object({
     gender: z.string(),
     password: z.string(),
     confirmPassword: z.string(),
-    securityAsk: z.string(),
+    securityAsk: z.number().or(z.string()),
     securityAwnser: z.string(),
-    termsAcepted: z.literal(true)
+    termsAcepted: z.boolean().refine((v) => v === true, {
+        message: "Você deve aceitar os termos e politicas da plataforma"
+    })
 })
 export type SubscribeFormData = z.infer<typeof subscribeSchema>;
 

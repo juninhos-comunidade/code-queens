@@ -1,4 +1,5 @@
 'use client'
+import { Toast } from "@/components/ui/Toast/Toast";
 import styles from "./page.module.css";
 import { Footer, Navbar } from "@/components";
 
@@ -12,28 +13,22 @@ export default function Home() {
     <div className={styles.page}>
       <Navbar />
       <main className={styles.page_main}>
+        <Toast variable='primary'  title="Ainda não consegue lembrar?" subtitle="Caso não lembre sua palavra de segurança ou confira outras dificuldades, entre em contato com nosso suporte." />
+        <Toast variable='success' title="Dados atualizados" subtitle="Seus dados pessoais foram atualizados com sucesso" />
+        <Toast variable='warning' title="Instabilidade no sistema" subtitle="Estamos enfrentando problemas de instabilidade que já estão em rota de resolução.Agradecemos a paciencia" />
+        <Toast variable='error' title="Erro 401" subtitle="Ocorreu um erro ao processar suas informações " />
+        <Toast variable='info' title="Atualização programada" subtitle="Teremos uma atualização para melhorar sua experiencia no dia 28/10/2026" />
 
+        <h5>Somente descricao</h5>
+        <Toast variable='primary' isOnlyDescribe  title="Ainda não consegue lembrar?" subtitle="Caso não lembre sua palavra de segurança ou confira outras dificuldades, entre em contato com nosso suporte." />
+        <Toast variable='success' isOnlyDescribe title="Dados atualizados" subtitle="Seus dados pessoais foram atualizados com sucesso" />
+        <Toast variable='warning' isOnlyDescribe title="Instabilidade no sistema" subtitle="Estamos enfrentando problemas de instabilidade que já estão em rota de resolução.Agradecemos a paciencia" />
+        <Toast variable='error' isOnlyDescribe title="Erro 401" subtitle="Ocorreu um erro ao processar suas informações " />
+        <Toast variable='info' isOnlyDescribe title="Atualização programada" subtitle="Teremos uma atualização para melhorar sua experiencia no dia 28/10/2026" />
 
-        {/* <h3>Stack Check!</h3>
-      <SignCard>
-        <Input label="E-mail" labelFor="email" placeholder="Digite seu email" type="email" />
-        <Input label="Senha" labelFor="password" placeholder="Digite sua senha" type="password" />
-        <div className={styles.passwordHelper}>
-          <Checkbox label="Lembrar de mim" value="lembrar_de_mim" />  <a href="/">Esqueci minha senha</a>
-        </div>
-        <Button text="Entrar" />
-
-        <div className={styles.divisor}>
-          <hr /><p>ou</p> <hr />
-        </div>
-        <span className={styles.optinalContainer}>
-          Ainda não tem uma conta?
-          <a href="">Crie sua conta</a>
-        </span>
-      </SignCard> */}
 
       </main>
-      <Footer linksFooter={links} />
+      {/* <Footer linksFooter={links} /> */}
     </div>
   );
 }
