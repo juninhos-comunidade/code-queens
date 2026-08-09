@@ -3,7 +3,7 @@ from sqlalchemy.orm import Session
 
 from backend.src.main.models.user_create import UserCreate
 from backend.src.main.services.users_service import UserService
-from backend.src.main.database.dependencies import get_db , get_user_service
+from backend.src.main.database.dependencies import get_user_service
 
 user_router = APIRouter(tags=["Usuários"])
 

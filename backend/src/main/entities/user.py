@@ -2,7 +2,7 @@ import uuid
 from datetime import date, datetime
 from uuid import UUID
 
-from sqlalchemy import Date, DateTime, ForeignKey, Index, String, func,UniqueConstraint
+from sqlalchemy import Date, DateTime, ForeignKey, Index, String, func
 from sqlalchemy.dialects.postgresql import UUID as PG_UUID
 from sqlalchemy.orm import Mapped, mapped_column
 
@@ -18,7 +18,8 @@ class User(Base):
     )
     
 
-    id: Mapped[UUID] = mapped_column(
+    id_users: Mapped[UUID] = mapped_column(
+        "id",
         PG_UUID(as_uuid=True),
         primary_key=True,
         default=uuid.uuid4
@@ -55,8 +56,9 @@ class User(Base):
         nullable=False
     )
 
-    id : Mapped[int] = mapped_column(
-        ForeignKey("core.security_questions.id_security_questions"),
+    id_security_questions : Mapped[int] = mapped_column(
+        "id_security_questions",
+        ForeignKey("core.security_questions.id"),
         nullable=False
     )
 
@@ -65,8 +67,9 @@ class User(Base):
         nullable=False
     )
 
-    id : Mapped[int] = mapped_column(
-        ForeignKey("core.roles.id_roles"),
+    id_roles : Mapped[int] = mapped_column(
+        "id_roles",
+        ForeignKey("core.roles.id"),
         nullable=False
     )
     timezone_origem: Mapped[str] = mapped_column(
