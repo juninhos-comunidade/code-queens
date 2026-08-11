@@ -12,3 +12,7 @@ class UserCreate(BaseModel):
     answer_security_question: str
     id_roles: int
     timezone_origem: str | None = None
+    
+    accepted: bool
+    id_terms:int
+ 
