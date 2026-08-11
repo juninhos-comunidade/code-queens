@@ -16,14 +16,39 @@ async def create_user(
     body: UserCreate,
     service: UserService = Depends(get_user_service)
 ):
+    try:
+        user_id = service.create_user(body)
 
-    user_id = service.create_user(body)
+    except ValueError as e:
+        raise HTTPException(
+            status_code=409,
+            detail=str(e)
+        )
+
+    user = service.get_user_by_id(user_id)
+
+    if not user:
+        raise HTTPException(
+            status_code=404,
+            detail="Usuário criado, mas não foi possível recuperá-lo"
+        )
+
+    accepted = service.get_user_accepted_terms(user_id)
 
     return {
         "message": "Usuário criado com sucesso",
-        "id": str(user_id)
+        "id_users": str(user.id_users),
+        "email": user.email,
+        "full_name": user.full_name,
+        "birth_date": user.birth_date,
+        "uf": user.uf,
+        "gender": user.gender,
+        "id_security_questions": user.id_security_questions,
+        "id_roles": user.id_roles,
+        "timezone_origem": user.timezone_origem,
+        "last_login": user.last_login,
+        "accepted": accepted
     }
-
 @user_router.get("/users/email/{email}")
 async def get_user_by_email(
     email: str,
