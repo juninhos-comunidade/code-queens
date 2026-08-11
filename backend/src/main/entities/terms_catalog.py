@@ -1,6 +1,6 @@
 from datetime import datetime
 
-from sqlalchemy import DateTime, Integer, String, Text, func
+from sqlalchemy import DateTime, Integer, String, Text, func, Boolean
 from sqlalchemy.orm import Mapped, mapped_column
 
 from src.main.database.orm import Base
@@ -23,7 +23,7 @@ class TermsCatalog(Base):
         nullable=False
     )
 
-    terms_description: Mapped[str] = mapped_column(
+    term_description: Mapped[str] = mapped_column(
         Text,
         nullable=False
     )
@@ -37,4 +37,9 @@ class TermsCatalog(Base):
         DateTime(timezone=True),
         server_default=func.current_timestamp(),
         nullable=False
+    )
+    is_active: Mapped[bool] = mapped_column(
+        Boolean,
+        nullable=False,
+        default=False
     )
