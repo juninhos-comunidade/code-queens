@@ -1,40 +1,38 @@
 'use client'
 import { zodResolver } from "@hookform/resolvers/zod";
-import { subscribeSchema, SubscribeFormData } from "./useAuth";
+import { subscribeSchema, SubscribeFormData } from "./useSignUp";
 
 import { Input, Select, Checkbox, AuthContainer } from "@/components";
 import { useForm } from "react-hook-form";
-
+import { useSignUp } from "./useSignUp";
 
 
 const SignIn = () => {
-    const { register, handleSubmit, formState: { errors, isSubmitting }, } = useForm<SubscribeFormData>({
+    const { register, handleSubmit, formState: { errors, isSubmitting, isValid }, } = useForm<SubscribeFormData>({
         resolver: zodResolver(subscribeSchema),
         defaultValues: {
-            fullname: '',
+            full_name: '',
             email: '',
-            birthDate: '',
-            state: '',
+            birth_date: '',
+            uf: '',
             gender: '',
             password: '',
             confirmPassword: '',
-            securityAsk: 0,
-            securityAwnser: '',
-            termsAcepted: true
-        }
-
+            id_security_questions: 0,
+            answer_security_question: '',
+            termsAcepted: false
+        },
+        mode: 'onChange'
     })
-    const onSubmit = (data: SubscribeFormData) => {
-        console.log("teste");
-        console.log("Valid form data payload:", data);
-    }
+   const {isLoading, handleCreateUser} = useSignUp()
     return (
-        <div>
+        <div>         
             <AuthContainer
-                submit={handleSubmit(onSubmit)}
+                submit={handleSubmit(handleCreateUser)}
+                buttonTitle={'Criar conta'}
                 title="Criar conta"
                 subtitle="Crie sua conta para começar a trilhar seus conhecimentos"
-                isLoading={isSubmitting}
+                isLoading={isLoading}
                 formChildren={
                     <>
                         <Input
@@ -42,13 +40,15 @@ const SignIn = () => {
                             labelFor="fullname"
                             placeholder="Ex.: Maria Silva"
                             type="text"
-                            {...register("fullname")}
+                            msgError={errors?.full_name?.message}
+                            {...register("full_name")}
                         />
                         <Input
                             label="E-mail"
                             labelFor="email"
                             placeholder="exemplo@dominio.com"
                             type="email"
+                            msgError={errors?.email?.message}
                             {...register("email")}
                         />
                         <Input
@@ -56,24 +56,21 @@ const SignIn = () => {
                             labelFor="birthDate"
                             placeholder="DD/MM/AAAA"
                             type="text"
-                            msgError={errors?.birthDate?.message}
-                            {...register("birthDate")}
+                            msgError={errors?.birth_date?.message}
+                            {...register("birth_date")}
                         />
                         <Select
                             label="Estado"
-                            labelFor="state"
+                            labelFor="uf"
                             options={[{ value: 'sp', label: 'SP' }, { value: 'rj', label: 'RJ' }]}
-                            required
-                            errorMessage={errors?.state?.message}
-                            {...register("state")}
+                            errorMessage={errors?.uf?.message}
+                            {...register("uf")}
                         />
 
                         <Select
                             label="Gênero"
                             labelFor="gender"
                             options={[{ value: 'fem', label: 'Feminino' }, { value: 'masc', label: 'Masculino' }]}
-                            required
-
                             errorMessage={errors?.gender?.message}
                             {...register("gender")}
                         />
@@ -103,24 +100,23 @@ const SignIn = () => {
                                 { value: 2, label: 'Qual o nome da sua primeira escola?' },
                                 { value: 3, label: 'Qual o nome do seu melhor amigo?' }
                             ]}
-                            required
-                            errorMessage={errors?.securityAsk?.message}
-                            {...register("securityAsk")}
+                            errorMessage={errors?.id_security_questions?.message}
+                            {...register("id_security_questions")}
                         />
                         <Input
                             label="Resposta"
                             labelFor="securityAwnser"
                             placeholder="Digite sua resposta"
                             type="text"
-                            msgError={errors?.securityAwnser?.message}
-                            {...register("securityAwnser")}
+                            msgError={errors?.answer_security_question?.message}
+                            {...register("answer_security_question")}
                         />
                     </>
                 }
                 helperChildren={
                     <div>
                         <Checkbox
-                            value="lembrar_de_mim"
+                            value="concordo_com_termos"
                             label={
                                 <label>
                                     Li e concordo com os
@@ -128,8 +124,8 @@ const SignIn = () => {
                                     <a href="/privacy-policy">Política de privacidade</a>.
                                 </label>
                             }
+                            msgError={errors?.termsAcepted?.message}
                             {...register("termsAcepted")}
-                            onChange={() => { }}
                         />
                     </div>
                 }

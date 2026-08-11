@@ -1,28 +1,29 @@
-// 'use client'
-import { redirect } from 'next/navigation';
 import { z } from 'zod';
 
-import { handleCookie } from '@/authSettings';
 import { useState } from 'react';
+import { useRouter } from 'next/navigation';
+
 import { postLogin } from '@/api/endpoints';
 
 export const loginSchema = z.object({
-    email: z.string().min(3, 'Deve ter mais de 3 letras'),
-    password: z.string().min(6, 'Sua senha deve ter mais de 6 digitos')
+    email: z.string().min(3, 'Deve ser informado um e-mail válido'),
+    password: z.string().min(6, 'Sua senha deve conter no minimo 6 caracteres')
 })
 
 export type LoginFormData = z.infer<typeof loginSchema>;
 
-export const useAuth = () => {
+export const useSignIn = () => {
     const [isLoading, setIsLoading] = useState<boolean>(false);
+    const router = useRouter()
+
     const handleLogin = async (data: LoginFormData) => {
         setIsLoading(true);
         await postLogin(data)
             .then(async () => {
-                redirect('/dashboard')
+                router.push('/dashboard')
 
             }).catch((error) => {
-                console.error('Error during login:', error);
+                console.error('Tivemos um erro ao realizar seu login:', error);
                 // Handle error (e.g., show error message to user)
             }).finally(() => {
                 setIsLoading(false);

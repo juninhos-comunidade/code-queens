@@ -1,22 +1,25 @@
 'use client'
 import { zodResolver } from "@hookform/resolvers/zod";
-import { loginSchema, LoginFormData, useAuth} from "./useAuth";
+import { loginSchema, LoginFormData, useSignIn} from "./useSignIn";
 
 import { Input, Checkbox, AuthContainer } from "@/components";
 import { useForm } from "react-hook-form";
 
 const SignIn = () => {
-    const { register, handleSubmit, formState: { errors, isSubmitting }, } = useForm<LoginFormData>({
+    const { register, handleSubmit, formState: { errors, isSubmitting, isValid}, } = useForm<LoginFormData>({
         resolver: zodResolver(loginSchema),
-        defaultValues: { email: '', password: '' }
+        defaultValues: { email: '', password: '' },
+        mode: "onChange",
     })
 
-    const {isLoading, handleLogin } =  useAuth();
+    const {isLoading, handleLogin } =  useSignIn();
     return (
         <AuthContainer
             submit={handleSubmit(handleLogin)}
             isLoading={isLoading}
+            disabled={!isValid}
             title="Acesse sua conta"
+            buttonTitle="Entrar"
             subtitle="Acesse sua conta para continuar aprendendo e evoluindo."
             formChildren={
                 <>
@@ -25,6 +28,7 @@ const SignIn = () => {
                         labelFor="email"
                         placeholder="Digite seu email"
                         type="email"
+                        msgError={errors?.email?.message}
                         {...register("email")}
                     />
                     <Input
