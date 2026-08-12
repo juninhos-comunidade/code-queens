@@ -5,7 +5,6 @@ import styles from './dashboard.module.scss'
 import { Button, Limit, StackTag, Tag } from "@/components";
 import { CloudLightning, Play, TurkishLiraIcon } from "lucide-react";
 import { HistoryCard } from "@/components/feature/HistoryCard/HistoryCard";
-import { it } from "node:test";
 const Dashboard = () => {
 
   const { user, full_name, nickname } = useDashboard()

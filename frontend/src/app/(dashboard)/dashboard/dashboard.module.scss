@@ -27,7 +27,14 @@
       }
 
       .table_container {
-         padding: 16px;
+         padding: 16px 32px;
+         margin-block: 40px;
+         border-radius: 16px;
+         box-shadow: 0px 4px 12px rgba(#000000, .1);
+
+         h4 {
+            margin-bottom: 24px;
+         }
       }
    }
 }
@@ -37,6 +44,7 @@
 
       >section {
          margin: 0 auto;
+
          .table_container {
             padding: 32px;
          }
