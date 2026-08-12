@@ -1,0 +1,48 @@
+@use 'sass:map';
+
+$stack-colors: (
+  'html': (
+    'background': rgb(227, 79, 38),
+    'text': #fff
+  ),
+  'javascript': (
+    'background': rgb(240, 219, 79),
+    'text': #000
+  ),
+  'css': (
+    'background': rgb(38, 77, 228),
+    'text': #fff
+  ),
+  'typescript': (
+    'background': rgb(49, 120, 198),
+    'text': #fff
+  ),
+  'python': (
+    'background': rgb(55, 118, 171),
+    'text': #fff
+  ),
+  'dotnet': (
+    'background': rgb(81, 43, 212),
+    'text': #fff
+  ),
+  'sql': (
+    'background': rgb(204, 204, 204),
+    'text': #000
+  )
+);
+
+.stack_tags_container {
+  display: flex;
+  flex-wrap: wrap;
+  row-gap: 8px;
+
+  > span {
+    @each $name, $colors in $stack-colors {
+      &[data-stack='#{$name}'] {
+        background: map.get($colors, 'background');
+        color: map.get($colors, 'text');
+        border : none
+      }
+    }
+  }
+}
