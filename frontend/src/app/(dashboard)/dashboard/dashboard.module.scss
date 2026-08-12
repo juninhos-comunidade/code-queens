@@ -27,58 +27,20 @@
       }
 
       .table_container {
-         border: 1px solid red;
          padding: 16px;
-
-
-         .table_item {
-            border: 1px solid green;
-            display: grid;
-            grid-template-areas: "stackIcon title progress" "tags tags tags";
-            grid-template-columns: .1fr 2fr .3fr;
-            gap: 12px;
-            padding: 24px 12px;
-         }
-
-         .table_item_icon {
-            // border: 1px solid rgb(206, 53, 173);
-            grid-area: stackIcon;
-            place-self: center;
-         }
-
-         .table_item_title {
-            // border: 1px solid rgb(203, 206, 53);
-            grid-area: title;
-         }
-
-         .table_item_tags {
-            // border: 1px solid rgb(53, 119, 206);
-            display: flex;
-            flex-wrap: wrap;
-            gap: 8px;
-            grid-area: tags;
-
-            .tag {
-               border: 1px solid black;
-               margin-right: 8px;
-               padding: 4px 10px;
-               border-radius: 8px;
-            }
-         }
-
-         .table_item_progress {
-            color: rgb(49, 132, 226);
-            font-weight: 700;
-            grid-area: progress;
-            place-self: center;
-         }
       }
-
    }
 }
 
 @media screen and (min-width: 768px) {
-   .table_item {
-      grid-template-areas: "stackIcon title progress" "tags tags progress";
+   .dashboard {
+
+      >section {
+         margin: 0 auto;
+         .table_container {
+            padding: 32px;
+         }
+      }
    }
+
 }
