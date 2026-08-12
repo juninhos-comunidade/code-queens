@@ -36,6 +36,18 @@
             margin-bottom: 24px;
          }
       }
+
+      .empty{
+         display: flex;
+         flex-direction: column;
+         align-items: center;
+         text-align: center;
+         gap: 24px;
+         p{
+
+            max-width: 530px;
+         }
+      }
    }
 }
 
