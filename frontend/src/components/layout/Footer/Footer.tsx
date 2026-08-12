@@ -16,7 +16,7 @@ type TLinksFooter = {
 }
 
 interface FooterProps {
-    linksFooter: TLinksFooter[],
+    linksFooter?: TLinksFooter[],
     icons?: ReactNode
 }
 
