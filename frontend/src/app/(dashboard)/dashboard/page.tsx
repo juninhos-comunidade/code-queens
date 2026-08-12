@@ -4,10 +4,38 @@ import Image from "next/image";
 import styles from './dashboard.module.scss'
 import { Button, Limit, StackTag, Tag } from "@/components";
 import { CloudLightning, Play, TurkishLiraIcon } from "lucide-react";
+import { HistoryCard } from "@/components/feature/HistoryCard/HistoryCard";
+import { it } from "node:test";
 const Dashboard = () => {
 
   const { user, full_name, nickname } = useDashboard()
   const stacks = ['css', 'html', 'vitest', 'javascript', 'vue', 'node']
+
+  const history = [
+    {
+      index: 1,
+      titleTest: 'Teste HTML e CSS',
+      date: '12/07/2026',
+      stacks: ['html', 'css'],
+      progress: 98,
+    },
+    {
+      index: 2,
+      titleTest: 'Teste para nubank',
+      date: '12/07/2026',
+      stacks: ['html', 'css', 'javascript', '.net'],
+      progress: 73,
+    },
+    {
+      index: 3,
+      titleTest: 'Backend Itau',
+      date: '31/07/2026',
+      stacks: ['python', 'sql'],
+      progress: 65,
+    },
+
+  ]
+
   return (
     <section className={styles.dashboard} >
       <Limit>
@@ -24,31 +52,18 @@ const Dashboard = () => {
           <h4>
             Seus testes realizados
           </h4>
+          {
+            history.map((item) => (
 
-          <div className={styles.table_item}>
-            <div className={styles.table_item_icon}>
-              <CloudLightning />
-            </div>
-            <div className={styles.table_item_title}>
-              <p>Teste Java Sênior</p>
-              <p>10/08/2026</p>
-            </div>
-
-            <div className={styles.table_item_tags}>
-              {/* <Tag text="Junior" />
-              <Tag text="Front-end" />
-              <Tag text="Javascript" />
-              <Tag text="SCSS" />
-              <Tag text="Python" /> */}
-
-                <StackTag options={stacks}/>
-
-            </div>
-
-            <div className={styles.table_item_progress}>
-              <h6>79%</h6>
-            </div>
-          </div>
+              <HistoryCard
+                index={item.index}
+                titleTest={item.titleTest}
+                date={item.date}
+                stacks={item.stacks}
+                progress={item.progress}
+              />
+            ))
+          }
         </div>
       </Limit>
     </section>
