@@ -13,6 +13,7 @@ interface AuthContainerProps {
     isNotForm?: boolean,
     disabled?: boolean,
     isLoading?: boolean,
+    buttonTitle: string,
     submit?: () => void,
 }
 export const AuthContainer = ({
@@ -25,6 +26,7 @@ export const AuthContainer = ({
     isNotForm,
     disabled,
     isLoading,
+    buttonTitle,
     submit
 }: AuthContainerProps) => {
 
@@ -49,7 +51,7 @@ export const AuthContainer = ({
                         <div className={styles.sectionHelper}>
                             {helperChildren}
                         </div>
-                        <Button type="submit" text="Entrar" disabled={disabled} isLoading={isLoading} />
+                        <Button type="submit" text={buttonTitle} disabled={disabled} isLoading={isLoading} />
                     </form>
                 }
 
