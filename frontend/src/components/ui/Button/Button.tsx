@@ -4,7 +4,7 @@ import { LoaderCircle } from 'lucide-react';
 
 import styles from './button.module.scss';
 
-type Variants = "primary" | 'secondary' | 'outline' | 'tertiary';
+type Variants = "primary" | 'secondary' | 'outline' | 'tertiary' | 'ghost';
 
 
 interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
