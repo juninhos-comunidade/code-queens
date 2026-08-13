@@ -20,7 +20,8 @@ async def get_stacks(
     return [
         {
             "id_stacks": stack.id,
-            "stacks_name": stack.stacks_name
+            "stacks_name": stack.stacks_name,
+            "career_paths": stack.career_paths
         }
         for stack in stacks
     ]

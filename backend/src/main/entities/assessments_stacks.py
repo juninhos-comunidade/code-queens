@@ -4,7 +4,7 @@ from sqlalchemy.orm import Mapped,mapped_column
 from src.main.database.orm import Base
 
 class AssessmentsStacks(Base):
-    __table_name__ = "assessments_stacks"
+    __tablename__ = "assessments_stacks"
     __table_args__ = {"schema": "core"}
 
     id_assessments : Mapped[int] = mapped_column(
