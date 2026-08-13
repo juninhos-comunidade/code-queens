@@ -10,7 +10,7 @@ interface CheckboxProps
 }
 
 
-export const Checkbox = ({ label, value,msgError, onChange, ...props }: CheckboxProps) => {
+export const Checkbox = ({ label, value,msgError, ...props }: CheckboxProps) => {
     const isStringLabel = typeof label === 'string';
 
     return (

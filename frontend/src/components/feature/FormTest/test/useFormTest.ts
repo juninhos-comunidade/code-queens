@@ -15,9 +15,18 @@ export const testSchema = z.object({
 
     seniority: z.number({
         message: 'Informe o nível que deseja testar suas habilidades'
-    }).min(1, 'Você deve escolher uma senioridade para prosseguir')
+    }).min(1, 'Você deve escolher uma senioridade para prosseguir'),
+    id_stacks: z
+        .array(z.string().transform(Number))
+        .min(2, {
+            message: "Selecione pelo menos 2 tecnologias"
+        })
+        .max(5, {
+            message: "Selecione no máximo 5 tecnologias"
+        })
 });
-export type TestFormData = z.infer<typeof testSchema>;
+export type TestFormInput = z.input<typeof testSchema>;
+export type TestFormData = z.output<typeof testSchema>;
 
 interface Level {
     id_levels: number,
@@ -32,13 +41,27 @@ interface TechnicalArea {
 export const useTest = () => {
     const [isLoading, setIsLoading] = useState<boolean>(false);
     const technicalArea = [
-        {id: 1, description:'Front-end'},
-        {id: 2, description:'Back-end'},
+        { id: 1, description: 'Front-end' },
+        { id: 2, description: 'Back-end' },
     ]
-    
+
     const [levels, setLevels] = useState<Level[]>([])
     const [stacks, setStacks] = useState<any[]>([])
-    
+    const [step, setStep] = useState<number>(0)
+
+    const info = [
+        {
+            step: 1,
+            title: '1. Configure seu teste',
+            subtitle: 'Comece informando para qual frente e nível você deseja testar seus conhecimentos.'
+        },
+        {
+            step: 2,
+            title: '2. Selecione as stacks',
+            subtitle: 'Selecione as tecnologias que você deseja testar seu dominio e geraremos um teste prático personalizado sob medida para o seu perfil'
+        },
+    ]
+
 
     const router = useRouter()
 
@@ -57,8 +80,18 @@ export const useTest = () => {
 
 
     const handleTest = async (data: TestFormData) => {
+        console.log('foi?')
         console.log('Teste:', data)
 
+    }
+
+    const changeStep = (action: string) => {
+        if (action === 'go') {
+            setStep(prev => prev + 1)
+        }
+        if (action === 'back') {
+            setStep(prev => prev - 1)
+        }
     }
 
     useEffect(() => {
@@ -66,5 +99,5 @@ export const useTest = () => {
         handleStacks()
     }, [])
 
-    return { isLoading, levels, stacks, technicalArea, handleTest }
+    return { isLoading, levels, stacks, technicalArea, info, step, setStep, changeStep, handleTest }
 }
