@@ -1,0 +1,48 @@
+.test_container {
+    box-shadow: 0px 4px 12px rgba(#000000, .1);
+    gap: 32px;
+    padding: 32px;
+    border-radius: 16px;
+    max-width: 675px;
+    display: flex;
+    flex-direction: column;
+
+
+    >form {
+        display: flex;
+        flex-direction: column;
+        gap: 16px;
+        flex-wrap: wrap;
+
+        .options_container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-bottom: 32px;
+
+        
+
+
+
+
+            .checkbox_container {
+                border: 1px solid #cfcfcf;
+                padding: 12px;
+                border-radius: 6px;
+                width: clamp(150px, 20%, 100px);
+                 flex-grow: 1;
+
+            }
+
+        }
+
+
+
+        .button_container {
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap-reverse;
+            gap: 12px;
+        }
+    }
+}
