@@ -22,7 +22,8 @@ export const useSignIn = () => {
         setIsLoading(true);
         await postLogin(data)
             .then(async (response) => {
-                setUser(response)
+                const {message, ...user } = response
+                setUser(user)
                 router.push('/dashboard')
 
             }).catch((error) => {
