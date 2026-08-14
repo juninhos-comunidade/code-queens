@@ -35,7 +35,7 @@ const SignIn = () => {
                         label="Senha"
                         labelFor="password"
                         placeholder="Digite sua senha"
-                        type="password"
+                        isPassword={true}
                         msgError={errors?.password?.message}
                         {...register("password")}
                     />

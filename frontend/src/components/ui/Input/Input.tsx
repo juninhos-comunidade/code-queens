@@ -1,8 +1,9 @@
 'use client'
-import { InputHTMLAttributes, ReactNode } from 'react';
+import { InputHTMLAttributes, ReactNode, useState } from 'react';
 
 import { IMaskInput, IMask } from 'react-imask';
 
+import { Eye, EyeClosed } from 'lucide-react';
 import styles from './input.module.scss';
 
 interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
@@ -15,10 +16,16 @@ interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
     msgError?: string,
     mask?: string,
     onAccept?: (value: string) => void;
-
+    isPassword?: boolean,
+    showPassword?: boolean,
 
 }
-export const Input = ({ label, labelFor, text, disabled, icon, required, msgError, mask, onAccept, ...props }: InputProps) => {
+export const Input = ({ label, labelFor, text, disabled, icon
+    , required, msgError, mask, onAccept, isPassword, showPassword, ...props }: InputProps) => {
+    const [visiblePassword, setVisiblePassword ] = useState<boolean>(false)
+    const visiblePasswordIcon = visiblePassword
+        ? <Eye className={styles.eye_icon} size={20} />
+        : <EyeClosed className={styles.eye_icon} size={20} />;
 
     return (
         <div className={styles.inputContainer}>
@@ -66,9 +73,17 @@ export const Input = ({ label, labelFor, text, disabled, icon, required, msgErro
                         disabled={disabled}
                         required={required}
                         aria-required={required}
+                        type={isPassword && !visiblePassword ? 'password' : 'text'}
                         {...props}
                     />
+
             }
+            {isPassword && (
+                <button className={styles.icon_container} type="button" onClick={() => setVisiblePassword(!visiblePassword)}>
+                    {visiblePasswordIcon}
+                </button>
+            )}
+
             <p>{msgError}</p>
         </div>
     )

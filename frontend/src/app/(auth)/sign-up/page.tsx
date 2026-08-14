@@ -130,7 +130,8 @@ const SignIn = () => {
                             label="Senha"
                             labelFor="password"
                             placeholder="Digite sua senha"
-                            type="password"
+                            isPassword={true}
+                            showPassword={true}
                             msgError={errors?.password?.message}
                             {...register("password")}
                         />
@@ -138,7 +139,7 @@ const SignIn = () => {
                             label="Confirmar senha"
                             labelFor="confirmPassword"
                             placeholder="Digite sua senha"
-                            type="password"
+                            isPassword={true}
                             msgError={errors?.confirmPassword?.message}
                             {...register("confirmPassword")}
                         />
