@@ -24,13 +24,17 @@
     }
 
     .icon_container {
-        width: 0;
+        background: none;
+        border: none;
+        display: flex;
+        position: absolute;
+        position-anchor: --input-container;
+        right: calc(anchor(right) + 8px);
+        align-self: anchor-center;
+
         .eye_icon {
-            position: absolute;
-            position-anchor: --input-container;
-            right: calc(anchor(right) + 8px);
-            align-self: anchor-center;
             cursor: pointer;
+            color: $text-primary;
 
         }
     }
