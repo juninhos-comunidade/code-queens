@@ -25,11 +25,13 @@ export const useUserStore = create(
                 last_login: "",
                 accepted: null
             },
-            setUser: (payload: User) => set({ user: payload })
+            currentAssessment: {},
+            setUser: (payload: User) => set({ user: payload }),
+            setCurrentAssessment: (payload: User) => set({ currentAssessment: payload }),
         }),
         {
             name: 'stackcheck-storage',
-            enabled: true
+            enabled: true //TODO tipagem
         }
 
     )
