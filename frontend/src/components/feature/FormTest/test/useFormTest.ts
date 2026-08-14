@@ -81,8 +81,9 @@ export const useTest = () => {
         setIsLoading(true)
         await postAssessments({ ...data, ...{ id_user: id_users } })
             .then((response) => {
+                const {assessment} = response
                 setCurrentAssessment(response)
-                router.push(`test/assessment/${response.id_assessments}`)
+                router.push(`test/assessment/${assessment.id_assessments}`)
             }).finally(() =>
                 setIsLoading(false)
             )
