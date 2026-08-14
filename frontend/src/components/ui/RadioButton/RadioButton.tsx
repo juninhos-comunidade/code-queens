@@ -1,27 +1,31 @@
 
 import styles from './radio_button.module.scss';
+type OptionGroup = Record<string, unknown>;
 
-type OptionGroup = {
-    id: string,
-    value: string,
-    label: string,
-}
-
-interface RadioButtonProps {
+interface RadioButtonProps<T extends OptionGroup> {
     errorMessage?: string,
     onChange?: (value: string) => void;
-    optionGroup: OptionGroup[],
+    optionGroup: T[];
+    valueKey: keyof T;
+    labelKey: keyof T;
 }
 
-export const RadioButton = ({ errorMessage, optionGroup,onChange }: RadioButtonProps) => {
+export const RadioButton = ({ errorMessage, optionGroup, valueKey, labelKey, onChange }: RadioButtonProps<T>) => {
     return (
         <div className={styles.radioButtonContainer}>
             {
                 optionGroup?.map((option, key) => (
                     <span className={styles.optionContainer} key={key}>
-                        <input type='radio' className={styles.radio} name={option.id} id={option?.value} onChange={() => onChange?.(option.value)} />
+                        <input
+                            type='radio'
+                            className={styles.radio}
+                            name={String(valueKey)}
+                            id={String(option[valueKey])}
+                            value={String(option[valueKey])}
+                            onChange={() => onChange?.(String(option[valueKey]))}
+                        />
                         <label htmlFor={option?.value} className={styles.label} >
-                            {option?.label}
+                            {option[labelKey]}
                         </label>
                     </span>
                 ))
