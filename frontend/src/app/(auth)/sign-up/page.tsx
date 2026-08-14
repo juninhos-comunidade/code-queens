@@ -24,7 +24,7 @@ const SignIn = () => {
         },
         mode: 'onChange'
     })
-    const { isLoading, handleCreateUser } = useSignUp()
+    const {error, isLoading, handleCreateUser } = useSignUp()
     const genders = [{ value: 'fem', label: 'Feminino' }, { value: 'masc', label: 'Masculino' }]
     const states = [
         { value: "AC", label: "Acre" },
@@ -69,6 +69,7 @@ const SignIn = () => {
                 title="Criar conta"
                 subtitle="Crie sua conta para começar a trilhar seus conhecimentos"
                 isLoading={isLoading}
+                msgFallback={error}
                 formChildren={
                     <>
                         <Input

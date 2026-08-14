@@ -33,6 +33,7 @@ export type SubscribeFormData = z.infer<typeof subscribeSchema>;
 export const useSignUp = () => {
     const router = useRouter()
     const [isLoading, setIsLoading] = useState<boolean>(false);
+    const [error, setError] = useState<string>('');
 
     const handleCreateUser = async (data: SubscribeFormData) => {
         setIsLoading(true);
@@ -42,6 +43,7 @@ export const useSignUp = () => {
 
             }).catch((error) => {
                 console.error('Tivemos um erro ao criar seu usuario:', error);
+                setError(error.response?.data)
             }).finally(() => {
                 setIsLoading(false);
             })
@@ -49,5 +51,5 @@ export const useSignUp = () => {
 
 
 
-    return { useSignUp, handleCreateUser, isLoading }
+    return { useSignUp, handleCreateUser, isLoading, error }
 }

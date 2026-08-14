@@ -12,7 +12,7 @@ const SignIn = () => {
         mode: "onChange",
     })
 
-    const {isLoading, handleLogin } =  useSignIn();
+    const {isLoading,error, handleLogin } =  useSignIn();
     return (
         <AuthContainer
             submit={handleSubmit(handleLogin)}
@@ -21,6 +21,7 @@ const SignIn = () => {
             title="Acesse sua conta"
             buttonTitle="Entrar"
             subtitle="Acesse sua conta para continuar aprendendo e evoluindo."
+            msgFallback={error}
             formChildren={
                 <>
                     <Input
