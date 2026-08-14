@@ -130,7 +130,6 @@ const SignIn = () => {
                             label="Senha"
                             labelFor="password"
                             placeholder="Digite sua senha"
-
                             isPassword={true}
                             showPassword={true}
                             msgError={errors?.password?.message}
