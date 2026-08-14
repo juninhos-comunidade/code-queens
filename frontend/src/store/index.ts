@@ -1,15 +1,16 @@
 import { create } from 'zustand';
-import { persist, devtools } from 'zustand/middleware';
+import { persist } from 'zustand/middleware';
 
 import { User } from '@/types/user';
 
-interface UseUser {
-    user: User,
-    nickname: string,
-    setUser: (e: any) => void
+interface UserStore {
+    user: User;
+    currentAssessment: {};
+    setUser: (payload: User) => void;
+    setCurrentAssessment: (payload: User) => void;
 }
 
-export const useUserStore = create(
+export const useUserStore = create<UserStore>()(
     persist(
         (set) => ({
             user: {
@@ -31,8 +32,7 @@ export const useUserStore = create(
         }),
         {
             name: 'stackcheck-storage',
-            enabled: true //TODO tipagem
         }
-
+        
     )
 )

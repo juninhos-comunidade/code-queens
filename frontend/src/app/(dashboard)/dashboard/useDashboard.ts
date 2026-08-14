@@ -4,11 +4,11 @@ import { useRouter } from 'next/navigation';
 
 export const useDashboard = () => {
 
-    const {user, nickname} = useUserStore((state) => state)
+    const {user} = useUserStore((state) => state)
     const router = useRouter()
     const navigationToTest = () => router.push('/test')
-    const full_name = user.full_name 
+    const {full_name} = user
 
-    return{user,full_name, nickname , navigationToTest}
+    return{user,full_name, navigationToTest}
 
 }
