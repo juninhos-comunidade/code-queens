@@ -1,7 +1,7 @@
 import { InputHTMLAttributes, ReactNode } from 'react';
 
-import { LoaderCircle } from 'lucide-react';
 
+import { Eye, EyeClosed } from 'lucide-react';
 import styles from './input.module.scss';
 
 interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
@@ -12,9 +12,15 @@ interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
     disabled?: boolean,
     required?: boolean,
     msgError?: string,
+    isPassword?: boolean,
+    showPassword?: boolean
 
 }
-export const Input = ({ label, labelFor, text, disabled, icon, required,msgError, ...props }: InputProps) => {
+export const Input = ({ label, labelFor, text, disabled, icon
+    , required, msgError, isPassword, showPassword, ...props }: InputProps) => {
+    const visiblePasswordIcon = showPassword
+        ? <EyeClosed className={styles.eye_icon} size={20} />
+        : <Eye className={styles.eye_icon} size={20} />;
 
     return (
         <div className={styles.inputContainer}>
@@ -23,7 +29,7 @@ export const Input = ({ label, labelFor, text, disabled, icon, required,msgError
             </label>
 
             <input
-            id={labelFor}
+                id={labelFor}
                 className={`${styles.input}`}
                 aria-labelledby={labelFor}
                 disabled={disabled}
@@ -31,6 +37,12 @@ export const Input = ({ label, labelFor, text, disabled, icon, required,msgError
                 aria-required={required}
                 {...props}
             />
+            {isPassword && (
+                <button type="button" onClick={(e) => console.log('click', e)}>
+
+                    {visiblePasswordIcon
+                    }                </button>
+            )}
             <p>{msgError}</p>
         </div>
     )

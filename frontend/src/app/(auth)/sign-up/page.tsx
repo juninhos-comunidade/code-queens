@@ -80,6 +80,8 @@ const SignIn = () => {
                             labelFor="password"
                             placeholder="Digite sua senha"
                             type="password"
+                            isPassword={true}
+                            showPassword={true}
                             msgError={errors?.password?.message}
                             {...register("password")}
                         />
@@ -88,6 +90,8 @@ const SignIn = () => {
                             labelFor="confirmPassword"
                             placeholder="Digite sua senha"
                             type="password"
+                            isPassword={true}
+                            showPassword={true}
                             msgError={errors?.confirmPassword?.message}
                             {...register("confirmPassword")}
                         />
