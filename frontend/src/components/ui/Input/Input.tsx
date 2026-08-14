@@ -1,5 +1,5 @@
 'use client'
-import { InputHTMLAttributes, ReactNode } from 'react';
+import { InputHTMLAttributes, ReactNode, useState } from 'react';
 
 import { IMaskInput, IMask } from 'react-imask';
 
@@ -22,9 +22,10 @@ interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
 }
 export const Input = ({ label, labelFor, text, disabled, icon
     , required, msgError, mask, onAccept, isPassword, showPassword, ...props }: InputProps) => {
-    const visiblePasswordIcon = showPassword
-        ? <EyeClosed className={styles.eye_icon} size={20} />
-        : <Eye className={styles.eye_icon} size={20} />;
+    const [visiblePassword, setVisiblePassword ] = useState<boolean>(false)
+    const visiblePasswordIcon = visiblePassword
+        ? <Eye className={styles.eye_icon} size={20} />
+        : <EyeClosed className={styles.eye_icon} size={20} />;
 
     return (
         <div className={styles.inputContainer}>
@@ -72,12 +73,13 @@ export const Input = ({ label, labelFor, text, disabled, icon
                         disabled={disabled}
                         required={required}
                         aria-required={required}
+                        type={isPassword && !visiblePassword ? 'password' : 'text'}
                         {...props}
                     />
 
             }
             {isPassword && (
-                <button type="button" onClick={(e) => console.log('click', e)}>
+                <button className={styles.icon_container} type="button" onClick={() => setVisiblePassword(!visiblePassword)}>
                     {visiblePasswordIcon}
                 </button>
             )}

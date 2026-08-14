@@ -3,6 +3,8 @@
 .inputContainer {
     display: flex;
     flex-direction: column;
+    position: relative;
+
     .input,
     >input {
         anchor-name: --input-container;
@@ -21,13 +23,15 @@
 
     }
 
-    .eye_icon {
-        position: absolute;
-        position-anchor: --input-container;
-        right: calc(anchor(right) + 8px);
-        align-self: anchor-center;
-        cursor: pointer;
+    .icon_container {
+        width: 0;
+        .eye_icon {
+            position: absolute;
+            position-anchor: --input-container;
+            right: calc(anchor(right) + 8px);
+            align-self: anchor-center;
+            cursor: pointer;
 
-
+        }
     }
 }
