@@ -4,14 +4,16 @@ import { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
 
 
-import { getLevels, getStacks } from '@/api/endpoints';
+import { getLevels, getStacks, postAssessments } from '@/api/endpoints';
+
+import { useUserStore } from '@/store';
 
 export const testSchema = z.object({
     technical_area: z.number({
         message: 'Informe qual área gostaria de testar'
     }).min(1, 'Você deve escolher uma área para prosseguir'),
 
-    id_levels: z.number({
+    id_level: z.number({
         message: 'Informe o nível que deseja testar suas habilidades'
     }).min(1, 'Você deve escolher uma senioridade para prosseguir'),
     id_stacks: z
@@ -41,6 +43,9 @@ export const useTest = () => {
     const [levels, setLevels] = useState<Level[]>([])
     const [stacks, setStacks] = useState<any[]>([])
     const [step, setStep] = useState<number>(0)
+    const { user } = useUserStore((state) => state) //TODO: tipagem
+    const { id_users } = user
+    const { setCurrentAssessment } = useUserStore() //TODO: tipagem
 
     const info = [
         {
@@ -73,8 +78,15 @@ export const useTest = () => {
 
 
     const handleTest = async (data: TestFormData) => {
-        console.log('Teste:', data)
-
+        setIsLoading(true)
+        await postAssessments({ ...data, ...{ id_user: id_users } })
+            .then((response) => {
+                const {assessment} = response
+                setCurrentAssessment(response)
+                router.push(`test/assessment/${assessment.id_assessments}`)
+            }).finally(() =>
+                setIsLoading(false)
+            )
     }
 
     const changeStep = (action: string) => {
@@ -85,7 +97,7 @@ export const useTest = () => {
             setStep(prev => prev - 1)
         }
         if (action === 'cancel') {
-          router.push('/dashboard')
+            router.push('/dashboard')
         }
     }
 

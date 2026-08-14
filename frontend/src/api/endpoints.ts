@@ -48,3 +48,13 @@ export const getStacks = async () => {
             throw error;
         })
 }
+
+export const postAssessments = async (data: any) => {
+    return api.post('/assessments', data)
+        .then((response) => {
+            return response.data;
+        }).catch((error) => {
+            console.error('Error:', error);
+            throw error;
+        })
+}
