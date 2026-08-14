@@ -17,7 +17,7 @@
             outline: 2px solid $outlineColor;
         }
 
-        &:hover{
+        &:hover {
             filter: brightness(1.2);
         }
     }
@@ -36,15 +36,15 @@
     text-align: center;
     gap: 8px;
 
-    &.min_width{
-         min-width: min-content;
-         padding: 6px 12px;
+    &.min_width {
+        min-width: min-content;
+        padding: 6px 12px;
     }
 
     svg {
         width: 20px;
         height: 20px;
-    
+
     }
 
     &.rounded {
@@ -77,12 +77,21 @@
         @include buttonStates(transparent, $primary, $primary-dark)
     }
 
+    &.ghost {
+        @include buttonStyled($bg-tertiary, $text-primary);
+        @include buttonStates($text-disabled, $text-primary, $bg-tertiary);
+
+        &:hover {
+            background: $pale-gray;
+        }
+    }
+
     &:disabled {
         filter: grayscale(.9) opacity(.8);
 
     }
 
-    .loading{
+    .loading {
         display: inline-flex;
         width: 100%;
         place-items: center;
@@ -90,7 +99,7 @@
         animation: infinite spinner 1s linear;
 
         @keyframes spinner {
-            to{
+            to {
                 rotate: 360deg;
             }
         }
