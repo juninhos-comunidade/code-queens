@@ -3,12 +3,12 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { subscribeSchema, SubscribeFormData } from "./useSignUp";
 
 import { Input, Select, Checkbox, AuthContainer } from "@/components";
-import { useForm } from "react-hook-form";
+import { useForm, Controller } from "react-hook-form";
 import { useSignUp } from "./useSignUp";
 
 
 const SignIn = () => {
-    const { register, handleSubmit, formState: { errors, isSubmitting, isValid }, } = useForm<SubscribeFormData>({
+    const { register, handleSubmit, control, formState: { errors, isSubmitting, isValid }, } = useForm<SubscribeFormData>({
         resolver: zodResolver(subscribeSchema),
         defaultValues: {
             full_name: '',
@@ -20,13 +20,49 @@ const SignIn = () => {
             confirmPassword: '',
             id_security_questions: 0,
             answer_security_question: '',
-            termsAcepted: false
+            accepted: false
         },
         mode: 'onChange'
     })
-   const {isLoading, handleCreateUser} = useSignUp()
+    const { isLoading, handleCreateUser } = useSignUp()
+    const genders = [{ value: 'fem', label: 'Feminino' }, { value: 'masc', label: 'Masculino' }]
+    const states = [
+        { value: "AC", label: "Acre" },
+        { value: "AL", label: "Alagoas" },
+        { value: "AP", label: "Amapá" },
+        { value: "AM", label: "Amazonas" },
+        { value: "BA", label: "Bahia" },
+        { value: "CE", label: "Ceará" },
+        { value: "DF", label: "Distrito Federal" },
+        { value: "ES", label: "Espírito Santo" },
+        { value: "GO", label: "Goiás" },
+        { value: "MA", label: "Maranhão" },
+        { value: "MT", label: "Mato Grosso" },
+        { value: "MS", label: "Mato Grosso do Sul" },
+        { value: "MG", label: "Minas Gerais" },
+        { value: "PA", label: "Pará" },
+        { value: "PB", label: "Paraíba" },
+        { value: "PR", label: "Paraná" },
+        { value: "PE", label: "Pernambuco" },
+        { value: "PI", label: "Piauí" },
+        { value: "RJ", label: "Rio de Janeiro" },
+        { value: "RN", label: "Rio Grande do Norte" },
+        { value: "RS", label: "Rio Grande do Sul" },
+        { value: "RO", label: "Rondônia" },
+        { value: "RR", label: "Roraima" },
+        { value: "SC", label: "Santa Catarina" },
+        { value: "SP", label: "São Paulo" },
+        { value: "SE", label: "Sergipe" },
+        { value: "TO", label: "Tocantins" },
+    ];
+
+    const securityAsks = [
+        { value: 1, label: 'Qual o nome do seu primeiro animal de estimação?' },
+        { value: 2, label: 'Qual o nome da sua primeira escola?' },
+        { value: 3, label: 'Qual o nome do seu melhor amigo?' }
+    ]
     return (
-        <div>         
+        <div>
             <AuthContainer
                 submit={handleSubmit(handleCreateUser)}
                 buttonTitle={'Criar conta'}
@@ -51,18 +87,31 @@ const SignIn = () => {
                             msgError={errors?.email?.message}
                             {...register("email")}
                         />
-                        <Input
-                            label="Data de nascimento"
-                            labelFor="birthDate"
-                            placeholder="DD/MM/AAAA"
-                            type="text"
-                            msgError={errors?.birth_date?.message}
-                            {...register("birth_date")}
+                        <Controller
+                            name="birth_date"
+                            control={control}
+                            render={({ field, fieldState }) => (
+                                <Input
+                                    id="birth_date"
+                                    labelFor="birth_date"
+                                    label="Data de nascimento"
+                                    mask="date"
+                                    value={field.value}
+                                    onAccept={(value) => {
+                                        field.onChange(value);
+                                    }}
+                                    onBlur={field.onBlur}
+                                    name={field.name}
+                                    msgError={fieldState.error?.message}
+                                />
+                            )}
                         />
                         <Select
                             label="Estado"
                             labelFor="uf"
-                            options={[{ value: 'sp', label: 'SP' }, { value: 'rj', label: 'RJ' }]}
+                            options={states}
+                            getOptionValue={(uf) => uf.value}
+                            getOptionLabel={(uf) => uf.label}
                             errorMessage={errors?.uf?.message}
                             {...register("uf")}
                         />
@@ -70,7 +119,9 @@ const SignIn = () => {
                         <Select
                             label="Gênero"
                             labelFor="gender"
-                            options={[{ value: 'fem', label: 'Feminino' }, { value: 'masc', label: 'Masculino' }]}
+                            options={genders}
+                            getOptionValue={(gender) => gender.value}
+                            getOptionLabel={(gender) => gender.label}
                             errorMessage={errors?.gender?.message}
                             {...register("gender")}
                         />
@@ -95,11 +146,9 @@ const SignIn = () => {
                         <Select
                             label="Pergunta de segurança"
                             labelFor="securityAsk"
-                            options={[
-                                { value: 1, label: 'Qual o nome do seu primeiro animal de estimação?' },
-                                { value: 2, label: 'Qual o nome da sua primeira escola?' },
-                                { value: 3, label: 'Qual o nome do seu melhor amigo?' }
-                            ]}
+                            options={securityAsks}
+                            getOptionValue={(ask) => ask.value}
+                            getOptionLabel={(ask) => ask.label}
                             errorMessage={errors?.id_security_questions?.message}
                             {...register("id_security_questions")}
                         />
@@ -115,17 +164,34 @@ const SignIn = () => {
                 }
                 helperChildren={
                     <div>
-                        <Checkbox
-                            value="concordo_com_termos"
-                            label={
-                                <label>
-                                    Li e concordo com os
-                                    <a href="/terms-of-use">Termos de uso</a> e a{' '}
-                                    <a href="/privacy-policy">Política de privacidade</a>.
-                                </label>
-                            }
-                            msgError={errors?.termsAcepted?.message}
-                            {...register("termsAcepted")}
+                        <Controller
+                            name="accepted"
+                            control={control}
+                            render={({ field, fieldState }) => (
+                                <Checkbox
+                                    id="termsAccepted"
+                                    name="termsAccepted"
+                                    label={
+                                        <>
+                                            Li e concordo com os{' '}
+                                            <a href="/terms">
+                                                Termos de uso
+                                            </a>{' '}
+                                            e a{' '}
+                                            <a href="/privacy-policy">
+                                                Política de privacidade
+                                            </a>.
+                                        </>
+                                    }
+                                    checked={!!field.value}
+                                    onChange={(event) => {
+                                        field.onChange(
+                                            event.target.checked
+                                        );
+                                    }}
+                                    msgError={fieldState.error?.message}
+                                />
+                            )}
                         />
                     </div>
                 }
