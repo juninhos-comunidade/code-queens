@@ -9,7 +9,7 @@ import EmptyTest from '../../../../public/empty-test-icon.svg';
 
 const Dashboard = () => {
 
-  const { user, full_name, nickname } = useDashboard()
+  const {  full_name, navigationToTest} = useDashboard()
   const history =  [
     {
       index: 1,
@@ -42,7 +42,7 @@ const Dashboard = () => {
           <div className={styles.welcome}>
             <h3>Olá, <span className={styles.username}>{full_name || 'Fanny'}</span>! Vamos nessa?</h3>
             <p>Acompanhe seus testes realizados, veja detalhes e continue evoluindo.</p>
-            <Button text="Iniciar novo teste" icon={<Play />} />
+            <Button text="Iniciar novo teste" icon={<Play />} onClick={navigationToTest}/>
           </div>
           <Image src={''} alt={''} />
         </div>
@@ -72,7 +72,7 @@ const Dashboard = () => {
                 <Image src={EmptyTest} alt="teste vazio" />
                 <h4>Você ainda não realizou nenhum teste</h4>
                 <p>Escolha uma tecnologia, inicie seu primeiro teste e descubra seu nível de proficiência técnica de forma rápida e prática!</p>
-                <Button text="Iniciar meu primeiro teste" />
+                <Button text="Iniciar meu primeiro teste" onClick={navigationToTest}/>
               </section>
           }
         </div>

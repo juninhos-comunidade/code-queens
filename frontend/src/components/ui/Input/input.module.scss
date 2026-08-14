@@ -3,9 +3,8 @@
 .inputContainer {
     display: flex;
     flex-direction: column;
-    position: relative;
-    .input {
-        // position: relative;
+    .input,
+    >input {
         anchor-name: --input-container;
         border-radius: 8px;
         height: 44px;
@@ -15,19 +14,20 @@
         background-color: $white;
         color: $text-primary;
 
-      
+
         &:invalid {
             border: 1px solid $feedback-error;
         }
 
     }
-    .eye_icon{
+
+    .eye_icon {
         position: absolute;
         position-anchor: --input-container;
         right: calc(anchor(right) + 8px);
         align-self: anchor-center;
         cursor: pointer;
 
-  
+
     }
 }
