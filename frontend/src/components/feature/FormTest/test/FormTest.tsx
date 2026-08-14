@@ -13,7 +13,7 @@ export const FormTest = () => {
         resolver: zodResolver(testSchema),
         defaultValues: {
             technical_area: 0,
-            id_level: 0,
+            id_levels: 0,
             id_stacks: [],
         },
         mode: 'onChange'
@@ -52,8 +52,8 @@ export const FormTest = () => {
                                 options={levels}
                                 getOptionValue={(level) => level.id_levels}
                                 getOptionLabel={(level) => level.levels_name}
-                                errorMessage={errors?.id_level?.message}
-                                {...register("id_level", {
+                                errorMessage={errors?.id_levels?.message}
+                                {...register("id_levels", {
                                     valueAsNumber: true
                                 })}
                             />
