@@ -19,6 +19,7 @@
             flex-wrap: wrap;
             gap: 8px;
             margin-bottom: 32px;
+            anchor-name: --option-container;
 
         
 
@@ -32,7 +33,13 @@
                 width: clamp(150px, 20%, 100px);
                  flex-grow: 1;
 
-            }
+                 
+                }
+                .errorMessage{
+                   position: absolute;
+                   position-anchor: --option-container;
+                   top: calc(anchor(bottom) + 8px);
+                }
 
         }
 

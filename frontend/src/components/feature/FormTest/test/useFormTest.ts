@@ -5,19 +5,17 @@ import { useRouter } from 'next/navigation';
 
 
 import { getLevels, getStacks } from '@/api/endpoints';
-// import { postLogin } from '@/api/endpoints';
-// import { useUserStore } from '@/store';
 
 export const testSchema = z.object({
     technical_area: z.number({
         message: 'Informe qual área gostaria de testar'
     }).min(1, 'Você deve escolher uma área para prosseguir'),
 
-    seniority: z.number({
+    id_levels: z.number({
         message: 'Informe o nível que deseja testar suas habilidades'
     }).min(1, 'Você deve escolher uma senioridade para prosseguir'),
     id_stacks: z
-        .array(z.string().transform(Number))
+        .array(z.number())
         .min(2, {
             message: "Selecione pelo menos 2 tecnologias"
         })
@@ -31,11 +29,6 @@ export type TestFormData = z.output<typeof testSchema>;
 interface Level {
     id_levels: number,
     levels_name: string,
-}
-interface TechnicalArea {
-    id_stacks: number,
-    stacks_name: string,
-    career_paths: string[]
 }
 
 export const useTest = () => {
@@ -80,7 +73,6 @@ export const useTest = () => {
 
 
     const handleTest = async (data: TestFormData) => {
-        console.log('foi?')
         console.log('Teste:', data)
 
     }
@@ -91,6 +83,9 @@ export const useTest = () => {
         }
         if (action === 'back') {
             setStep(prev => prev - 1)
+        }
+        if (action === 'cancel') {
+          router.push('/dashboard')
         }
     }
 

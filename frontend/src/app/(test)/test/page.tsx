@@ -14,7 +14,7 @@ const Test = () => {
         resolver: zodResolver(testSchema),
         defaultValues: {
             technical_area: 0,
-            seniority: 0,
+            id_levels: 0,
         }
     })
 

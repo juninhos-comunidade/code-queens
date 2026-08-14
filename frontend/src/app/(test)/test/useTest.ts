@@ -11,7 +11,7 @@ export const testSchema = z.object({
         message: 'Informe qual área gostaria de testar'
     }).min(1, 'Você deve escolher uma área para prosseguir'),
 
-    seniority: z.number({
+    id_levels: z.number({
         message: 'Informe o nível que deseja testar suas habilidades'
     }).min(1, 'Você deve escolher uma senioridade para prosseguir')
 });
@@ -26,20 +26,5 @@ export const useTest = () => {
         console.log('Teste:', data)
 
     }
-    // const handleLogin = async (data: TestFormData) => {
-    //     setIsLoading(true);
-    //     await postLogin(data)
-    //         .then(async (response) => {
-    //             setUser(response)
-    //             router.push('/dashboard')
-
-    //         }).catch((error) => {
-    //             console.error('Tivemos um erro ao realizar seu login:', error);
-    //             // Handle error (e.g., show error message to user)
-    //         }).finally(() => {
-    //             setIsLoading(false);
-    //         })
-    // }
-
     return { isLoading, handleTest }
 }
