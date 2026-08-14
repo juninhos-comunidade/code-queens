@@ -10,7 +10,7 @@ interface RadioButtonProps<T extends OptionGroup> {
     labelKey: keyof T;
 }
 
-export const RadioButton = ({ errorMessage, optionGroup, valueKey, labelKey, onChange }: RadioButtonProps<T>) => {
+export const RadioButton = <T extends OptionGroup>({ errorMessage, optionGroup, valueKey, labelKey, onChange }: RadioButtonProps<T>) => {
     return (
         <div className={styles.radioButtonContainer}>
             {
@@ -24,8 +24,9 @@ export const RadioButton = ({ errorMessage, optionGroup, valueKey, labelKey, onC
                             value={String(option[valueKey])}
                             onChange={() => onChange?.(String(option[valueKey]))}
                         />
-                        <label htmlFor={option?.value} className={styles.label} >
-                            {option[labelKey]}
+                        <label htmlFor={String(option[valueKey])}
+                            className={styles.label} >
+                            {String(option[labelKey])}
                         </label>
                     </span>
                 ))
