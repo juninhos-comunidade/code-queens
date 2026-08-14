@@ -18,6 +18,12 @@ from src.main.services.assessments_service import AssessmentsService
 from src.main.repositories.question_repository import QuestionRepository
 from src.main.services.question_service import QuestionService
 
+from src.main.repositories.result_test_repository import ResultTestRepository
+from src.main.services.result_test_service import ResultTestService
+
+from src.main.repositories.security_question_repository import SecurityQuestionRepository
+from src.main.services.security_question_service import SecurityQuestionService
+
 def get_user_service():
     db = SessionLocal()
     repository = UsersRepository(db)
@@ -71,6 +77,24 @@ def get_assessments_service():
         assessment_repository,
         question_repository
     )
+
+    try:
+        yield service
+    finally:
+        db.close()
+def get_result_test_service():
+    db = SessionLocal()
+    repository = ResultTestRepository(db)
+    service = ResultTestService(repository)
+
+    try:
+        yield service
+    finally:
+        db.close()
+def get_security_question_service():
+    db = SessionLocal()
+    repository = SecurityQuestionRepository(db)
+    service = SecurityQuestionService(repository)
 
     try:
         yield service

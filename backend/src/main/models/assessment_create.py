@@ -1,9 +1,8 @@
+from pydantic import BaseModel
+from typing import List
 from uuid import UUID
 
-from pydantic import BaseModel
-
-
 class AssessmentCreate(BaseModel):
-    id_user: UUID
-    id_level: int
-    id_stacks: list[int]
+    id_users: UUID
+    id_levels: int
+    id_stacks: List[int]

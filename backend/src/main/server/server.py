@@ -5,6 +5,8 @@ from src.main.routes.auth_routes import auth_router
 from src.main.routes.level_routes import level_router
 from src.main.routes.stacks_routes import stacks_router
 from src.main.routes.assessments_routes import assessment_router
+from src.main.routes.result_test_routes import result_router
+from src.main.routes.security_question_routes import security_router
 from fastapi.middleware.cors import CORSMiddleware
 
 
@@ -26,3 +28,5 @@ app.include_router(auth_router)
 app.include_router(level_router)
 app.include_router(stacks_router)
 app.include_router(assessment_router)
+app.include_router(result_router)
+app.include_router(security_router)

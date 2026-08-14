@@ -1,4 +1,4 @@
-from sqlalchemy import Integer,Index,ForeignKey,TIMESTAMP,func
+from sqlalchemy import Integer,Index,ForeignKey,TIMESTAMP,func, String
 from sqlalchemy.orm import mapped_column,Mapped
 from datetime import datetime
 
@@ -13,11 +13,10 @@ class AssessmentsHistory(Base):
         Index("idx_assessments_history_id_levels", "id_levels"),
         {"schema":"core"}
     )
-    id_assessments: Mapped[int] = mapped_column(
+    id_assessments: Mapped[UUID] = mapped_column(
         "id",
-        Integer,
         primary_key=True,
-        autoincrement=True
+        server_default=func.gen_random_uuid()
     )
     id_users : Mapped[UUID] = mapped_column(
         "id_users",
@@ -40,16 +39,19 @@ class AssessmentsHistory(Base):
         Integer,
         nullable=True
     )
-
     start_time: Mapped[datetime] = mapped_column(
         "start_time",
         TIMESTAMP(timezone=True),
         nullable=False,
         server_default=func.current_timestamp()
     )
-
     end_time: Mapped[datetime | None] = mapped_column(
         "end_time",
         TIMESTAMP(timezone=True),
         nullable=True
+    )
+    title: Mapped[str] = mapped_column(
+        "title",
+        String(255),
+        nullable=False
     )
