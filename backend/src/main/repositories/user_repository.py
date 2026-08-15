@@ -11,15 +11,20 @@ from src.main.models.user_create import UserCreate
 from src.main.models.user_update import UserUpdate
 from src.main.models.security_question_update import SecurityQuestionUpdate
 from src.main.entities.user_accepted_terms import UserAcceptedTerms
+from src.main.entities.terms_catalog import TermsCatalog
+
 
 class UsersRepository:
 
     def __init__(self, db: Session):
         self.db = db
 
-    def create_user(self, user: UserCreate, password_hash: str) -> UUID:
-
-        user_obj = User(
+    def create_user(
+        self,
+        user: UserCreate,
+        password_hash: str
+    ):
+        new_user = User(
             full_name=user.full_name,
             birth_date=user.birth_date,
             email=user.email,
@@ -29,24 +34,39 @@ class UsersRepository:
             id_security_questions=user.id_security_questions,
             answer_security_question=user.answer_security_question,
             id_roles=user.id_roles,
-            timezone_origem=user.timezone_origem
+            timezone_origem=user.timezone_origem,
+            last_login=None
         )
 
-        self.db.add(user_obj)
+        self.db.add(new_user)
         self.db.flush()
 
-        accepted_terms = UserAcceptedTerms(
-            id_users=user_obj.id_users,
-            id_terms=user.id_terms,
-            accepted=user.accepted
-        )
+        if user.accepted:
 
-        self.db.add(accepted_terms)
+            result = self.db.execute(
+                select(TermsCatalog)
+                .where(TermsCatalog.is_active.is_(True))
+                .order_by(TermsCatalog.id.desc())
+            )
+
+            latest_term = result.scalars().first()
+
+            if not latest_term:
+                raise ValueError("Nenhum termo de uso ativo encontrado")
+
+            accepted_terms = UserAcceptedTerms(
+                id_users=new_user.id_users,
+                id_terms=latest_term.id,
+                accepted=True
+            )
+
+            self.db.add(accepted_terms)
 
         self.db.commit()
-        self.db.refresh(user_obj)
+        self.db.refresh(new_user)
 
-        return user_obj.id_users
+        return new_user.id_users
+ 
     
     def get_user_by_email(self, email: str) -> User | None: 
         stmt = select(User).where(User.email == email) 
