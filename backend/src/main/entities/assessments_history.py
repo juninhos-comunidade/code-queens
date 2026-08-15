@@ -10,7 +10,8 @@ class AssessmentsHistory(Base):
     __tablename__="assessments_history"
     __table_args__= (
         Index("idx_assessments_history_id_users","id_users"),
-        Index("idx_assessments_history_id_levels", "id_levels"),
+        Index('idx_assessment_user_lookup', "id", "id_users"),
+        Index('idx_user_history_endtime', "id_users", "end_time"),
         {"schema":"core"}
     )
     id_assessments: Mapped[UUID] = mapped_column(

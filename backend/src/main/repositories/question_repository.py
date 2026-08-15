@@ -45,6 +45,8 @@ class QuestionRepository:
                 .all()
             )
 
+            random.shuffle(options)
+
             result.append({
                 "id_question": question.id_question,
                 "question_description": question.question_description,

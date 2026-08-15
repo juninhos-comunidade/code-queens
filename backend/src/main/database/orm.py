@@ -5,9 +5,12 @@ from src.main.database.connection import DATABASE_URL
 
 
 engine = create_engine(
-    DATABASE_URL, 
-    future=True
-    )
+    DATABASE_URL,
+    pool_pre_ping=True,
+    pool_recycle=300,
+    pool_size=5,
+    max_overflow=10
+)
 SessionLocal = sessionmaker(
     bind=engine, 
     autoflush=False, 
