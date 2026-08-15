@@ -1,0 +1,13 @@
+interface Stacks {
+    stack_id: number,
+    stack_name: string,
+    score_percentage: number,
+    recommendation: string
+}
+interface AssessmentsHistory {
+    assessment_id: string,
+    title: string,
+    date: Date,
+    stacks: Stacks[],
+    score_global: number
+}
