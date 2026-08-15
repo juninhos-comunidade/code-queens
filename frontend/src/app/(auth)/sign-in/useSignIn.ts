@@ -17,13 +17,14 @@ export const useSignIn = () => {
     const [isLoading, setIsLoading] = useState<boolean>(false);
     const [error, setError] = useState<string>('');
     const router = useRouter()
-    const {setUser} = useUserStore()
+    const { setUser } = useUserStore()
 
     const handleLogin = async (data: LoginFormData) => {
         setIsLoading(true);
         await postLogin(data)
             .then(async (response) => {
-                const {message, ...user } = response
+                const { access_token, token_type, message, ...user } = response
+                localStorage.setItem('token', access_token);
                 setUser(user)
                 router.push('/dashboard')
 
@@ -35,5 +36,5 @@ export const useSignIn = () => {
             })
     }
 
-    return { error, isLoading,handleLogin }
+    return { error, isLoading, handleLogin }
 }
