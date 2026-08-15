@@ -2,6 +2,7 @@ import { CloudLightning } from "lucide-react"
 import { StackTag } from "../StacksTag"
 import styles from './historycard.module.scss'
 import { formatDate } from "@/utils"
+import Link from "next/link"
 
 interface HistoryCardProps {
     index: number | string,
@@ -13,7 +14,8 @@ interface HistoryCardProps {
 export const HistoryCard = ({ index, titleTest, date, stacks, score }: HistoryCardProps) => {
 
     return (
-        <div className={`${styles.table_item} ${Number(index) % 2 === 0 && styles.odd}`}>
+        <Link  href={`/test/assessment/result/${index}`}>
+        <div className={styles.table_item}>
             <div className={styles.table_item_icon}>
                 <CloudLightning />
             </div>
@@ -30,5 +32,6 @@ export const HistoryCard = ({ index, titleTest, date, stacks, score }: HistoryCa
                 <h6>{score ?? 90}%</h6>
             </div>
         </div>
+        </Link>
     )
 }

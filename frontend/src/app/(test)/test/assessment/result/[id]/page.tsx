@@ -15,7 +15,6 @@ const AssessmentResult = () => {
     const getResult = async (id: string) => {
         await getAssessmentsHistoryById(id)
             .then((response) => {
-                console.log('Teste',response.data.stacks)
                 setResultByStack(response.data.stacks)
             })
 
