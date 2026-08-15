@@ -58,3 +58,12 @@ export const postAssessments = async (data: any) => {
             throw error;
         })
 }
+export const postAssessmentsQuestionnaire = async (assessment_id: string,data: any) => {
+    return api.post(`/assessments/${assessment_id}/submit`, data)
+        .then((response) => {
+            return response.data;
+        }).catch((error) => {
+            console.error('Error:', error);
+            throw error;
+        })
+}
