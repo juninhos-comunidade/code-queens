@@ -67,3 +67,12 @@ export const postAssessmentsQuestionnaire = async (assessment_id: string,data: a
             throw error;
         })
 }
+export const getAssessmentsHistory = async (id_user: string) => {
+    return api.get(`/assessments/${id_user}/submit`)
+        .then((response) => {
+            return response.data;
+        }).catch((error) => {
+            console.error('Error:', error);
+            throw error;
+        })
+}
