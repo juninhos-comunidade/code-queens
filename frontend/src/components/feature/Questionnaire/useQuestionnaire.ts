@@ -1,11 +1,14 @@
 import { useState } from 'react';
-import { useParams, useRouter } from 'next/navigation';
+import { useRouter } from 'next/navigation';
 import { useUserStore } from '@/store';
 import { z } from "zod";
 
+import { postAssessmentsQuestionnaire } from '@/api/endpoints'
+
 export const useQuestionnare = () => {
-    const { id } = useParams();
     const router = useRouter()
+    const { user, currentAssessment, setCurrentAssessment } = useUserStore((state) => state)
+    const { id_users } = user
     const answerSchema = z.object({
         id_question: z.number(),
         id_alternative: z.number().min(1, "Questão não respondida"),
@@ -14,7 +17,7 @@ export const useQuestionnare = () => {
 
     type Answer = z.infer<typeof answerSchema>;
 
-    const { currentAssessment, setCurrentAssessment } = useUserStore((state) => state)
+    const testId = currentAssessment?.assessment.id_assessments
     const dataTest = currentAssessment?.questions ?? []
 
     const initialAnswers: Answer[] = dataTest?.map((test) => ({
@@ -22,7 +25,8 @@ export const useQuestionnare = () => {
         id_alternative: 0,
     })) ?? [];
 
-    const [currentQuestion, setCurrentQuestion] = useState(0);
+    const [isLoading, setIsLoading] = useState<boolean>(false);
+    const [currentQuestion, setCurrentQuestion] = useState<number>(0);
     const [answers, setAnswers] = useState<Answer[]>(initialAnswers);
 
     const currentTest = dataTest[currentQuestion] ?? [];
@@ -58,29 +62,44 @@ export const useQuestionnare = () => {
     const handleBack = () => {
         if (currentQuestion > 0) {
             setCurrentQuestion(prev => prev - 1);
-        } else{
+        } else {
             router.push('/test')
             setCurrentAssessment(null)
         }
     };
 
-    const handleSubmit = () => {
-        const result = assessmentSchema.safeParse(answers);
+    const handleSubmit = async () => {
+        if (testId) {
+            const allAnswers = assessmentSchema.safeParse(answers).data;
+            const data = {
+                id_users: id_users,
+                id_levels: currentAssessment.assessment.id_levels,
+                id_stacks: currentAssessment.assessment.id_stacks,
+                answers: allAnswers
+            };
 
-        if (!result.success) {
-            console.log(result.error);
-            return;
+            setIsLoading(true)
+            await postAssessmentsQuestionnaire(testId, data)
+                .then((response) => {
+                    router.push('/test/assessment/result')
+                    setCurrentAssessment(null)
+                    console.log(response)
+                })
+                .catch((error) =>
+                    console.error(error)
+                )
+                .finally(() => {
+                    setIsLoading(false)
+                    setCurrentAssessment(null)
+                })
         }
-        //TODO : adicionar endpoint para enviar resultados
-        //TODO : redirecionar para tela de resultado
         //TODO : remover console.log
-        //TODO : limpar state
-        //TODO : baguncar ordem das alternativas
-        console.log("Respostas:", result.data);
+
     };
 
     return {
         dataTest,
+        isLoading,
         setAnswers,
         handleAnswer,
         backButtonText,
