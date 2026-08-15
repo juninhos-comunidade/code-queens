@@ -1,10 +1,19 @@
-interface StacksHistory {
+export type Stack = 
+    'css'
+    | 'html'
+    | 'javascript'
+    | 'net'
+    | 'python'
+    | 'sql'
+    | 'typescript'
+
+export interface StacksHistory {
     stack_id: number,
-    stack_name: string,
+    stack_name: Stack,
     score_percentage: number,
     recommendation: string
 }
-interface AssessmentsHistory {
+export interface AssessmentsHistory {
     assessment_id: string,
     title: string,
     date: Date,
