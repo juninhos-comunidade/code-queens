@@ -8,12 +8,11 @@ import { useEffect, useState } from "react";
 
 export const useDashboard = () => {
   const {user} = useUserStore()
-  const {id_users} = user
+  const {id_users, first_name} = user
   const [userToken, setToken] = useState<string>()
   
   const router = useRouter()
   const navigationToTest = () => router.push('/test')
-  const {full_name} = user
   const [history, setHistory] = useState<AssessmentsHistory[] | []>([])
   
   const getAssessmentsHistoryById = async () => {
@@ -36,6 +35,6 @@ useEffect(() => {
     }
   }, [router]);
 
-    return{userToken, user,id_users, full_name, history, navigationToTest,getAssessmentsHistoryById}
+    return{userToken, user,id_users, first_name, history, navigationToTest,getAssessmentsHistoryById}
 
 }

@@ -10,7 +10,7 @@ import { useEffect } from "react";
 
 const Dashboard = () => {
 
-  const {userToken, id_users, full_name, history, navigationToTest, getAssessmentsHistoryById } = useDashboard()
+  const {userToken, id_users, first_name, history, navigationToTest, getAssessmentsHistoryById } = useDashboard()
   useEffect(() => {
     getAssessmentsHistoryById()
   }, [id_users])
@@ -20,7 +20,7 @@ const Dashboard = () => {
       <Limit>
         <div className={styles.header_container}>
           <div className={styles.welcome}>
-            <h3>Olá, <span className={styles.username}>{full_name || 'Fanny'}</span>! Vamos nessa?</h3>
+            <h3>Olá, <span className={styles.username}>{first_name}</span>! Vamos nessa?</h3>
             <p>Acompanhe seus testes realizados, veja detalhes e continue evoluindo.</p>
             <Button text="Iniciar novo teste" icon={<Play />} onClick={() => navigationToTest()} />
           </div>
