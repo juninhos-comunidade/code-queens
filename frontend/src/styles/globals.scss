@@ -2,6 +2,7 @@
 @use './colors.module' as *;
 
 :root {
+  color-scheme: light dark;
   --background: $bg-primary;
   --foreground: $text-primary;
 }
@@ -76,6 +77,9 @@ p {
   &.small {
     @include fontConfig(0.87, 400, 1.25);
 
+  }
+  &.errormsg{
+    color: $feedback-error-dark;
   }
 }
 

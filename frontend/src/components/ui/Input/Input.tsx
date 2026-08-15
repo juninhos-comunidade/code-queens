@@ -84,7 +84,7 @@ export const Input = ({ label, labelFor, text, disabled, icon
                 </button>
             )}
 
-            <p>{msgError}</p>
+            <p className='small errormsg'>{msgError}</p>
         </div>
     )
 }

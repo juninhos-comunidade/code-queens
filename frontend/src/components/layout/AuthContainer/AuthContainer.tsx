@@ -14,6 +14,7 @@ interface AuthContainerProps {
     disabled?: boolean,
     isLoading?: boolean,
     buttonTitle: string,
+    msgFallback?: string,
     submit?: () => void,
 }
 export const AuthContainer = ({
@@ -27,6 +28,7 @@ export const AuthContainer = ({
     disabled,
     isLoading,
     buttonTitle,
+    msgFallback,
     submit
 }: AuthContainerProps) => {
 
@@ -48,6 +50,7 @@ export const AuthContainer = ({
                         submit?.()
                     }}>
                         {formChildren}
+                        {msgFallback && <p className="small errormsg">***{msgFallback}</p>}
                         <div className={styles.sectionHelper}>
                             {helperChildren}
                         </div>

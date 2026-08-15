@@ -15,6 +15,7 @@ export type LoginFormData = z.infer<typeof loginSchema>;
 
 export const useSignIn = () => {
     const [isLoading, setIsLoading] = useState<boolean>(false);
+    const [error, setError] = useState<string>('');
     const router = useRouter()
     const {setUser} = useUserStore()
 
@@ -27,12 +28,12 @@ export const useSignIn = () => {
                 router.push('/dashboard')
 
             }).catch((error) => {
-                console.error('Tivemos um erro ao realizar seu login:', error);
-                // Handle error (e.g., show error message to user)
+                console.error('Tivemos um erro ao realizar seu login:', (error.response?.data?.detail));
+                setError(error.response?.data?.detail)
             }).finally(() => {
                 setIsLoading(false);
             })
     }
 
-    return { isLoading,handleLogin }
+    return { error, isLoading,handleLogin }
 }
