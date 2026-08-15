@@ -3,11 +3,32 @@ import { persist } from 'zustand/middleware';
 
 import { User } from '@/types/user';
 
+interface AssessmentQuestions {
+    id_question: number;
+    id_alternative: number;
+}
+
+interface AssessmentInfo {
+    id_assessments: string;
+    id_users: string;
+    id_levels: number;
+    title: string;
+    date_assessments: string;
+    start_time: string;
+    end_time: string | null;
+    score: number | null;
+}
+
+interface AssessmentResponse {
+    assessment: AssessmentInfo;
+    questions: AssessmentQuestions[];
+}
+
 interface UserStore {
     user: User;
-    currentAssessment: {};
+    currentAssessment: AssessmentResponse | null;
     setUser: (payload: User) => void;
-    setCurrentAssessment: (payload: User) => void;
+    setCurrentAssessment: (payload: AssessmentResponse | null) => void;
 }
 
 export const useUserStore = create<UserStore>()(
@@ -26,13 +47,16 @@ export const useUserStore = create<UserStore>()(
                 last_login: "",
                 accepted: null
             },
-            currentAssessment: {},
+            currentAssessment: null,
             setUser: (payload: User) => set({ user: payload }),
-            setCurrentAssessment: (payload: User) => set({ currentAssessment: payload }),
+            setCurrentAssessment: (payload: AssessmentResponse | null) =>
+                set({
+                    currentAssessment: payload
+                }),
         }),
         {
             name: 'stackcheck-storage',
         }
-        
+
     )
 )

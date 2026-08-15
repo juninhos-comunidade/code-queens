@@ -3,6 +3,7 @@ import { z } from 'zod';
 import { postCreateUser } from '@/api/endpoints';
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
+import { useUserStore } from '@/store';
 
 export const subscribeSchema = z.object({
     full_name: z.string().min(6, 'Informe como devemos te chamar'),
@@ -34,11 +35,14 @@ export const useSignUp = () => {
     const router = useRouter()
     const [isLoading, setIsLoading] = useState<boolean>(false);
     const [error, setError] = useState<string>('');
+    const {setUser} = useUserStore()
 
     const handleCreateUser = async (data: SubscribeFormData) => {
         setIsLoading(true);
         await postCreateUser({ ...data, id_roles: 2 })
-            .then(async () => {
+            .then(async (response) => {
+                const {message, ...user} = response
+                setUser(user)
                 router.push('/dashboard')
 
             }).catch((error) => {
