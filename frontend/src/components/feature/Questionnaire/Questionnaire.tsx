@@ -9,6 +9,7 @@ import styles from './questionnaire.module.scss'
 export const Questionnaire = () => {
 
     const {
+        isLoading,
         dataTest,
         backButtonText,
         nextButtonText,
@@ -55,6 +56,7 @@ export const Questionnaire = () => {
                         />
 
                         <Button
+                            isLoading={isLoading}
                             disabled={nextButtonDisabled}
                             text={nextButtonText}
                             onClick={
