@@ -34,7 +34,7 @@ const Dashboard = () => {
                   Seus testes realizados
                 </h4>
                 {
-                  history?.map((item, index) => (
+                  history?.map(item => (
                     <HistoryCard
                       key={item.assessment_id}
                       index={item.assessment_id}
