@@ -3,16 +3,13 @@ from sqlalchemy.orm import Mapped, mapped_column
 
 from src.main.database.orm import Base
 
-
 class StudyRecommendation(Base):
-
-    __tablename__ = "study_recommendation"
-
+    __tablename__ = "study_recommendations" 
     __table_args__ = {
         "schema": "core"
     }
 
-    id_recommendation: Mapped[int] = mapped_column(
+    id_recommendations: Mapped[int] = mapped_column(
         "id",
         Integer,
         primary_key=True,
@@ -29,17 +26,17 @@ class StudyRecommendation(Base):
     score_max: Mapped[int] = mapped_column(
         "score_max",
         Integer,
-        nullable=False
+        nullable=True
     )
 
     score_min: Mapped[int] = mapped_column(
         "score_min",
         Integer,
-        nullable=False
+        nullable=True
     )
 
-    recommendation_description: Mapped[str] = mapped_column(
-        "recommendation_description",
+    recommendations_descriptions: Mapped[str] = mapped_column(
+        "recommendations_descriptions", 
         String,
-        nullable=False
+        nullable=True
     )

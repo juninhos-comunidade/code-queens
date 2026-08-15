@@ -1,15 +1,13 @@
 from datetime import datetime
-
-from sqlalchemy import DateTime, ForeignKey, Integer, func
+from uuid import UUID
+from sqlalchemy import DateTime, ForeignKey, Integer, func, String
 from sqlalchemy.orm import Mapped, mapped_column
 
 from src.main.database.orm import Base
 
 
 class ResultTest(Base):
-
     __tablename__ = "result_test"
-
     __table_args__ = {
         "schema": "core"
     }
@@ -21,9 +19,8 @@ class ResultTest(Base):
         autoincrement=True
     )
 
-    id_assessments: Mapped[int] = mapped_column(
+    id_assessments: Mapped[UUID] = mapped_column(
         "id_assessments",
-        Integer,
         ForeignKey("core.assessments_history.id"),
         nullable=False
     )
@@ -35,10 +32,10 @@ class ResultTest(Base):
         nullable=False
     )
 
-    id_recommendation: Mapped[int | None] = mapped_column(
-        "id_recommendation",
+    id_recommendations: Mapped[int | None] = mapped_column(
+        "id_recommendations",
         Integer,
-        ForeignKey("core.study_recommendation.id"),
+        ForeignKey("core.study_recommendations.id"),
         nullable=True
     )
 
@@ -47,10 +44,15 @@ class ResultTest(Base):
         Integer,
         nullable=True
     )
-
-    created_at: Mapped[datetime] = mapped_column(
-        "created_at",
-        DateTime,
-        nullable=False,
-        server_default=func.current_timestamp()
+    classification: Mapped[str] = mapped_column(
+        String(50), 
+        nullable=True
+    )
+    stack_name: Mapped[str] = mapped_column(
+        String(100), 
+        nullable=True
+    )
+    recommendation_description: Mapped[str] = mapped_column(
+        String, 
+        nullable=True
     )

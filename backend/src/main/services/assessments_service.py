@@ -79,3 +79,15 @@ class AssessmentsService:
             "assessment": assessment,
             "questions": questions
         }
+    def submit_assessment(self, assessment_id: UUID, submission_data):
+        answers_list = [ans.dict() for ans in submission_data.answers]
+        
+        return self.repository.submit_and_calculate_assessment(
+            assessment_id=assessment_id,
+            user_id=submission_data.id_users, 
+            id_stacks=submission_data.id_stacks,
+            answers=answers_list
+        )
+
+    def get_user_history_with_stacks(self, user_id: UUID):
+            return self.repository.get_user_history_with_stacks(user_id)
