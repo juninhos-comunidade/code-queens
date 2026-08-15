@@ -16,14 +16,14 @@ export const StackCardResult = ({ resultsByStack }: StackCardProps) => {
     const labelLevel = {
         INITIAL: 'iniciante',
         BASIC: 'básico',
-        INTERMADIARY: 'intermediário',
+        INTERMEDIARY: 'intermediário',
         ADVANCED: 'avançado',
     } as const;
 
     const getLevelClass = (score: number) => {
-        if (score > 40) return { level: "basic", label: labelLevel.BASIC };
-        if (score > 64) return { level: "intermadiary", label: labelLevel.INTERMADIARY };
         if (score > 85) return { level: "advanced", label: labelLevel.ADVANCED };
+        if (score > 64) return { level: "intermediary", label: labelLevel.INTERMEDIARY };
+        if (score > 40) return { level: "basic", label: labelLevel.BASIC };
         return { level: "initial", label: labelLevel.INITIAL };
     };
 
