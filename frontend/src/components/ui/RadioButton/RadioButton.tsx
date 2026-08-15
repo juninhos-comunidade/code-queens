@@ -8,33 +8,47 @@ interface RadioButtonProps<T extends OptionGroup> {
     optionGroup: T[];
     valueKey: keyof T;
     labelKey: keyof T;
+    value?: string;
 }
 
-export const RadioButton = <T extends OptionGroup>({ errorMessage, optionGroup, valueKey, labelKey, onChange }: RadioButtonProps<T>) => {
+export const RadioButton = <T extends OptionGroup>({ errorMessage, optionGroup, valueKey, labelKey, value, onChange }: RadioButtonProps<T>) => {
     return (
-        <div className={styles.radioButtonContainer}>
-            {
-                optionGroup?.map((option, key) => (
-                    <span className={styles.optionContainer} key={key}>
-                        <input
-                            type='radio'
-                            className={styles.radio}
-                            name={String(valueKey)}
-                            id={String(option[valueKey])}
-                            value={String(option[valueKey])}
-                            onChange={() => onChange?.(String(option[valueKey]))}
-                        />
-                        <label htmlFor={String(option[valueKey])}
-                            className={styles.label} >
-                            {String(option[labelKey])}
-                        </label>
-                    </span>
-                ))
-            }
+      <div className={styles.radioButtonContainer}>
+    {
+        optionGroup?.map((option) => {
+            const optionValue = String(option[valueKey]);
 
-            {errorMessage && (
-                <span className={styles.helperText}>{errorMessage ?? 'Campo incorreto'}</span>
-            )}
-        </div>
+            return (
+                <span
+                    className={styles.optionContainer}
+                    key={optionValue}
+                >
+                    <input
+                        type="radio"
+                        className={styles.radio}
+                        name={String(valueKey)}
+                        id={optionValue}
+                        value={optionValue}
+                        checked={value === optionValue}
+                        onChange={() => onChange?.(optionValue)}
+                    />
+
+                    <label
+                        htmlFor={optionValue}
+                        className={styles.label}
+                    >
+                        {String(option[labelKey])}
+                    </label>
+                </span>
+            );
+        })
+    }
+
+    {errorMessage && (
+        <span className={styles.helperText}>
+            {errorMessage ?? 'Campo incorreto'}
+        </span>
+    )}
+</div>
     )
 }
