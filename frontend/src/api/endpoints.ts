@@ -76,3 +76,12 @@ export const getAssessmentsHistory = async (id_user: string) => {
             throw error;
         })
 }
+export const getAssessmentsHistoryById = async (id_test: string) => {
+    return api.get(`/assessments/${id_test}`)
+        .then((response) => {
+            return response;
+        }).catch((error) => {
+            console.error('Error:', error);
+            throw error;
+        })
+}
