@@ -1,4 +1,4 @@
-interface Stacks {
+interface StacksHistory {
     stack_id: number,
     stack_name: string,
     score_percentage: number,
@@ -8,6 +8,6 @@ interface AssessmentsHistory {
     assessment_id: string,
     title: string,
     date: Date,
-    stacks: Stacks[],
+    stacks: [],
     score_global: number
 }

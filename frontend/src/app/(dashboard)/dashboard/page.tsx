@@ -40,7 +40,7 @@ const Dashboard = () => {
                       index={item.assessment_id}
                       titleTest={item.title}
                       date={item.date}
-                      stacks={item.stacks[index].stack_name}
+                      stacks={item.stacks}
                       score={item.score_global}
                     />
 

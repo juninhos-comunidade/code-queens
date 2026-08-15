@@ -1,17 +1,20 @@
 import styles from './stacktag.module.scss';
 import { Tag } from '@/components/ui';
 
-
-interface StackTag {
-    options: string[];
+interface TagData {
+  stack_name: string;
 }
 
-export const StackTag = ({ options }: any) => {
+interface StackTagProps {
+  options?: TagData[]; 
+}
+
+export const StackTag = ({ options }: StackTagProps) => {
     return (
         <div className={styles.stack_tags_container}>
             {
-                [options]?.map((tag: string, index: number) => (
-                    <Tag key={index} text={tag} data-stack={tag.toLocaleLowerCase()}/>
+                options?.map((tag: TagData, index: number) => (
+                    <Tag key={index} text={tag?.stack_name} data-stack={tag} />
                 ))}
         </div>
     )

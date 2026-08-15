@@ -1,13 +1,13 @@
 import { CloudLightning } from "lucide-react"
 import { StackTag } from "../StacksTag"
 import styles from './historycard.module.scss'
-
 import { formatDate } from "@/utils"
+
 interface HistoryCardProps {
     index: number | string,
     titleTest: string,
     date: Date,
-    stacks: string,
+    stacks: [],
     score: number,
 }
 export const HistoryCard = ({ index, titleTest, date, stacks, score }: HistoryCardProps) => {
@@ -23,7 +23,7 @@ export const HistoryCard = ({ index, titleTest, date, stacks, score }: HistoryCa
             </div>
 
             <div className={styles.table_item_tags}>
-                <StackTag options={stacks || new Array('css', 'html', 'javascript', 'node')} />
+                <StackTag options={stacks || new Array()} />
             </div>
 
             <div className={styles.table_item_progress}>
