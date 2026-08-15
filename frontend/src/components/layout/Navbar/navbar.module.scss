@@ -15,6 +15,11 @@
         background: none;
         border: none;
         height: 24px !important;
+        &.nav_toggle{
+            padding-inline:12px;
+            color: $primary-dark;
+
+        }
     }
 
     .buttons_container {

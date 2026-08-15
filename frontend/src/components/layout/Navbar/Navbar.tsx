@@ -19,14 +19,20 @@ export const Navbar = () => {
 
 
 
-    useEffect(() => {
+useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+        const target = event.target as Node;
         const menu = document.getElementById('navbar_container');
-        document.addEventListener('pointerdown', () => {
-            const target = event?.target as Node;
-            isOpen && !menu?.contains(target) && setIsOpen(false)
-        })
 
-    });
+        if (isOpen && menu && !menu.contains(target)) return setIsOpen(false);
+    };
+
+    document.addEventListener('click', handleClickOutside);
+
+    return () => {
+        document.removeEventListener('click', handleClickOutside);
+    };
+}, [isOpen]);
     return (
         <nav className={styles.navbar}>
             <Limit>
@@ -39,14 +45,14 @@ export const Navbar = () => {
                     onClick={() => setIsOpen(false)}
                     className={`${styles.navbar_container} ${isOpen && styles.navbar_open}`}>
                     <li><Link href='/'>Inicio</Link></li>
-                    <li><Link href='/'>Dashboard</Link></li>
+                    <li><Link href='/dashboard'>Dashboard</Link></li>
                     <li><Link href='/sign-in'>Login</Link></li>
                     <li><Link href='/sign-up'>Cadastro</Link></li>
 
                 </ul>
 
                 <div className={styles.buttons_container}>
-                    <button onClick={handleToggleNavbar}>{visibleIcon}</button>
+                    <button className={styles.nav_toggle} onClick={handleToggleNavbar}>{visibleIcon}</button>
                     <Button onClick={() => router.push('/sign-in')} text='Login' variant='secondary' minSize={true} className={styles.loginButton} />
                 </div>
             </Limit>
