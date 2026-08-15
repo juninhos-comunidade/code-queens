@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import styles from './stackcardresult.module.scss'
-import { Chip, Button } from "@/components";
+import { Chip } from "@/components";
 import { getIconByStack } from "@/utils/getIconByStack";
 
 import { Stack, StacksHistory } from "@/types";
@@ -49,8 +49,6 @@ export const StackCardResult = ({ resultsByStack }: StackCardProps) => {
                             </div>
                             <p>{result.recommendation}</p>
                         </div>
-
-                        <Button onClick={() => getIconByStack(result.stack_name as Stack)} text="Imagem por stack" />
                     </>
                 ))
             }

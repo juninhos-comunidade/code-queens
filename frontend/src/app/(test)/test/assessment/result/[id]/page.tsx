@@ -7,7 +7,7 @@ import { useEffect, useState } from "react";
 import { StackCardResult } from "@/components/feature/StackCardResult/StackCardResult";
 
 const AssessmentResult = () => {
-
+    const {id} = useParams()
     const [resultByStack, setResultByStack] = useState<[]>([])
     const [userToken, setToken] = useState<string>()
     const router = useRouter()
@@ -15,13 +15,14 @@ const AssessmentResult = () => {
     const getResult = async (id: string) => {
         await getAssessmentsHistoryById(id)
             .then((response) => {
+                console.log('Teste',response.data.stacks)
                 setResultByStack(response.data.stacks)
             })
 
     }
 
     useEffect(() => {
-        getResult('759a03a4-6fe9-41f4-8fc7-e860cc5d03c2')
+        getResult(id as string)
 
     }, [])
     useEffect(() => {

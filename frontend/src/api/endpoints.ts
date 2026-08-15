@@ -79,7 +79,7 @@ export const getAssessmentsHistory = async (id_user: string) => {
 export const getAssessmentsHistoryById = async (id_test: string) => {
     return api.get(`/assessments/${id_test}`)
         .then((response) => {
-            return response;
+            return response.data;
         }).catch((error) => {
             console.error('Error:', error);
             throw error;
