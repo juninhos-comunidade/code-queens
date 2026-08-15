@@ -1,5 +1,6 @@
 'use client';
 import { useState, useEffect } from 'react';
+import { useRouter } from 'next/navigation';
 import Image from 'next/image';
 
 import { MenuIcon, X } from 'lucide-react';
@@ -8,9 +9,10 @@ import StackCheckLogo from '../../../../public/stackcheck_logo.svg';
 import { Button, Limit } from '@/components';
 
 import styles from './navbar.module.scss'
+import Link from 'next/link';
 
 export const Navbar = () => {
-
+    const router = useRouter()
     const [isOpen, setIsOpen] = useState<boolean>(false)
     const handleToggleNavbar = () => setIsOpen(!isOpen)
     const visibleIcon = isOpen ? <X /> : <MenuIcon />
@@ -28,21 +30,24 @@ export const Navbar = () => {
     return (
         <nav className={styles.navbar}>
             <Limit>
-                <Image src={StackCheckLogo} alt='Stack Check' />
+                <Link href={'/'}>
+                    <Image src={StackCheckLogo} alt='Stack Check' />
+                </Link>
 
                 <ul
                     id='navbar_container'
                     onClick={() => setIsOpen(false)}
                     className={`${styles.navbar_container} ${isOpen && styles.navbar_open}`}>
-                    <li><a href='/'>Inicio</a></li>
-                    <li><a href='/sign-in'>Login</a></li>
-                    <li><a href='/sign-up'>Cadastro</a></li>
+                    <li><Link href='/'>Inicio</Link></li>
+                    <li><Link href='/'>Dashboard</Link></li>
+                    <li><Link href='/sign-in'>Login</Link></li>
+                    <li><Link href='/sign-up'>Cadastro</Link></li>
 
                 </ul>
 
                 <div className={styles.buttons_container}>
                     <button onClick={handleToggleNavbar}>{visibleIcon}</button>
-                    <Button text='Login' variant='secondary' minSize={true} className={styles.loginButton} />
+                    <Button onClick={() => router.push('/sign-in')} text='Login' variant='secondary' minSize={true} className={styles.loginButton} />
                 </div>
             </Limit>
         </nav>
