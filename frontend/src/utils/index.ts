@@ -14,3 +14,5 @@ export const toggleSelection = <T extends Choose>(item: T,items: T[]): T[] => {
 };
 
 export const getYear = new Date().getFullYear();
+
+export const formatDate = (date: Date) => new Intl.DateTimeFormat('pt-BR').format(new Date(date));
