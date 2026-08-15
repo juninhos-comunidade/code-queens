@@ -14,7 +14,9 @@ export const StackTag = ({ options }: StackTagProps) => {
         <div className={styles.stack_tags_container}>
             {
                 options?.map((tag: TagData, index: number) => (
-                    <Tag key={index} text={tag?.stack_name} data-stack={tag} />
+                    <>
+                    <Tag key={index} text={tag?.stack_name} data-stack={tag?.stack_name?.toLowerCase()} />
+                    </>
                 ))}
         </div>
     )
