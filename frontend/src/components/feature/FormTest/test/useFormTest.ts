@@ -18,8 +18,8 @@ export const testSchema = z.object({
     }).min(1, 'Você deve escolher uma senioridade para prosseguir'),
     id_stacks: z
         .array(z.number())
-        .min(2, {
-            message: "Selecione pelo menos 2 tecnologias"
+        .min(1, {
+            message: "Selecione pelo menos 1 tecnologia"
         })
         .max(5, {
             message: "Selecione no máximo 5 tecnologias"

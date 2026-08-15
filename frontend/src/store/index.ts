@@ -20,6 +20,7 @@ interface AssessmentInfo {
     id_assessments: string;
     id_users: string;
     id_levels: number;
+    id_stacks: []
     title: string;
     date_assessments: string;
     start_time: string;
