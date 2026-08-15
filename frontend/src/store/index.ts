@@ -3,9 +3,17 @@ import { persist } from 'zustand/middleware';
 
 import { User } from '@/types/user';
 
+interface AssessmentOption {
+    id_alternative: number;
+    alternative_description: string;
+}
+
 interface AssessmentQuestions {
     id_question: number;
-    id_alternative: number;
+    question_description: string;
+    questions_enabled: boolean;
+    id_levels: number;
+    options: AssessmentOption[];
 }
 
 interface AssessmentInfo {
