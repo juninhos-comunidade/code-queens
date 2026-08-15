@@ -3,13 +3,15 @@ from fastapi import APIRouter, Depends, HTTPException, status
 from src.main.database.dependencies import get_user_service
 from src.main.models.login_request import LoginRequest
 from src.main.services.users_service import UserService
+from src.main.models.forgot_password import ForgotPassword
+from src.main.services.security import create_access_token,get_current_user
 
-login_router =APIRouter(
+auth_router =APIRouter(
     prefix="/auth",
     tags=["autenticação"]
 )
 
-@login_router.post("/login")
+@auth_router.post("/login")
 async def login(
     user: LoginRequest,
     service: UserService = Depends(get_user_service)
@@ -20,13 +22,55 @@ async def login(
     )
 
     if not authenticated_user:
+            raise HTTPException(
+                status_code=status.HTTP_401_UNAUTHORIZED,
+                detail="E-mail ou senha inválidos"
+            )
+            
+    accepted = service.get_user_accepted_terms(
+        authenticated_user.id_users
+    )
+
+    access_token = create_access_token(data={"sub": str(authenticated_user.id_users)})
+    
+    return {
+        "message": "Login realizado com sucesso",
+        "access_token": access_token,
+        "token_type": "bearer",
+        "id_users": str(authenticated_user.id_users),
+        "email": authenticated_user.email,
+        "full_name": authenticated_user.full_name,
+        "birth_date": authenticated_user.birth_date,
+        "uf":authenticated_user.uf,
+        "gender":authenticated_user.gender,
+        "id_security_questions": authenticated_user.id_security_questions,
+        "id_roles":authenticated_user.id_roles,
+        "timezone_origem":authenticated_user.timezone_origem,
+        "last_login":authenticated_user.last_login,
+        "accepted": accepted
+    }
+
+@auth_router.post("/forgot-password")
+async def forgot_password(
+    body: ForgotPassword,
+    service: UserService = Depends(get_user_service)
+):
+    user = service.forgot_password(body)
+
+    if not user:
         raise HTTPException(
             status_code=status.HTTP_401_UNAUTHORIZED,
-            detail="E-mail ou senha inválidos"
+            detail="Dados de recuperação inválidos"
         )
 
     return {
-        "message": "Login realizado com sucesso",
-        "id_users": str(authenticated_user.id_users),
-        "email": authenticated_user.email
+        "message": "Dados de recuperação válidos",
+        "id_users": str(user.id_users)
+    }
+
+@auth_router.post("/logout")
+async def logout(current_user_id: str = Depends(get_current_user)):
+    # O get_current_user já faz toda a verificação do token para nós!
+    return {
+        "message": f"Usuário {current_user_id} deslogado com sucesso!"
     }

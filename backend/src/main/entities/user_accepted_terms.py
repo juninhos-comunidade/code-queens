@@ -2,15 +2,14 @@
 from uuid import UUID
 from sqlalchemy import Index, Integer,String,ForeignKey,DateTime,func,Boolean
 from sqlalchemy.orm import Mapped,mapped_column
-
+from datetime import datetime
 from src.main.database.orm import Base
 
 class UserAcceptedTerms(Base):
-    __table_name__="user_accepteds_terms"
+    __tablename__="user_accepteds_terms"
     __table_args__ = (
         Index("idx_user_accepteds_terms_id_users", "id_users"),
         Index("idx_user_accepteds_terms_id_terms", "id_terms"),
-        Index("idx_user_accepteds_terms_accepted_at", "accepted_at"),
         {"schema": "core"},
     )
     id_acc_terms : Mapped[int] = mapped_column(
@@ -29,12 +28,13 @@ class UserAcceptedTerms(Base):
         ForeignKey("core.terms_catalog.id"),
         nullable=False
     )
-    accept : Mapped[bool] = mapped_column(
-        Boolean,
-        nullable=False
-    )
-    accept_at: Mapped[DateTime] = mapped_column(
-        DateTime,
+    accepted_at: Mapped[datetime] = mapped_column(
+        DateTime(timezone=True),
         server_default=func.current_timestamp(),
         nullable=False
+    )
+    accepted: Mapped[bool]=mapped_column(
+        Boolean,
+        nullable=False,
+        default=False
     )
