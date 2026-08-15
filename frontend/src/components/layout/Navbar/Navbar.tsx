@@ -27,10 +27,10 @@ useEffect(() => {
         if (isOpen && menu && !menu.contains(target)) return setIsOpen(false);
     };
 
-    document.addEventListener('click', handleClickOutside);
+    document.addEventListener('pointerdown', handleClickOutside);
 
     return () => {
-        document.removeEventListener('click', handleClickOutside);
+        document.removeEventListener('pointerdown', handleClickOutside);
     };
 }, [isOpen]);
     return (
