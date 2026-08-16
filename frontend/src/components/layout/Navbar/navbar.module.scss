@@ -5,6 +5,7 @@
     justify-content: center;
     anchor-name: --my-anchor;
     padding: 16px;
+    background: $white;
 
     >section {
         display: flex;
@@ -83,7 +84,12 @@
             all: inherit;
             display: flex;
             justify-content: end;
+            align-items: center;
+            justify-items: center;
 
+            *{
+            
+            }
             &.navbar_open {
                 display: flex;
             }
