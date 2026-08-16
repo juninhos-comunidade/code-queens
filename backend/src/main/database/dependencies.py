@@ -24,6 +24,9 @@ from src.main.services.result_test_service import ResultTestService
 from src.main.repositories.security_question_repository import SecurityQuestionRepository
 from src.main.services.security_question_service import SecurityQuestionService
 
+from src.main.repositories.terms_repository import TermsRepository
+from src.main.services.terms_service import TermsService
+
 def get_user_service():
     db = SessionLocal()
     repository = UsersRepository(db)
@@ -95,6 +98,15 @@ def get_security_question_service():
     db = SessionLocal()
     repository = SecurityQuestionRepository(db)
     service = SecurityQuestionService(repository)
+
+    try:
+        yield service
+    finally:
+        db.close()
+def get_terms_service():
+    db = SessionLocal()
+    repository = TermsRepository(db)
+    service = TermsService(repository)
 
     try:
         yield service

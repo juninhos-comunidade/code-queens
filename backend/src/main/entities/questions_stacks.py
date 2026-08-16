@@ -5,9 +5,7 @@ from src.main.database.orm import Base
 
 
 class QuestionStack(Base):
-
     __tablename__ = "questions_stack"
-
     __table_args__ = (
         Index(
             "idx_questions_stack_question",
