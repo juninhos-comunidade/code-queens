@@ -12,9 +12,39 @@
         justify-self: center;
     }
 
+    h2 {
+
+        text-align: center;
+        font-size: 2.5rem;
+        line-height: 3rem;
+        padding-inline: 16px;
+    }
+
+    ul {
+        li {
+            gap: 10px;
+            margin-bottom: 12px;
+
+
+            svg {
+                width: 20px;
+                height: 20px;
+                margin-bottom: -4px;
+                fill: $primary;
+                stroke: $white;
+            }
+
+            span {
+                min-width: 80px;
+                display: inline-flex;
+            }
+
+        }
+    }
+
     .header {
         background: $primary-light;
-        padding-block: 60px;
+        padding: 32px 16px;
 
         .header_container {
             display: flex;
@@ -24,26 +54,26 @@
 
 
             .header_info {
-                width: 43%;
-
                 h1 {
-                    font-size: 3rem;
-                    line-height: 3.5rem;
+                    font-size: 2.6rem;
+                    line-height: 3.2rem;
                 }
 
                 p {
                     margin-block: 24px;
-                    width: 87%;
+                    text-align: center;
                 }
 
                 .button_container {
                     display: flex;
+                    justify-content: center;
+                    flex-wrap: wrap;
                     gap: 24px;
                 }
             }
 
             .header_image {
-                width: 43%;
+                // width: 43%;
                 border: 1px solid purple;
             }
         }
@@ -52,56 +82,92 @@
     .page_main {
 
         .proposal_section {
-            padding-block: 60px;
-        
-            > section{
-     
-                justify-self: center;
-                justify-content: center;
+            padding: 60px 30px;
+            display: flex;
+            flex-direction: column;
+
+            >section {
                 display: flex;
-                gap: 24px;
-                > div{
-                    width: 50%;
+                flex-direction: column-reverse;
+                gap: 32px;
+
+                .proposal_image {
+                    height: 175px;
+                }
+
+                .proposal_info {
+                    p {
+                        margin-block: 32px;
+                        line-height: 1.5rem;
+                    }
+
+                }
+
+                >div {
+                    width: 100%;
                 }
             }
 
             .proposal_image {
                 background: $primary-light;
-               
+
             }
 
-            .proposal_info {
-                 h2{
-                    font-size: 2.5rem;
-                 }
-                 p{
-                    width: 100%;
-                    line-height: 1.4rem;
-                 }
-                 ul{
-                    margin-block: 24px;
-                 }
-               
-            }
         }
 
-        .features_section{
+        .features_section {
             display: flex;
             justify-content: center;
-            > section{
+
+            >section {
                 display: flex;
-                justify-content: center;
+                flex-direction: column;
+                align-items: center;
                 gap: 24px;
-                > div{
-                    width: 50%;
-                    h2{
+
+
+                .feature_title {
+                    display: flex;
+                    flex-direction: column;
+                    align-items: center;
+
+                    p {
                         text-align: center;
-                        font-size: 2.5rem;
-                        line-height: 3rem;
-                        max-width: 600px;
+                        max-width: 520px;
+                        margin-block: 16px;
                     }
-                    p{
-                        text-align: center;
+                }
+
+                .feature_card_container {
+                    display: flex;
+                    flex-direction: column;
+                    gap: 32px;
+
+                    .feature_card {
+
+                        border-radius: 12px;
+                        padding: 20px;
+                        width: 295px;
+                        display: flex;
+                        flex-direction: column;
+                        gap: 24px;
+                        box-shadow: 0px 4px 12px rgba(#000000, .1);
+
+                        h3 {
+                            font-size: 1.15rem;
+                            line-height: 2rem;
+                        }
+
+                        p {
+                            font-size: 1rem;
+                        }
+
+                        ul {
+                            li {
+                                font-size: .95rem;
+                            }
+                        }
+
                     }
                 }
             }
@@ -109,30 +175,101 @@
     }
 }
 
-/* .passwordHelper {
-    display: flex;
-    justify-content: space-between;
-} */
-/* 
-.divisor {
-    display: flex;
-    align-items: center;
+@media screen and (min-width: 768px) {
+    .page {
 
-    hr {
-        width: 100%;
+
+        .header {
+            padding-block: 60px;
+
+            .header_container {
+
+                .header_info {
+                    width: 40%;
+
+                    h1 {
+                        font-size: 3rem;
+                        line-height: 3.5rem;
+                    }
+
+                    p {
+                        margin-block: 24px;
+                        width: 87%;
+                        text-align: left;
+                    }
+
+                    .button_container {
+                        justify-content: start;
+                    }
+                }
+
+                .header_image {
+                    width: 40%;
+                    border: 1px solid purple;
+                }
+            }
+        }
+
+        .page_main {
+
+            .proposal_section {
+                justify-content: center;
+
+                >section {
+                    display: flex;
+                    flex-direction: row;
+                    align-self: center;
+                    align-items: center;
+
+                    gap: 50px;
+
+                    >div {
+                        width: 50%;
+                    }
+                }
+
+                .proposal_image {
+                    background: $primary-light;
+
+                }
+
+                .proposal_info {
+                    h2 {
+                        font-size: 2.5rem;
+                    }
+
+                    p {
+                        width: 100%;
+                        line-height: 1.4rem;
+                    }
+
+                    ul {
+                        margin-block: 24px;
+                    }
+
+                }
+            }
+
+            .features_section {
+                >section {
+
+                    .feature_title {
+                        p {
+                            text-align: center;
+
+                        }
+                    }
+
+                    .feature_card_container {
+                        display: flex;
+                        flex-direction: row;
+                        flex-wrap: wrap;
+                        justify-content: space-evenly;
+                        gap: 32px;
+
+                    }
+                }
+            }
+        }
     }
-
-    p {
-        padding-inline: 2%;
-    }
-
-} */
-/* 
-.optinalContainer {
-    text-align: center;
-    font-size: .87rem;
-
-    :last-child {
-        margin-left: 5px;
-    }
-} */
+}
