@@ -182,9 +182,9 @@ const SignIn = () => {
                                     label={
                                         <>
                                             Li e concordo com os{' '}
-                                            <Link href="/terms">Termos de uso</Link>{' '}
+                                            <Link target="_blank" rel="noopener noreferrer" href="/terms-of-use">Termos de uso</Link>{' '}
                                             e a {' '}
-                                            <Link href="/privacy-policy">
+                                            <Link target="_blank" rel="noopener noreferrer" href="/privacy-policy">
                                                 Política de privacidade.
                                             </Link>
                                         </>

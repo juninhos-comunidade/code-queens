@@ -114,6 +114,18 @@ input {
   }
 }
 
+[class*=term_container]{
+  padding: 16px 32px;
+  line-height: 1.5;
+  >h1{
+    font-size: 2rem;
+    line-height: normal;
+  }
+  >p{
+    padding-block:12px;
+  }
+}
+
 @media (prefers-color-scheme: dark) {
   html {
     color-scheme: dark;
