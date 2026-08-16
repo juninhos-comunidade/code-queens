@@ -10,7 +10,7 @@ import { useEffect } from "react";
 
 const Dashboard = () => {
 
-  const {userToken, id_users, first_name, history, navigationToTest, getAssessmentsHistoryById } = useDashboard()
+  const {userToken, id_users, first_name, history, navigationToTest, getAssessmentsHistoryById, getLogout } = useDashboard()
   useEffect(() => {
     getAssessmentsHistoryById()
   }, [id_users])
