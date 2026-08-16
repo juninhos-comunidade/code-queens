@@ -17,7 +17,6 @@ const Dashboard = () => {
   return (
     userToken &&
     <section className={styles.dashboard} >
-      <Button text="Deslogar" onClick={() => getLogout(userToken)}/>
       <Limit>
         <div className={styles.header_container}>
           <div className={styles.welcome}>
