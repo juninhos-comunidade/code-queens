@@ -1,6 +1,7 @@
 'use client'
 import { zodResolver } from "@hookform/resolvers/zod";
 import { subscribeSchema, SubscribeFormData } from "./useSignUp";
+import Link from "next/link";
 
 import { Input, Select, Checkbox, AuthContainer, Toast } from "@/components";
 import { useForm, Controller } from "react-hook-form";
@@ -181,13 +182,11 @@ const SignIn = () => {
                                     label={
                                         <>
                                             Li e concordo com os{' '}
-                                            <a href="/terms">
-                                                Termos de uso
-                                            </a>{' '}
-                                            e a{' '}
-                                            <a href="/privacy-policy">
-                                                Política de privacidade
-                                            </a>.
+                                            <Link href="/terms">Termos de uso</Link>{' '}
+                                            e a {' '}
+                                            <Link href="/privacy-policy">
+                                                Política de privacidade.
+                                            </Link>
                                         </>
                                     }
                                     checked={!!field.value}
