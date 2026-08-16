@@ -162,3 +162,10 @@ create table if not exists core.result_test(
 );
 
 CREATE INDEX IF NOT EXISTS idx_result_test_id_assessments ON core.result_test USING btree (id_assessments);
+
+UPDATE core.result_test
+SET classification = NULL;
+
+ALTER TABLE core.result_test
+ALTER COLUMN classification TYPE JSONB
+USING classification::jsonb;
