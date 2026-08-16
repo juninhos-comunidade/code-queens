@@ -82,14 +82,12 @@ export const useQuestionnare = () => {
             await postAssessmentsQuestionnaire(testId, data)
                 .then(() => {
                     router.push(`/test/assessment/result/${testId}`)
-                    setCurrentAssessment(null)
                 })
                 .catch((error) =>
                     console.error(error)
                 )
                 .finally(() => {
                     setIsLoading(false)
-                    setCurrentAssessment(null)
                 })
         }
 

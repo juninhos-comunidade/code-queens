@@ -67,7 +67,6 @@ const AssessmentResult = () => {
                         <h1>Resultado do Teste</h1>
                     </div>
                     <div className={styles.header_result_info}>
-                        {/* <p>Concluído em {formatDate(resultInfo?.score_global)}</p> */}
                         <Button variant="outline" onClick={() => router.push('/test')} text="Gerar novo teste" icon={<RefreshCcw />} />
                     </div>
                 </div>
@@ -88,7 +87,7 @@ const AssessmentResult = () => {
                                 />
 
                                 <circle
-                                    className={`${styles.circle_progress} ${getLevelClass(resultInfo?.score_global || 0).level}`}
+                                    className={`${styles.circle_progress} ${getLevelClass(resultInfo?.score_global || 0)?.level}`}
                                     cx="60"
                                     cy="60"
                                     r="48"
@@ -97,7 +96,7 @@ const AssessmentResult = () => {
                                 />
                             </svg>
 
-                            <div className={styles.score_content}>
+                            <div className={styles?.score_content}>
                                 <strong>{resultInfo?.score_global}%</strong>
 
                             </div>
@@ -109,7 +108,7 @@ const AssessmentResult = () => {
                         {resultInfo &&
 
                             <Tag
-                                text={resultInfo?.classification.level}
+                                text={resultInfo?.classification?.level}
                                 className={getLevelClass(resultInfo?.score_global).level}
                             />
                         }
