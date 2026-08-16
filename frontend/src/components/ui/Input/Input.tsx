@@ -39,7 +39,7 @@ export const Input = ({ label, labelFor, text, disabled, icon
                         mask="d/m/Y"
                         lazy={true}
                         autofix
-                        placeholder='28/10/1999'
+                        placeholder='01/01/1991'
                         onAccept={(value) => {
                             onAccept?.(String(value));
                         }}

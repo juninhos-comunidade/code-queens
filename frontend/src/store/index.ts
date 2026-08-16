@@ -38,6 +38,7 @@ interface UserStore {
     currentAssessment: AssessmentResponse | null;
     setUser: (payload: User) => void;
     setCurrentAssessment: (payload: AssessmentResponse | null) => void;
+    setFirstName: () => void;
 }
 
 export const useUserStore = create<UserStore>()(
@@ -46,6 +47,7 @@ export const useUserStore = create<UserStore>()(
             user: {
                 id_users: "",
                 email: "",
+                first_name: "",
                 full_name: "",
                 birth_date: "",
                 uf: "",
@@ -57,7 +59,13 @@ export const useUserStore = create<UserStore>()(
                 accepted: null
             },
             currentAssessment: null,
-            setUser: (payload: User) => set({ user: payload }),
+            setUser: (payload: User) => set({ user: { ...payload, first_name: payload?.full_name?.split(' ')[0]}}),
+            setFirstName: () => set((state: UserStore) => ({
+                user: {
+                    ...state.user,
+                    first_name: state.user.full_name[0] 
+                }
+            })),
             setCurrentAssessment: (payload: AssessmentResponse | null) =>
                 set({
                     currentAssessment: payload

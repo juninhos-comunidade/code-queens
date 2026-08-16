@@ -55,8 +55,8 @@ export const useTest = () => {
         },
         {
             step: 2,
-            title: '2. Selecione as stacks',
-            subtitle: 'Selecione as tecnologias que você deseja testar seu dominio e geraremos um teste prático personalizado sob medida para o seu perfil'
+            title: '2. Selecione até 5 stacks',
+            subtitle: 'Selecione o que você deseja testar seu dominio e geraremos um teste prático, objetivo e personalizado sob medida'
         },
     ]
 

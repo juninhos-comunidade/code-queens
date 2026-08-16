@@ -1,0 +1,42 @@
+@use '../../../styles/colors.module' as *;
+
+@mixin chipStyle($bg, $color) {
+    background: $bg;
+    color: $color;
+}
+
+.chip {
+    margin-right: 8px;
+    padding: 4px 10px;
+    border-radius: 50px;
+    max-width: fit-content;
+    text-transform: uppercase;
+
+    &.advanced {
+        @include chipStyle(
+            $feedback-success-light,
+            $feedback-success-dark 
+        ) 
+    }
+
+    &.intermediary {
+        @include chipStyle(
+            $feedback-info-light,
+            $feedback-info-dark 
+        )
+    }
+
+    &.basic {
+        @include chipStyle(
+            $feedback-warning-light,
+            $feedback-warning-dark 
+        )
+    }
+
+    &.initial {
+        @include chipStyle(
+            $feedback-error-light,
+            $feedback-error-dark 
+        )
+    }
+}

@@ -1,8 +1,9 @@
 'use client'
 import { zodResolver } from "@hookform/resolvers/zod";
 import { subscribeSchema, SubscribeFormData } from "./useSignUp";
+import Link from "next/link";
 
-import { Input, Select, Checkbox, AuthContainer } from "@/components";
+import { Input, Select, Checkbox, AuthContainer, Toast } from "@/components";
 import { useForm, Controller } from "react-hook-form";
 import { useSignUp } from "./useSignUp";
 
@@ -70,6 +71,11 @@ const SignIn = () => {
                 subtitle="Crie sua conta para começar a trilhar seus conhecimentos"
                 isLoading={isLoading}
                 msgFallback={error}
+                toasts={<Toast
+                variable='warning'
+                title="Por que responder a pergunta de segurança?"
+                subtitle={"A pergunta e a resposta de segurança são utilizadas para confirmar sua identidade caso você precise recuperar ou redefinir sua senha."} 
+            /> }
                 formChildren={
                     <>
                         <Input
@@ -176,13 +182,11 @@ const SignIn = () => {
                                     label={
                                         <>
                                             Li e concordo com os{' '}
-                                            <a href="/terms">
-                                                Termos de uso
-                                            </a>{' '}
-                                            e a{' '}
-                                            <a href="/privacy-policy">
-                                                Política de privacidade
-                                            </a>.
+                                            <Link href="/terms">Termos de uso</Link>{' '}
+                                            e a {' '}
+                                            <Link href="/privacy-policy">
+                                                Política de privacidade.
+                                            </Link>
                                         </>
                                     }
                                     checked={!!field.value}
