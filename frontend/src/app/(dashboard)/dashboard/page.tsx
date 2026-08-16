@@ -10,12 +10,12 @@ import { useEffect } from "react";
 
 const Dashboard = () => {
 
-  const {userToken, id_users, first_name, history, navigationToTest, getAssessmentsHistoryById } = useDashboard()
+  const {userToken, isLoading, id_users, first_name, history, navigationToTest, getAssessmentsHistoryById } = useDashboard()
   useEffect(() => {
     getAssessmentsHistoryById()
   }, [id_users])
   return (
-    userToken &&
+    userToken && 
     <section className={styles.dashboard} >
       <Limit>
         <div className={styles.header_container}>
