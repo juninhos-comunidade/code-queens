@@ -76,7 +76,7 @@ export default function Home() {
                 </div>
                 <div className={styles.feature_card}>
                   <h3>Receba<span className="emphasys">{' '}feedbacks</span></h3>
-                  <p>Saia do teste sabendo exatamente o próximo passo</p>
+                  <p>Receba uma análise clara do seu desempenho e descubra quais temas merecem mais atenção para acelerar sua evolução.</p>
                   <ul>
                     <li>
                       <CircleCheck /> Resultado imediato </li>
@@ -85,8 +85,9 @@ export default function Home() {
                   </ul>
                 </div>
                 <div className={styles.feature_card}>
-                  <h3>Acompanhe a<span className="emphasys">evolução</span></h3>
-                  <p>Veja seus resultados anteriores e acompanhe seu crescimento profissional ao longo do tempo.</p>
+                  <h3>Acompanhe a {' '}<span className="emphasys">evolução</span></h3>
+                  <p>Visualize seu progresso, compare desempenhos anteriores e acompanhe sua jornada rumo às próximas oportunidades da sua carreira.</p>
+                 
                   <ul>
                     <li>
                       <CircleCheck /> Histórico completo </li>
