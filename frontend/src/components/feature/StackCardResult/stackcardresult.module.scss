@@ -54,7 +54,7 @@
             &.intermediary{
                 background: $feedback-info;
             }
-           .advanced{
+           &.advanced{
             background: $feedback-success;
            }
         }
