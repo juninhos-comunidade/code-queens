@@ -8,6 +8,7 @@ import { useEffect, useState } from "react";
 
 export const useDashboard = () => {
   const { user } = useUserStore()
+  const [isLoading, setIsLoading] = useState(<boolean>false)
   const { id_users, first_name } = user
   const [userToken, setToken] = useState<string>()
 
@@ -16,23 +17,18 @@ export const useDashboard = () => {
   const [history, setHistory] = useState<AssessmentsHistory[] | []>([])
 
   const getAssessmentsHistoryById = async () => {
+    setIsLoading(true)
     id_users &&
       await getAssessmentsHistory(id_users)
         .then((response) => {
           setHistory(response)
+          setIsLoading(false)
         }
         )
         .catch((error) => console.error(error))
         .finally()
   }
 
-  const getLogout = async (token: string) => {
-    await postLogout(token)
-      .then(() => {
-        router.push('/sign-in')
-      })
-      .catch((error) => console.log('Tivemos um erro ao deslogar', error))
-  }
 
   useEffect(() => {
     const token = localStorage.getItem("token");
@@ -42,6 +38,6 @@ export const useDashboard = () => {
     }
   }, [router]);
 
-  return { getLogout, userToken, user, id_users, first_name, history, navigationToTest, getAssessmentsHistoryById }
+  return  { isLoading, userToken, user, id_users, first_name, history, navigationToTest, getAssessmentsHistoryById }
 
 }

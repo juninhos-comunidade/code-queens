@@ -9,7 +9,7 @@ import { useSignUp } from "./useSignUp";
 
 
 const SignIn = () => {
-    const { register, handleSubmit, control, formState: { errors, isSubmitting, isValid }, } = useForm<SubscribeFormData>({
+    const { register, handleSubmit, control, formState: { errors} } = useForm<SubscribeFormData>({
         resolver: zodResolver(subscribeSchema),
         defaultValues: {
             full_name: '',

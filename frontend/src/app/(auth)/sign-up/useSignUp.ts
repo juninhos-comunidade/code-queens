@@ -1,14 +1,14 @@
 import { z } from 'zod';
 
-import { postCreateUser } from '@/api/endpoints';
-import { useState } from 'react';
+import { postCreateUser, postLogin } from '@/api/endpoints';
+import { use, useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { useUserStore } from '@/store';
 
 export const subscribeSchema = z.object({
     full_name: z.string().min(6, 'Informe como devemos te chamar'),
     email: z.email({ message: 'Você deve informar um e-mail valido' }),
-    birth_date: z.string({ message: 'Informe quando nasceu' }).transform((date) => (date).split('/').reverse().join().replaceAll(',','-')),
+    birth_date: z.string({ message: 'Informe quando nasceu' }).transform((date) => (date).split('/').reverse().join().replaceAll(',', '-')),
     uf: z.string().min(1, 'Informe o estado onde mora'),
     gender: z.string().min(1, 'Informe o genero com o qual se identifica'),
     password: z.string().min(6, 'Sua senha deve conter no minimo 6 caracteres'),
@@ -35,15 +35,20 @@ export const useSignUp = () => {
     const router = useRouter()
     const [isLoading, setIsLoading] = useState<boolean>(false);
     const [error, setError] = useState<string>('');
-    const {setUser} = useUserStore()
+    const { setUser } = useUserStore()
 
     const handleCreateUser = async (data: SubscribeFormData) => {
         setIsLoading(true);
         await postCreateUser({ ...data, id_roles: 2 })
             .then(async (response) => {
-                const {message, ...user} = response
+                const { message, ...user } = response
+            await postLogin({email: user.email, password: data.password})
+            .then(async (response) => {
+                const { access_token, token_type, message, ...user } = response
+                localStorage.setItem('token', access_token);
                 setUser(user)
                 router.push('/dashboard')
+            })
 
             }).catch((error) => {
                 console.error('Tivemos um erro ao criar seu usuario:', error);

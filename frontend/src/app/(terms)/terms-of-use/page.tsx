@@ -13,7 +13,6 @@ const TermoDeUso = () => {
             .then(response => {
 
                 setUseTerm(response)
-                console.log(useTerm?.term_description)
             }
             )
             .catch((error) => console.error('Tivemos um erro ao recuperar as politicas de privacidade', error))
