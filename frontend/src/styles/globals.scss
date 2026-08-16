@@ -78,15 +78,21 @@ p {
     @include fontConfig(0.87, 400, 1.25);
 
   }
-  &.errormsg{
+
+  &.errormsg {
     color: $feedback-error-dark;
   }
 }
 
-a{
+a {
   color: $primary;
   @include fontConfig(0.87, 600, 1.25);
 
+}
+
+ul {
+  list-style: none;
+  list-style-position: inside;
 }
 
 label {
@@ -114,16 +120,22 @@ input {
   }
 }
 
-[class*=term_container]{
+[class*=term_container] {
   padding: 16px 32px;
   line-height: 1.5;
-  >h1{
+
+  >h1 {
     font-size: 2rem;
     line-height: normal;
   }
-  >p{
-    padding-block:12px;
+
+  >p {
+    padding-block: 12px;
   }
+}
+
+.emphasys {
+  color: $primary;
 }
 
 @media (prefers-color-scheme: dark) {

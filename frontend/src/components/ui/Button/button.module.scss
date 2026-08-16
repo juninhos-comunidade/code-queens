@@ -67,7 +67,7 @@
     }
 
     &.outline {
-        @include buttonStyled(transparent, $primary);
+        @include buttonStyled($white, $primary);
         @include buttonStates(transparent, $primary, $primary-dark);
         border: 1px solid $primary;
     }
