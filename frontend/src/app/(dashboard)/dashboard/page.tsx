@@ -15,7 +15,7 @@ const Dashboard = () => {
     getAssessmentsHistoryById()
   }, [id_users])
   return (
-    userToken && 
+    userToken && !isLoading &&
     <section className={styles.dashboard} >
       <Limit>
         <div className={styles.header_container}>

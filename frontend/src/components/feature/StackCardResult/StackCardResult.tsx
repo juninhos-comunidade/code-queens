@@ -31,9 +31,9 @@ export const StackCardResult = ({ resultsByStack }: StackCardProps) => {
     return (
         <>
             {
-                resultsByStack?.map((result, index) => (
+                resultsByStack?.map((result) => (
                     <>
-                        <div className={styles.card_stack} key={index}>
+                        <div className={styles.card_stack} key={result.stack_name}>
                             <div className={styles.header_container}>
                                 <Image src={getIconByStack(result.stack_name as Stack)} className={styles.icon} width={40} height={40} alt="css" />
                                 <p className={styles.title}>{result.stack_name}</p>

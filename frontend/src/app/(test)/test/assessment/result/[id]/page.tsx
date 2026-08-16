@@ -113,21 +113,14 @@ const AssessmentResult = () => {
                             />
                         }
                         <p className={styles.score_description_title}>
-                            Continue estudando para alcançar o nível avançado!
+                            {resultInfo?.classification.title}
                         </p>
-                        <p>Você demonstra uma base sólida e compreensão prática.
-                            Foque nos tópicos abaixo para evoluir ainda mais.</p>
-                    </div>
-                    <div>
-                        <img src={''} alt="" />
+                        <p>{resultInfo?.classification.subtitle}</p>
                     </div>
 
                 </div>
                 <div className={styles.stack_card_container}>
                     <StackCardResult resultsByStack={resultByStack} />
-                </div>
-                <div className={styles.stack}>
-                    {/* O que estudar a seguir */}
                 </div>
             </Limit>
         </div>
