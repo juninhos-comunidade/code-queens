@@ -1,0 +1,28 @@
+@use '../../../styles/colors.module' as *;
+
+.radioButtonContainer {
+    gap: 5px;
+    display: flex;
+    justify-content: space-between;
+    
+    .optionContainer {
+        display: inline-flex;
+        align-items: center;
+        gap: 5px;
+        
+        .radio {
+            accent-color: $primary;
+            height: .75rem;
+        }
+
+        .label {
+            text-transform: lowercase;
+            line-height: 0;
+
+            &::first-letter {
+                text-transform: uppercase;
+            }
+        }
+    }
+
+}

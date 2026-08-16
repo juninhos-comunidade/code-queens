@@ -1,0 +1,55 @@
+ @use '../../../styles/colors.module' as *;
+
+ .table_item {
+     display: grid;
+     grid-template-areas: "stackIcon title progress" "tags tags tags";
+     grid-template-columns: .1fr 2fr .3fr;
+     gap: 12px;
+     padding: 24px 12px;
+     background: white;
+     margin-bottom: 10px;
+     border-radius: 16px;
+     box-shadow: 0px 4px 12px rgba(#000000, .1);
+     cursor: pointer;
+     color: $text-primary;
+
+  
+
+     &:hover {
+         box-shadow: 0px 6px 14px rgba(#000000, .4);
+     }
+
+     .table_item_icon {
+         grid-area: stackIcon;
+         place-self: center;
+     }
+
+     .table_item_title {
+         grid-area: title;
+     }
+     .table_item_tags {
+         display: flex;
+         flex-wrap: wrap;
+         gap: 8px;
+         grid-area: tags;
+    
+         .tag {
+             border: 1px solid black;
+             margin-right: 8px;
+             padding: 4px 10px;
+             border-radius: 8px;
+         }
+     }
+     .table_item_progress {
+         color: rgb(49, 132, 226);
+         font-weight: 700;
+         grid-area: progress;
+         place-self: center;
+     }
+ }
+
+ @media screen and (min-width: 768px) {
+     .table_item {
+         grid-template-areas: "stackIcon title progress" "tags tags progress";
+     }
+ }

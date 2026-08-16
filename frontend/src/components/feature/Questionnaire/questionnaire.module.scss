@@ -1,0 +1,39 @@
+.question_container {
+    margin-top: 30px;
+     box-shadow: 0px 4px 12px rgba(#000000, .1);
+    display: flex;
+    flex-direction: column;
+    height: max-content;
+    flex-wrap: wrap;
+    padding: 54px 32px;
+    border-radius: 8px;
+    max-width: 768px;
+    justify-self: center;
+    .question_title {
+        font-weight: 700;
+        padding-bottom: 24px;
+    }
+
+    .alternatives_container {
+        display: flex;
+
+        [class*=radioButtonContainer] {
+            flex-direction: column;
+            gap: 24px;
+
+            [class*=optionContainer] {
+
+                [class*=radio] {
+                    line-height: normal;
+                    margin-right: 8px;
+                }
+            }
+        }
+    }
+    .button_container{
+        margin-top: 32px;
+        display: flex;
+        justify-content: space-between;
+    }
+
+}

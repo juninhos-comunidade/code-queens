@@ -1,0 +1,38 @@
+@use '../styles/colors.module' as *;
+
+.page_not_found, .main{
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+}
+
+.page_not_found{
+    justify-items: center;
+    .main{
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+        gap: 8px;
+        padding: 0 24px;
+   
+
+        >h1{
+            color: $primary;
+            font-size: 7.5rem;
+            font-weight: 900;
+        }
+
+        >h2{
+            font-size: 1.8rem
+        }
+
+        >p{
+            max-width: 500px;
+        }
+
+        >button{
+            text-transform: inherit;
+            margin-top: 32px;
+        }
+    }
+}

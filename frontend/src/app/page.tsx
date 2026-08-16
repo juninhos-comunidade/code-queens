@@ -1,66 +1,106 @@
-import Image from "next/image";
-import styles from "./page.module.css";
+'use client'
+import { CircleCheck } from "lucide-react";
+import styles from "./page.module.scss";
+import { Button, Footer, Limit, Navbar } from "@/components";
+import { useRouter } from "next/navigation";
+
 
 export default function Home() {
+  const router = useRouter()
   return (
     <div className={styles.page}>
-      <main className={styles.main}>
-        <Image
-          className={styles.logo}
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className={styles.intro}>
-          <h1>To get started, edit the page.tsx file.</h1>
-          <p>
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              Learning
-            </a>{" "}
-            center.
-          </p>
-        </div>
-        <div className={styles.ctas}>
-          <a
-            className={styles.primary}
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className={styles.logo}
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={16}
-            />
-            Deploy Now
-          </a>
-          <a
-            className={styles.secondary}
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
-        </div>
+      <Navbar />
+      <header className={styles.header}>
+        <Limit>
+          <div className={styles.header_container}>
+            <div className={styles.header_info}>
+              <h1>
+                Coloque suas <span className='emphasys'>stacks</span> em <span className='emphasys'>check</span> e avance de verdade
+              </h1>
+              <p>Descubra se você está preparado para as vagas que deseja conquistar. Teste suas habilidades, 
+                identifique seus pontos de melhoria e evolua com confiança para sua próxima entrevista.</p>
+              <div className={styles.button_container}>
+                <Button text="Começar agora" onClick={() => router.push('/sign-up')} />
+                <Button text="Já tenho uma conta" variant="outline" onClick={() => router.push('/sign-in')} />
+              </div>
+            </div>
+
+            {/* <div className={styles.header_image}>
+
+            </div> */}
+          </div>
+
+        </Limit>
+      </header>
+      <main className={styles.page_main}>
+        {/* O que fazemos */}
+        <section className={styles.proposal_section}>
+          <Limit>
+            <div className={styles.proposal_image}></div>
+            <div className={styles.proposal_info}>
+              <h2>O que fazemos?</h2>
+              <p>O StackCheck cria avaliações técnicas personalizadas para ajudar desenvolvedores a entender seu nível atual, 
+                identificar oportunidades de evolução e chegar mais preparado aos desafios do mercado.
+
+              </p>
+              <ul>
+                <li><CircleCheck /> Área de atuação</li>
+                <li><CircleCheck />  Nível desejado</li>
+                <li><CircleCheck /> Tecnologias que deseja praticar</li>
+              </ul>
+            </div>
+          </Limit>
+        </section>
+        {/* Proximo sim */}
+        <section className={styles.features_section}>
+          <Limit>
+            <div className={styles.feature_title}>
+              <h2> O próximo <span className='emphasys'>sim</span>{' '}da sua carreira pode estar a poucos testes de distância</h2>
+              <p> Monte um teste alinhado aos seus objetivos e descubra os conhecimentos que podem acelerar sua evolução profissional.</p>
+            </div>
+
+            {/* Cards */}
+            <>
+              <div className={styles.feature_card_container}>
+
+                <div className={styles.feature_card}>
+                  <h3>Teste suas  <span className='emphasys'>habilidades</span></h3>
+                  <p>Resolva desafios inspirados em situações reais do mercado e descubra exatamente quais conhecimentos já são seus pontos fortes e quais ainda podem evoluir.
+</p>
+                  <ul>
+                    <li>
+                      <CircleCheck /> Até 25 perguntas por teste </li>
+                    <li><CircleCheck />Stacks que você escolhe </li>
+                    <li><CircleCheck /> Adaptados à senioridade selecionada </li>
+                  </ul>
+                </div>
+                <div className={styles.feature_card}>
+                  <h3>Receba<span className="emphasys">{' '}feedbacks</span></h3>
+                  <p>Receba uma análise clara do seu desempenho e descubra quais temas merecem mais atenção para acelerar sua evolução.</p>
+                  <ul>
+                    <li>
+                      <CircleCheck /> Resultado imediato </li>
+                    <li><CircleCheck /> Feedback por tecnologia </li>
+                    <li><CircleCheck />  Recomendações personalizadas</li>
+                  </ul>
+                </div>
+                <div className={styles.feature_card}>
+                  <h3>Acompanhe a {' '}<span className="emphasys">evolução</span></h3>
+                  <p>Visualize seu progresso, compare desempenhos anteriores e acompanhe sua jornada rumo às próximas oportunidades da sua carreira.</p>
+                 
+                  <ul>
+                    <li>
+                      <CircleCheck /> Histórico completo </li>
+                    <li><CircleCheck />Evolução por tecnologia </li>
+                    <li><CircleCheck />Progresso ao longo do tempo</li>
+                  </ul>
+                </div>
+              </div>
+            </>
+          </Limit>
+        </section>
       </main>
+      <Footer />
     </div>
   );
 }

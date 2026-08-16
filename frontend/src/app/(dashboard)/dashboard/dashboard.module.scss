@@ -1,0 +1,72 @@
+@use '../../../styles/colors.module' as *;
+
+.dashboard {
+   flex-grow: 1;
+   width: 100%;
+   color: $text-primary !important;
+
+   >section {
+      margin: 0 auto;
+
+      .header_container {
+         display: flex;
+         padding: 40px;
+         border-radius: 16px;
+         box-shadow: 0px 4px 12px rgba(#000000, .1);
+         background: $white;
+         margin: 24px;
+
+         .welcome {
+            .username {
+               color: $primary;
+            }
+
+            >p {
+               color: $text-secondary;
+               margin-block: 12px 24px;
+            }
+         }
+
+      }
+
+      .table_container {
+         padding: 16px 32px;
+         margin-block: 40px;
+         border-radius: 16px;
+         box-shadow: 0px 4px 12px rgba(#000000, .1);
+         
+
+         h4 {
+            margin-bottom: 24px;
+            color: light-dark($text-primary, $white);
+         }
+      }
+
+      .empty {
+         display: flex;
+         flex-direction: column;
+         align-items: center;
+         text-align: center;
+         gap: 24px;
+
+         p {
+
+            max-width: 530px;
+         }
+      }
+   }
+}
+
+@media screen and (min-width: 768px) {
+   .dashboard {
+
+      >section {
+         margin: 0 auto;
+
+         .table_container {
+            padding: 32px;
+         }
+      }
+   }
+
+}

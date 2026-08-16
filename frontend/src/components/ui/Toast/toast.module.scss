@@ -1,0 +1,57 @@
+@use '../../../styles/colors.module' as *;
+
+@mixin toastStyle($bg, $titleColor) {
+    background: $bg;
+    .title, .subtitle{
+        color: $titleColor;
+    }
+}
+
+.toast {
+    padding: 16px;
+    border-radius: 8px;
+    width: clamp(250px, 90dvw, 500px);
+
+    .title {
+        display: flex;
+        align-items: center;
+        line-height: normal;
+        gap: 10px;
+        font-weight: 600;
+    }
+
+    .subtitle {
+        padding-left: 8px;
+        padding-top: 8px;
+        font-size: .78rem;
+        line-height: 1.2rem;
+    }
+
+    &.only_describe{
+        .subtitle{
+            padding: 0;
+            text-align: center;
+        }
+    }
+
+    &.primary {
+        @include toastStyle($primary-light, $primary-dark )
+    }
+
+    &.success {
+        @include toastStyle($feedback-success-light, $feedback-success-dark )
+    }
+
+    &.warning {
+        @include toastStyle($feedback-warning-light, $feedback-warning-dark )
+    }
+
+    &.info {
+        @include toastStyle($feedback-info-light, $feedback-info-dark )
+    }
+
+    &.error {
+        @include toastStyle($feedback-error-light, $feedback-error-dark )
+    }
+
+}
