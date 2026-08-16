@@ -62,12 +62,12 @@ const router = useRouter()
               <div className={styles.feature_card_container}>
 
                 <div className={styles.feature_card}>
-                  <h3>Teste suas habilidades</h3>
-                  <p>Responda a testes personalizados com questões inspiradas em entrevistas reais e descubra seu nível em cada tecnologia escolhida.</p>
+                  <h3>Teste suas  <span className='emphasys'>habilidades</span></h3>
+                  <p>Responda a testes personalizados focado em entrevistas reais e descubra seu nível em cada stack.</p>
                   <ul>
                     <li>
-                      <CircleCheck /> 10 perguntas por teste </li>
-                    <li><CircleCheck />Personalizados pelas stacks escolhidas </li>
+                      <CircleCheck /> Até 25 perguntas por teste </li>
+                    <li><CircleCheck />Baseado nas stacks escolhidas </li>
                     <li><CircleCheck /> Adaptados à senioridade selecionada </li>
                   </ul>
                 </div>
