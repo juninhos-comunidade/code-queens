@@ -61,7 +61,7 @@ export const Navbar = () => {
                         token ?
                             <>
                                 <li><Link href='/dashboard'>Dashboard</Link></li>
-                                <Button onClick={() => router.push('/sign-in')} text='Logout' variant='secondary' minSize={true} className={styles.loginButton} />
+                                <Button onClick={() => handleLogout()} text='Logout' variant='secondary' minSize={true} className={styles.loginButton} />
                             </> :
                             <>
                                 <li><Link href='/sign-in'>Login</Link></li>
