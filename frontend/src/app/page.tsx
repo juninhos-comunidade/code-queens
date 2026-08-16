@@ -24,7 +24,7 @@ export default function Home() {
             </div>
 
             <div className={styles.header_image}>
-            
+
             </div>
           </div>
 
@@ -32,24 +32,30 @@ export default function Home() {
       </header>
       <main className={styles.page_main}>
         {/* O que fazemos */}
-        <section>
-          <div></div>
-          <div>
-            <h2>O que fazemos?</h2>
-            <p>O StackCheck cria testes técnicos personalizados para desenvolvedores que buscam sair na frente
-              em suas entrevistas.Nossa plataforma gera automaticamente um teste baseado no seu objetivo, dito isso você pode definir:
-            </p>
-            <ul>
-              <li>Frente de atuação. (exemplo: Front-end,Back-end)</li>
-              <li>Senioridade desejada</li>
-              <li>As tecnologias que quer avaliar</li>
-            </ul>
-          </div>
+        <section className={styles.proposal_section}>
+          <Limit>
+            <div className={styles.proposal_image}></div>
+            <div className={styles.proposal_info}>
+              <h2>O que fazemos?</h2>
+              <p>O StackCheck cria testes técnicos personalizados para desenvolvedores que buscam sair na frente
+                em suas entrevistas.Geramos automaticamente um teste baseado no seu objetivo e você pode definir:
+              </p>
+              <ul>
+                <li>Frente de atuação. (exemplo: Front-end,Back-end),</li>
+                <li>Senioridade desejada,</li>
+                <li>E as tecnologias que quer avaliar</li>
+              </ul>
+            </div>
+          </Limit>
         </section>
         {/* Proximo sim */}
-        <section>
-          <h2>Iremos <span className='emphasys'>destravar</span> o seu próximo <span className='emphasys'>“sim”</span> </h2>
-          <p>Escolha sua área, monte seu teste e descubra exatamente o que falta para chegar mais confiante na próxima entrevista.</p>
+        <section className={styles.features_section}>
+          <Limit>
+            <div>
+              <h2>Iremos <span className='emphasys'>destravar</span> o seu próximo <span className='emphasys'>“sim”</span> </h2>
+              <p>Escolha sua área, monte seu teste e descubra exatamente o que falta para chegar mais confiante na próxima entrevista.</p>
+            </div>
+          </Limit>
         </section>
       </main>
       <Footer />
