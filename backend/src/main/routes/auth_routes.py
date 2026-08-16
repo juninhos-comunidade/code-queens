@@ -70,7 +70,6 @@ async def forgot_password(
 
 @auth_router.post("/logout")
 async def logout(current_user_id: str = Depends(get_current_user)):
-    # O get_current_user já faz toda a verificação do token para nós!
     return {
         "message": f"Usuário {current_user_id} deslogado com sucesso!"
     }

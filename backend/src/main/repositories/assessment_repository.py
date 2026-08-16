@@ -18,13 +18,44 @@ class AssessmentsRepository:
     def _get_classification_label(self, percentage: int) -> str:
         """Retorna a senioridade baseada no percentual."""
         if percentage <= 39:
-            return "Júnior"
+            return {
+                "level": "Iniciante",
+                "title": "Continue praticando para construir uma base sólida!",
+                "subtitle": (
+                    "Você está dando os primeiros passos e já começou a desenvolver "
+                    "seus conhecimentos. Foque nos tópicos abaixo para evoluir ainda mais."
+                )
+            }
+
         elif percentage <= 64:
-            return "Pleno"
+            return {
+                "level": "Básico",
+                "title": "Continue estudando para fortalecer sua base!",
+                "subtitle": (
+                    "Você já possui uma boa base e está desenvolvendo suas habilidades. "
+                    "Foque nos tópicos abaixo para evoluir ainda mais."
+                )
+            }
+
         elif percentage <= 84:
-            return "Sênior"
+            return {
+                "level": "Intermediário",
+                "title": "Continue estudando para alcançar o nível avançado!",
+                "subtitle": (
+                    "Você demonstra uma base sólida e compreensão prática. "
+                    "Foque nos tópicos abaixo para evoluir ainda mais."
+                )
+            }
+
         else:
-            return "Especialista"
+            return {
+                "level": "Avançado",
+                "title": "Continue praticando para alcançar a excelência!",
+                "subtitle": (
+                    "Você demonstra domínio dos principais conceitos e boa experiência "
+                    "prática. Foque nos tópicos abaixo para evoluir ainda mais."
+                )
+            }
 
     def _get_stack_recommendation(self, stack_id: int, percentage: int):
         """Busca a recomendação de estudo ideal baseada na nota da stack."""
@@ -240,7 +271,7 @@ class AssessmentsRepository:
               
           return formatted_history
     def get_assessment_by_id(self, assessment_id: UUID, user_id: UUID):
-        # Busca a avaliação principal
+       
         assessment = (
             self.db.query(AssessmentsHistory)
             .filter(
@@ -253,7 +284,7 @@ class AssessmentsRepository:
         if not assessment:
             raise ValueError("Avaliação não encontrada ou não pertence a este usuário.")
             
-        # Busca as stacks/resultados vinculados a essa avaliação
+
         stacks_records = (
             self.db.query(ResultTest)
             .filter(ResultTest.id_assessments == assessment.id_assessments)
