@@ -21,7 +21,7 @@ export const Navbar = () => {
     const handleLogout = async () => {
         await postLogout(token as string)
         router.push('/sign-in')
-}
+    }
 
 
     useEffect(() => {
@@ -61,7 +61,7 @@ export const Navbar = () => {
                         token ?
                             <>
                                 <li><Link href='/dashboard'>Dashboard</Link></li>
-                                <li><Link href='/logout'>Logout</Link></li>
+                                <Button onClick={() => router.push('/sign-in')} text='Logout' variant='secondary' minSize={true} className={styles.loginButton} />
                             </> :
                             <>
                                 <li><Link href='/sign-in'>Login</Link></li>
@@ -73,11 +73,11 @@ export const Navbar = () => {
 
                 <div className={styles.buttons_container}>
                     <button className={styles.nav_toggle} onClick={handleToggleNavbar}>{visibleIcon}</button>
-                   {
-                   token ?
-                   <Button onClick={() => handleLogout()} text='Logout' variant='secondary' minSize={true} className={styles.loginButton} />
-                   : <Button onClick={() => router.push('/sign-in')} text='Login' variant='secondary' minSize={true} className={styles.loginButton} />
-                }
+                    {
+                        token ?
+                            <Button onClick={() => handleLogout()} text='Logout' variant='secondary' minSize={true} className={styles.loginButton} />
+                            : <Button onClick={() => router.push('/sign-in')} text='Login' variant='secondary' minSize={true} className={styles.loginButton} />
+                    }
                 </div>
             </Limit>
         </nav>
