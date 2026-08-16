@@ -19,8 +19,8 @@ export const postLogin = async (data: any) => {
         })
 }
 export const postLogout = async (token: string) => {
-     api.post('/auth/logout', token)
-     localStorage.clear()
+    api.post('/auth/logout', token)
+    localStorage.clear()
 }
 
 export const getUser = async (email: string) => {
@@ -84,6 +84,24 @@ export const getAssessmentsHistoryById = async (id_test: string) => {
     return api.get(`/assessments/${id_test}`)
         .then((response) => {
             return response.data;
+        }).catch((error) => {
+            console.error('Error:', error);
+            throw error;
+        })
+}
+export const getUseTerm = async () => {
+    return api.get('/terms/usage')
+        .then((response) => {
+            return response.data.data;
+        }).catch((error) => {
+            console.error('Error:', error);
+            throw error;
+        })
+}
+export const getPrivacyPolicy = async () => {
+    return api.get('/terms/policy')
+        .then((response) => {
+            return response.data.data;
         }).catch((error) => {
             console.error('Error:', error);
             throw error;
