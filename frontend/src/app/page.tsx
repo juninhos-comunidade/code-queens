@@ -1,13 +1,12 @@
 'use client'
-import { CheckCheckIcon, CheckCircle, CircleCheck } from "lucide-react";
+import { CircleCheck } from "lucide-react";
 import styles from "./page.module.scss";
 import { Button, Footer, Limit, Navbar } from "@/components";
+import { useRouter } from "next/navigation";
 
 
 export default function Home() {
-
-
-
+const router = useRouter()
   return (
     <div className={styles.page}>
       <Navbar />
@@ -20,8 +19,8 @@ export default function Home() {
               </h1>
               <p>Resolva testes com problemas reais do dia a dia de um desenvolvedor e saia na frente em sua próxima entrevista.</p>
               <div className={styles.button_container}>
-                <Button text="Cadastrar agora" />
-                <Button text="Login" variant="outline" />
+                <Button text="Cadastrar agora" onClick={() => router.push('/sign-up')}/>
+                <Button text="Login" variant="outline"  onClick={() => router.push('/sign-in')} />
               </div>
             </div>
 
