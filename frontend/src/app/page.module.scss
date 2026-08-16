@@ -1,0 +1,89 @@
+@use '../styles/colors.module' as *;
+
+.page,
+.page_main {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+}
+
+.page {
+    [class*=limit] {
+        justify-self: center;
+    }
+
+    .header {
+        background: $primary-light;
+        padding-block: 60px;
+
+        .header_container {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 60px;
+
+            
+            .header_info {
+                width: 43%;
+                h1 {
+                    font-size: 3rem;
+                    line-height: 3.5rem;
+                }
+                p{
+                    margin-block: 24px;
+                     width: 87%;
+                }
+                .button_container{
+                    display: flex;
+                    gap: 24px;
+            }
+        }
+        .header_image{
+            width: 43%;
+            border: 1px solid purple;
+        }
+        }
+
+        // .header_info{
+        //     // display: flex;
+        // }
+        // .button_container{
+        //     border: 1px solid red;
+        //     display: flex;
+        //     gap: 24px;
+
+        //     > button{
+        //         width: 175px;
+        //     }
+
+        // }
+    }
+}
+
+/* .passwordHelper {
+    display: flex;
+    justify-content: space-between;
+} */
+/* 
+.divisor {
+    display: flex;
+    align-items: center;
+
+    hr {
+        width: 100%;
+    }
+
+    p {
+        padding-inline: 2%;
+    }
+
+} */
+/* 
+.optinalContainer {
+    text-align: center;
+    font-size: .87rem;
+
+    :last-child {
+        margin-left: 5px;
+    }
+} */

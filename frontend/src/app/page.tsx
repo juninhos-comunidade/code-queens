@@ -1,56 +1,58 @@
 'use client'
-import { Toast } from "@/components/ui/Toast/Toast";
-import styles from "./page.module.css";
-import { Footer, Navbar } from "@/components";
-import { getStacks, getLevels, getUser } from "@/api/endpoints";
+import styles from "./page.module.scss";
+import { Button, Footer, Limit, Navbar } from "@/components";
 
 export default function Home() {
-  const links = [
-    { title: 'sobre', links: [{ title: 'Termos de uso', url: '/termos' }, { title: 'Direitos autorais', url: '/direitos' }, { title: 'Termos de Responsabilidade', url: '/termos' }, { title: 'Direitos pessoais', url: '/direitos' }] },
-    { title: 'suporte', links: [{ title: 'Central de ajuda', url: '/central-ajuda' }] },
-    { title: 'Mapa do site', links: [{ title: 'Inicio', url: '/' }, { title: 'Login', url: '/sign-in' }, { title: 'Cadastro', url: '/sign-up' }] }
-  ]
-  const handleLevel = async () =>{
-     await getLevels().then((response) => 
-    console.log(response)
-    ).catch((e) => console.log('Erro: ', e))
-    
-  }
-  const handleStacks = async () =>{
-     await getStacks().then((response) => 
-    console.log(response)
-    ).catch((e) => console.log('Erro: ', e))
-  }
-  const handleUser = async () =>{
-     await getUser('maria@email.com').then((response) => 
-    console.log(response)
-    ).catch((e) => console.log('Erro: ', e))
-  }
+
 
 
   return (
     <div className={styles.page}>
       <Navbar />
+      <header className={styles.header}>
+        <Limit>
+          <div className={styles.header_container}>
+            <div className={styles.header_info}>
+              <h1>
+                Coloque suas <span className='emphasys'>stacks</span> em <span className='emphasys'>check</span> e avance de verdade
+              </h1>
+              <p>Resolva testes com problemas reais do dia a dia de um desenvolvedor e saia na frente em sua próxima entrevista.</p>
+              <div className={styles.button_container}>
+                <Button text="Cadastrar agora" />
+                <Button text="Login" variant="outline" />
+              </div>
+            </div>
+
+            <div className={styles.header_image}>
+            
+            </div>
+          </div>
+
+        </Limit>
+      </header>
       <main className={styles.page_main}>
-        <Toast variable='primary' title="Ainda não consegue lembrar?" subtitle="Caso não lembre sua palavra de segurança ou confira outras dificuldades, entre em contato com nosso suporte." />
-        <Toast variable='success' title="Dados atualizados" subtitle="Seus dados pessoais foram atualizados com sucesso" />
-        <Toast variable='warning' title="Instabilidade no sistema" subtitle="Estamos enfrentando problemas de instabilidade que já estão em rota de resolução.Agradecemos a paciencia" />
-        <Toast variable='error' title="Erro 401" subtitle="Ocorreu um erro ao processar suas informações " />
-        <Toast variable='info' title="Atualização programada" subtitle="Teremos uma atualização para melhorar sua experiencia no dia 28/10/2026" />
-
-        <h5>Somente descricao</h5>
-        <Toast variable='primary' isOnlyDescribe title="Ainda não consegue lembrar?" subtitle="Caso não lembre sua palavra de segurança ou confira outras dificuldades, entre em contato com nosso suporte." />
-        <Toast variable='success' isOnlyDescribe title="Dados atualizados" subtitle="Seus dados pessoais foram atualizados com sucesso" />
-        <Toast variable='warning' isOnlyDescribe title="Instabilidade no sistema" subtitle="Estamos enfrentando problemas de instabilidade que já estão em rota de resolução.Agradecemos a paciencia" />
-        <Toast variable='error' isOnlyDescribe title="Erro 401" subtitle="Ocorreu um erro ao processar suas informações " />
-        <Toast variable='info' isOnlyDescribe title="Atualização programada" subtitle="Teremos uma atualização para melhorar sua experiencia no dia 28/10/2026" />
-
-        <h5>Gets - testes</h5>
-        <button onClick={handleLevel} >Niveis</button>
-        <button  onClick={handleStacks} >Stacks</button>
-        <button  onClick={handleUser} >Usuario</button>
+        {/* O que fazemos */}
+        <section>
+          <div></div>
+          <div>
+            <h2>O que fazemos?</h2>
+            <p>O StackCheck cria testes técnicos personalizados para desenvolvedores que buscam sair na frente
+              em suas entrevistas.Nossa plataforma gera automaticamente um teste baseado no seu objetivo, dito isso você pode definir:
+            </p>
+            <ul>
+              <li>Frente de atuação. (exemplo: Front-end,Back-end)</li>
+              <li>Senioridade desejada</li>
+              <li>As tecnologias que quer avaliar</li>
+            </ul>
+          </div>
+        </section>
+        {/* Proximo sim */}
+        <section>
+          <h2>Iremos <span className='emphasys'>destravar</span> o seu próximo <span className='emphasys'>“sim”</span> </h2>
+          <p>Escolha sua área, monte seu teste e descubra exatamente o que falta para chegar mais confiante na próxima entrevista.</p>
+        </section>
       </main>
-      {/* <Footer linksFooter={links} /> */}
+      <Footer />
     </div>
   );
 }
