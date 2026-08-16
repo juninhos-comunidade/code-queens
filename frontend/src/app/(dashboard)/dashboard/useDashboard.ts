@@ -20,7 +20,6 @@ export const useDashboard = () => {
       await getAssessmentsHistory(id_users)
         .then((response) => {
           setHistory(response)
-          console.log()
         }
         )
         .catch((error) => console.error(error))

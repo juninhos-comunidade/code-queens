@@ -80,10 +80,9 @@ export const useQuestionnare = () => {
 
             setIsLoading(true)
             await postAssessmentsQuestionnaire(testId, data)
-                .then((response) => {
+                .then(() => {
                     router.push(`/test/assessment/result/${testId}`)
                     setCurrentAssessment(null)
-                    console.log(response)
                 })
                 .catch((error) =>
                     console.error(error)
@@ -93,7 +92,6 @@ export const useQuestionnare = () => {
                     setCurrentAssessment(null)
                 })
         }
-        //TODO : remover console.log
 
     };
 

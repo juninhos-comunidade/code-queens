@@ -26,10 +26,7 @@ export const FormTest = () => {
             <h5>{info[step].title}</h5>
             <p>{info[step].subtitle}</p>
             <form onSubmit={handleSubmit(
-                handleTest,
-                (errors) => {
-                    console.log("ERROS DE VALIDAÇÃO:", errors);
-                }
+                handleTest
             )}>
                 {
                     step === 0 ?
