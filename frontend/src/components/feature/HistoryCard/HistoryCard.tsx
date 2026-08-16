@@ -3,12 +3,13 @@ import { StackTag } from "../StacksTag"
 import styles from './historycard.module.scss'
 import { formatDate } from "@/utils"
 import Link from "next/link"
+import { StacksHistory } from "@/types"
 
 interface HistoryCardProps {
     index: number | string,
     titleTest: string,
     date: Date,
-    stacks: [],
+    stacks: StacksHistory[],
     score: number,
 }
 export const HistoryCard = ({ index, titleTest, date, stacks, score }: HistoryCardProps) => {
