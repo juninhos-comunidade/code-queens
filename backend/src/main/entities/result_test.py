@@ -1,6 +1,7 @@
-from datetime import datetime
 from uuid import UUID
-from sqlalchemy import DateTime, ForeignKey, Integer, func, String
+
+from sqlalchemy.dialects.postgresql import JSONB
+from sqlalchemy import ForeignKey, Integer, func, String
 from sqlalchemy.orm import Mapped, mapped_column
 
 from src.main.database.orm import Base
@@ -44,8 +45,8 @@ class ResultTest(Base):
         Integer,
         nullable=True
     )
-    classification: Mapped[str] = mapped_column(
-        String(50), 
+    classification: Mapped[dict] = mapped_column(
+        JSONB,
         nullable=True
     )
     stack_name: Mapped[str] = mapped_column(
