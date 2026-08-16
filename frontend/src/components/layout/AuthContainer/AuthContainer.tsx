@@ -1,4 +1,4 @@
-import { SignCard, Button } from "@/components";
+import { SignCard, Button, Toast } from "@/components";
 import styles from './auth_container.module.scss'
 import { ReactNode } from "react";
 
@@ -15,6 +15,7 @@ interface AuthContainerProps {
     isLoading?: boolean,
     buttonTitle: string,
     msgFallback?: string,
+    toasts?: ReactNode,
     submit?: () => void,
 }
 export const AuthContainer = ({
@@ -29,6 +30,7 @@ export const AuthContainer = ({
     isLoading,
     buttonTitle,
     msgFallback,
+    toasts,
     submit
 }: AuthContainerProps) => {
 
@@ -70,6 +72,9 @@ export const AuthContainer = ({
                     </>
                 }
             </SignCard>
+
+                {toasts}
+
         </div>
     )
 }

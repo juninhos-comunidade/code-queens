@@ -13,6 +13,10 @@
             margin-bottom: 12px;
         }
     }
+
+    > [class*=toast] {
+        margin-top: 40px;
+    }
 }
 
 .sectionHelper {
@@ -32,7 +36,7 @@
         padding-inline: 2%;
         color: $text-primary;
     }
-    
+
 }
 
 .optionalContainer {

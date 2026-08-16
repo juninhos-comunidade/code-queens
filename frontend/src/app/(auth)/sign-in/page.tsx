@@ -1,18 +1,18 @@
 'use client'
 import { zodResolver } from "@hookform/resolvers/zod";
-import { loginSchema, LoginFormData, useSignIn} from "./useSignIn";
+import { loginSchema, LoginFormData, useSignIn, } from "./useSignIn";
 
-import { Input, Checkbox, AuthContainer } from "@/components";
+import { Input, Checkbox, AuthContainer, Toast } from "@/components";
 import { useForm } from "react-hook-form";
 
 const SignIn = () => {
-    const { register, handleSubmit, formState: { errors, isSubmitting, isValid}, } = useForm<LoginFormData>({
+    const { register, handleSubmit, formState: { errors, isSubmitting, isValid }, } = useForm<LoginFormData>({
         resolver: zodResolver(loginSchema),
         defaultValues: { email: '', password: '' },
         mode: "onChange",
     })
 
-    const {isLoading,error, handleLogin } =  useSignIn();
+    const { isLoading, error, handleLogin } = useSignIn();
     return (
         <AuthContainer
             submit={handleSubmit(handleLogin)}
@@ -22,6 +22,11 @@ const SignIn = () => {
             buttonTitle="Entrar"
             subtitle="Acesse sua conta para continuar aprendendo e evoluindo."
             msgFallback={error}
+            toasts={<Toast
+                variable='primary'
+                title="Por que pedimos essas informações?"
+                subtitle={"Seu e-mail e senha são necessários para identificar seu perfil de progresso, garantir que suas conquistas fiquem salvas e manter um ambiente de aprendizado seguro."}
+            />}
             formChildren={
                 <>
                     <Input
