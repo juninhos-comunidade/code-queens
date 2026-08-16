@@ -10,13 +10,14 @@ import { useEffect } from "react";
 
 const Dashboard = () => {
 
-  const {userToken, id_users, first_name, history, navigationToTest, getAssessmentsHistoryById } = useDashboard()
+  const {userToken, id_users, first_name, history, navigationToTest, getAssessmentsHistoryById, getLogout } = useDashboard()
   useEffect(() => {
     getAssessmentsHistoryById()
   }, [id_users])
   return (
     userToken &&
     <section className={styles.dashboard} >
+      <Button text="Deslogar" onClick={() => getLogout(userToken)}/>
       <Limit>
         <div className={styles.header_container}>
           <div className={styles.welcome}>

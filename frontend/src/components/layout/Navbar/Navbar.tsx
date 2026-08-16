@@ -7,6 +7,7 @@ import { MenuIcon, X } from 'lucide-react';
 import StackCheckLogo from '../../../../public/stackcheck_logo.svg';
 
 import { Button, Limit } from '@/components';
+import { postLogout } from '@/api/endpoints';
 
 import styles from './navbar.module.scss'
 import Link from 'next/link';
@@ -17,7 +18,10 @@ export const Navbar = () => {
     const [token, setToken] = useState<string>()
     const handleToggleNavbar = () => setIsOpen(!isOpen)
     const visibleIcon = isOpen ? <X /> : <MenuIcon />
-
+    const handleLogout = async () => {
+        await postLogout(token as string)
+        router.push('/sign-in')
+}
 
 
     useEffect(() => {
@@ -71,8 +75,8 @@ export const Navbar = () => {
                     <button className={styles.nav_toggle} onClick={handleToggleNavbar}>{visibleIcon}</button>
                    {
                    token ?
-                   <Button onClick={() => router.push('/sign-in')} text='Login' variant='secondary' minSize={true} className={styles.loginButton} />
-                :  <Button onClick={() => {}} text='Logout' variant='secondary' minSize={true} className={styles.loginButton} />
+                   <Button onClick={() => handleLogout()} text='Logout' variant='secondary' minSize={true} className={styles.loginButton} />
+                   : <Button onClick={() => router.push('/sign-in')} text='Login' variant='secondary' minSize={true} className={styles.loginButton} />
                 }
                 </div>
             </Limit>

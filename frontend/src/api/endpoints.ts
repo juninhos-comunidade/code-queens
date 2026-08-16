@@ -1,15 +1,5 @@
 import { api } from './index'
 
-export const postLogin = async (data: any) => {
-    return api.post('/auth/login', data)
-        .then((response) => {
-            return response.data;
-        }).catch((error) => {
-            console.error('Error:', error);
-            throw error;
-        })
-}
-
 export const postCreateUser = async (data: any) => {
     return api.post('/users', data)
         .then((response) => {
@@ -19,6 +9,20 @@ export const postCreateUser = async (data: any) => {
             throw error;
         })
 }
+export const postLogin = async (data: any) => {
+    return api.post('/auth/login', data)
+        .then((response) => {
+            return response.data;
+        }).catch((error) => {
+            console.error('Error:', error);
+            throw error;
+        })
+}
+export const postLogout = async (token: string) => {
+     api.post('/auth/logout', token)
+     localStorage.clear()
+}
+
 export const getUser = async (email: string) => {
     return api.get(`/users/email/${email}`)
         .then((response) => {
@@ -58,7 +62,7 @@ export const postAssessments = async (data: any) => {
             throw error;
         })
 }
-export const postAssessmentsQuestionnaire = async (assessment_id: string,data: any) => {
+export const postAssessmentsQuestionnaire = async (assessment_id: string, data: any) => {
     return api.post(`/assessments/${assessment_id}/submit`, data)
         .then((response) => {
             return response.data;

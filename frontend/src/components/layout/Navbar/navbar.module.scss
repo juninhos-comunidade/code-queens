@@ -36,6 +36,7 @@
         top: anchor(--my-anchor bottom);
         width: 100%;
         display: none;
+        z-index: 999;
 
         &.navbar_open {
             display: block;
@@ -55,6 +56,7 @@
             border-bottom: 1px solid rgba(102, 51, 153, 0.096);
             text-align: center;
             padding: 12px 8px;
+            background: $white;
         }
 
     }
