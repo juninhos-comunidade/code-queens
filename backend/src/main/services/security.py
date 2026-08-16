@@ -3,7 +3,11 @@ from fastapi import Depends, HTTPException, status
 from fastapi.security import HTTPBearer, HTTPAuthorizationCredentials
 from jose import JWTError, jwt
 
-SECRET_KEY = "AiOjE3MjM4MzgxODB9.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c"  
+import os
+from dotenv import load_dotenv
+load_dotenv(BASE_DIR / ".env")
+
+SECRET_KEY = os.getenv('DB_NAME')
 ALGORITHM = "HS256"
 ACCESS_TOKEN_EXPIRE_MINUTES = 60 * 24
 
