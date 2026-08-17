@@ -471,7 +471,7 @@ backend/vercel.json
 
 A aplicação em produção pode ser acessada em:
 
-**https://stack-check-27s5th5e9-kellycsantos-projects.vercel.app/**
+**https://stack-check-chi.vercel.app**
 
 ---
 
