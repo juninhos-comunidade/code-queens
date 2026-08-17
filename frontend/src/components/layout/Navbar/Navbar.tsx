@@ -72,7 +72,7 @@ export const Navbar = () => {
                 </ul>
 
                 <div className={styles.buttons_container}>
-                    <button className={styles.nav_toggle} onClick={handleToggleNavbar}>{visibleIcon}</button>
+                    <button className={styles.nav_toggle} aria-label={`${isOpen ? 'fechar' : 'abrir'} menu`} onClick={handleToggleNavbar}>{visibleIcon}</button>
                     {
                         token ?
                             <Button onClick={() => handleLogout()} text='Logout' variant='secondary' minSize={true} className={styles.loginButton} />
