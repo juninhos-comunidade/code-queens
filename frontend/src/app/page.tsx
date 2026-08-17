@@ -3,6 +3,9 @@ import { CircleCheck } from "lucide-react";
 import styles from "./page.module.scss";
 import { Button, Footer, Limit, Navbar } from "@/components";
 import { useRouter } from "next/navigation";
+import Image from "next/image";
+import ImageHeader from '../../public/header_image.png';
+import ImageBanner from '../../public/study_section.png'
 
 
 export default function Home() {
@@ -17,7 +20,7 @@ export default function Home() {
               <h1>
                 Coloque suas <span className='emphasys'>stacks</span> em <span className='emphasys'>check</span> e avance de verdade
               </h1>
-              <p>Descubra se você está preparado para as vagas que deseja conquistar. Teste suas habilidades, 
+              <p>Descubra se você está preparado para as vagas que deseja conquistar. Teste suas habilidades,
                 identifique seus pontos de melhoria e evolua com confiança para sua próxima entrevista.</p>
               <div className={styles.button_container}>
                 <Button text="Começar agora" onClick={() => router.push('/sign-up')} />
@@ -25,9 +28,9 @@ export default function Home() {
               </div>
             </div>
 
-            {/* <div className={styles.header_image}>
-
-            </div> */}
+            <div className={styles.header_image}>
+              <Image src={ImageHeader} alt='Garota estudando' />
+            </div>
           </div>
 
         </Limit>
@@ -36,10 +39,12 @@ export default function Home() {
         {/* O que fazemos */}
         <section className={styles.proposal_section}>
           <Limit>
-            <div className={styles.proposal_image}></div>
+            <div className={styles.proposal_image}>
+              <Image src={ImageBanner} alt='Garoto estudando' />
+            </div>
             <div className={styles.proposal_info}>
               <h2>O que fazemos?</h2>
-              <p>O StackCheck cria avaliações técnicas personalizadas para ajudar desenvolvedores a entender seu nível atual, 
+              <p>O StackCheck cria avaliações técnicas personalizadas para ajudar desenvolvedores a entender seu nível atual,
                 identificar oportunidades de evolução e chegar mais preparado aos desafios do mercado.
 
               </p>
@@ -66,7 +71,7 @@ export default function Home() {
                 <div className={styles.feature_card}>
                   <h3>Teste suas  <span className='emphasys'>habilidades</span></h3>
                   <p>Resolva desafios inspirados em situações reais do mercado e descubra exatamente quais conhecimentos já são seus pontos fortes e quais ainda podem evoluir.
-</p>
+                  </p>
                   <ul>
                     <li>
                       <CircleCheck /> Até 25 perguntas por teste </li>
@@ -87,7 +92,7 @@ export default function Home() {
                 <div className={styles.feature_card}>
                   <h3>Acompanhe a {' '}<span className="emphasys">evolução</span></h3>
                   <p>Visualize seu progresso, compare desempenhos anteriores e acompanhe sua jornada rumo às próximas oportunidades da sua carreira.</p>
-                 
+
                   <ul>
                     <li>
                       <CircleCheck /> Histórico completo </li>
